@@ -177,3 +177,44 @@ if($geruElementuKiekis>0){
 echo "$geruElementuKiekis".'<br>';
 echo "$suma".'<br>';
 echo'<br>'."Kitas vidurkis: $result";
+echo '<br>';
+echo '<br>';
+echo '+++++ 10 task +++++';
+echo '<br>';
+echo '<br>';
+$valandos = rand(0,23);
+$minutes = rand(0,59);
+$sekundes = rand (0,59);
+echo "Buvo:$valandos:$minutes:$sekundes";
+$papildomosSekundes = rand(0,300);
+$naujosSekundes = $sekundes+$papildomosSekundes;
+while($naujosSekundes>60){
+    $naujosSekundes-=60;
+    $minutes+=1;
+}
+if($minutes>=60){
+    $minutes-=60;
+    $valandos+=1;
+}
+if($valandos>=40){
+    $valandos-=24;
+}
+echo '<br>';
+echo "Dabar:$valandos:$minutes:$naujosSekundes";
+echo '<br>';
+echo '<br>';
+echo '+++++ 11 task +++++';
+echo '<br>';
+echo '<br>';
+$k1 = rand(1000,9999);
+$k2 = rand(1000,9999);
+$k3 = rand(1000,9999);
+$k4 = rand(1000,9999);
+$k5 = rand(1000,9999);
+$k6 = rand(1000,9999);
+$paskutinis = max($k1,$k2,$k3,$k4);
+$pirmas  = min($k1,$k2,$k3,$k4);
+$antras = 0;
+$trecias = 0;
+$sum = $k1+$k2+$k3+$k4;
+// if(($k1<=>$pirmas) === 0)
