@@ -185,7 +185,7 @@ echo '<br>';
 $valandos = rand(0,23);
 $minutes = rand(0,59);
 $sekundes = rand (0,59);
-echo "Buvo:$valandos:$minutes:$sekundes";
+echo sprintf('Buvo %02d:%02d:%02d',$valandos,$minutes,$sekundes);
 $papildomosSekundes = rand(0,300);
 $naujosSekundes = $sekundes+$papildomosSekundes;
 while($naujosSekundes>60){
@@ -200,7 +200,7 @@ if($valandos>=40){
     $valandos-=24;
 }
 echo '<br>';
-echo "Dabar:$valandos:$minutes:$naujosSekundes";
+echo sprintf('Dabar %02d:%02d:%02d',$valandos,$minutes,$naujosSekundes);
 echo '<br>';
 echo '<br>';
 echo '+++++ 11 task +++++';
