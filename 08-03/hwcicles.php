@@ -42,7 +42,7 @@
     align-items: center;
     justify-content: center;
     text-align:center;
-    background-color: red;
+    border: 2px solid black;
     gap: 0px;
 }
 .romboEile{
@@ -212,12 +212,12 @@ $rombas = '';
 $zenkluDaugilkis = 0;
 for ($i = 1; $i < 21; $i++){
     if($zenkluDaugilkis <= 0  ){
-        $rombas.="<p class = \"romboEile\">*</p> \n";
+        $rombas.="<p class = \"romboEile\"><span style=\"color:rgb(" . rand(0, 255) . ', ' . rand(0, 255) . ', ' . rand(0, 255) . ");\">*</span></p> \n";
         $zenkluDaugilkis+=2;
     }
     if ($i < 11){
         
-        $augantiEile = str_repeat('*',$zenkluDaugilkis);
+        $augantiEile = str_repeat("<span style=\"color:rgb(" . rand(0, 255) . ', ' . rand(0, 255) . ', ' . rand(0, 255) . ");\">*</span>",$zenkluDaugilkis);
         $rombas.="<p class = \"romboEile\">$augantiEile</p>\n";
         $zenkluDaugilkis+=2;
     } 
@@ -228,9 +228,9 @@ for ($i = 1; $i < 21; $i++){
         $zenkluDaugilkis-=2;
         if($zenkluDaugilkis >= 2){
             
-        $mazejantiEile = str_repeat('*',$zenkluDaugilkis);
+        $mazejantiEile = str_repeat("<span style=\"color:rgb(" . rand(0, 255) . ', ' . rand(0, 255) . ', ' . rand(0, 255) . ");\">*</span>",$zenkluDaugilkis);
         $rombas.="<p class = \"romboEile\">$mazejantiEile</p>\n";        
-        }else {$rombas.="<p class = \"romboEile\">*</p> \n";}
+        }else {$rombas.="<p class = \"romboEile\"><span style=\"color:rgb(" . rand(0, 255) . ', ' . rand(0, 255) . ', ' . rand(0, 255) . ");\">*</span></p> \n";}
         
     }
 
@@ -297,3 +297,37 @@ for($i = 0; $i<5;$i++){
     $visoSmugiuPenkiom+=$dideliuSmVienam;
 }
 echo "Penkiu viniu ikalimui reikia $visoSmugiuPenkiom tiksliu dideliu smugiu \n";
+echo '<br>';
+echo '<br>';
+echo '+++++ 11 task +++++';
+echo '<br>';
+echo '<br>';
+$uniqNrs = [];
+do{
+    $number = rand(1,200);
+    if (!in_array($number,$uniqNrs)){
+        array_push($uniqNrs,$number);
+    }
+} while(count($uniqNrs)!== 50);
+echo "Nepasikartojanciu skaiciu masyvas: \n";
+echo implode(" ", ($uniqNrs));
+echo '<br>';
+$primeUniq = [];
+for ($i = 0; $i < count($uniqNrs)-1; $i++){
+    $n=0;
+    $cheking = $uniqNrs[$i];
+    for ($j = 2; $j < $cheking;$j++){
+        if($cheking%$j == 0){
+            $n++;
+        }
+    }
+    if($n === 0){
+        array_push($primeUniq,$uniqNrs[$i]);
+    }
+}
+echo "Priminiu nepasikartojanciu skaiciu masyvas: \n";
+echo implode(" ", ($primeUniq));
+sort($primeUniq);
+echo '<br>';
+echo "Priminiu nepasikartojanciu skaiciu masyvas: \n";
+echo implode(" ", ($primeUniq));
