@@ -3,7 +3,6 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    overflow-wrap: break-word;
 }
 .kvadratas{
     font-size: 12px;
@@ -34,6 +33,25 @@
     color: red;
     text-justify: center;
     font-weight: bold;
+}
+.rombas{
+    width: 600px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align:center;
+    background-color: red;
+    gap: 0px;
+}
+.romboEile{
+    align-self: center;
+    text-align:center;
+    justify-content: center;
+    margin:0px;
+    line-height: 10px;
+    font-size: 12px;
 }
 </style>
 <?php
@@ -90,10 +108,10 @@ echo '<br>';
 $beLiekanos = [];
 for ($i = 1; $i < rand(3000,4000); $i++){
     if(($i%77)===0){
-        array_push($beLiekanos,"<p>$i, </p>");
+        array_push($beLiekanos,"<span>$i</span>");
     }
 }
-$beLiekanosTextas = implode("",$beLiekanos);
+$beLiekanosTextas = implode(",&nbsp;",$beLiekanos);
 echo "<div  class = \"starsT1\">$beLiekanosTextas</div>";
 echo '<br>';
 echo '<br>';
@@ -161,3 +179,121 @@ do{
     }
     
     }while($herbas !== 3);
+
+echo '<br>';
+echo '<br>';
+echo '+++++ 7 task +++++';
+echo '<br>';
+echo '<br>';
+$PetroVisiTaskai = 0;
+$KazioVisiTaskai = 0;
+while(($PetroVisiTaskai<222) && ($KazioVisiTaskai<222)){
+    $PetroBingo = rand(10,20);
+    $KazioBingo = rand(5,25);
+    if($PetroBingo > $KazioBingo){
+    echo "Petro taskai : $PetroBingo, Kazio taskai: $KazioBingo. Partija laimejo: Petras";
+    
+    }else{  
+        echo "Petro taskai : $PetroBingo, Kazio taskai: $KazioBingo. Partija laimejo: Kazys";
+        
+    }
+    $PetroVisiTaskai += $PetroBingo;
+    $KazioVisiTaskai += $KazioBingo;
+    echo '<br>';
+}
+echo '<br>';
+echo "Petro Bingo: $PetroVisiTaskai, Kazio Bingo: $KazioVisiTaskai";
+echo '<br>';
+echo '<br>';
+echo '+++++ 8 task +++++';
+echo '<br>';
+echo '<br>';
+$rombas = '';
+$zenkluDaugilkis = 0;
+for ($i = 1; $i < 21; $i++){
+    if($zenkluDaugilkis <= 0  ){
+        $rombas.="<p class = \"romboEile\">*</p> \n";
+        $zenkluDaugilkis+=2;
+    }
+    if ($i < 11){
+        
+        $augantiEile = str_repeat('*',$zenkluDaugilkis);
+        $rombas.="<p class = \"romboEile\">$augantiEile</p>\n";
+        $zenkluDaugilkis+=2;
+    } 
+    if($zenkluDaugilkis === 22){
+        $zenkluDaugilkis-=2;
+    }
+    if($i > 10 && $i< 21){
+        $zenkluDaugilkis-=2;
+        if($zenkluDaugilkis >= 2){
+            
+        $mazejantiEile = str_repeat('*',$zenkluDaugilkis);
+        $rombas.="<p class = \"romboEile\">$mazejantiEile</p>\n";        
+        }else {$rombas.="<p class = \"romboEile\">*</p> \n";}
+        
+    }
+
+}
+echo "<div  class = \"rombas\">$rombas</div>";
+echo '<br>';
+echo '<br>';
+echo '+++++ 10 task +++++';
+echo '<br>';
+echo '<br>';
+$vienaVinis = 850;
+$mazuSmVienam = 0;
+do{
+    $mazasSmugis = rand(5,20);
+
+
+
+        $vienaVinis-=$mazasSmugis;
+        $mazuSmVienam++;
+
+}while($vienaVinis> 0);
+echo "Vienos vinies ikalimui reikia $mazuSmVienam  mazu smugiu \n";
+echo '<br>';
+echo '<br>';
+echo '+++++ 10a task +++++';
+echo '<br>';
+echo '<br>';
+$visoSmugiuPenkiom = 0;
+
+for($i = 0; $i<5;$i++){
+    $vienaVinis = 850;
+    $mazuSmVienam = 0;  
+    do{
+        $mazasSmugis = rand(5,20);
+    
+    
+
+            $vienaVinis-=$mazasSmugis;
+            $mazuSmVienam++;
+
+    }while($vienaVinis> 0);
+    $visoSmugiuPenkiom+=$mazuSmVienam;
+}
+
+echo "Penkiu viniu ikalimui reikia $visoSmugiuPenkiom  mazu smugiu \n";
+echo '<br>';
+echo '<br>';
+echo '+++++ 10b task +++++';
+echo '<br>';
+echo '<br>';
+$visoSmugiuPenkiom = 0;
+
+for($i = 0; $i<5;$i++){
+    $vienaVinis = 850;
+    $dideliuSmVienam = 0;  
+    do{
+        $didelisSmugis = rand(20,30);
+        $pataikymas = rand(0,1);    // 0 jei nepataikom, 1 jei pataikom;
+        if($pataikymas === 1){      
+                $vienaVinis-=$didelisSmugis;
+                $dideliuSmVienam++;
+            }
+    }while($vienaVinis> 0);
+    $visoSmugiuPenkiom+=$dideliuSmVienam;
+}
+echo "Penkiu viniu ikalimui reikia $visoSmugiuPenkiom tiksliu dideliu smugiu \n";
