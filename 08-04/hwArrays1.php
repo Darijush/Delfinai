@@ -156,12 +156,55 @@ foreach(range(1,200) as $num){
 }
 // print_r($letterArray);
 
-$letterCount= [];
-foreach($letterArray as $index=>$letter){
-    if(!in_array($letter,$letterCount)){
-        $letterCount[]=$letter;
-    }else{
-        $index++;
-    }
+$letterA = 0;
+$letterB = 0;
+$letterC = 0;
+$letterD = 0;
+foreach($letterArray as $letter){
+    if ($letter === 'A') {
+        $letterA++ ;
+      } elseif ($letter == 'B') {
+        $letterB++ ;
+      } elseif ($letter == 'C') {
+        $letterC++ ;
+      } else {
+        $letterD++;
+      }
+    
 }
-print_r($letterCount);
+echo"A:$letterA, B:$letterB, C:$letterC,D: $letterD";  
+
+echo '<br>';
+echo '<br>';
+echo '+++++ 4 task +++++';
+echo '<br>';
+echo '<br>';
+
+sort($letterArray);
+// print_r($letterArray);
+
+echo '<br>';
+echo '<br>';
+echo '+++++ 5 task +++++';
+echo '<br>';
+echo '<br>';
+
+$lrAr1 = [];
+$lrAr2 = [];
+$lrAr3 = [];
+foreach(range(1,200) as $num){
+    $n = randLetter();
+    $lrAr1[]=$n;
+    $n = randLetter();
+    $lrAr2[]=$n;
+    $n = randLetter();
+    $lrAr3[]=$n;
+}
+// print_r($lrAr1);
+// print_r($lrAr2);
+// print_r($lrAr3);
+$jointLrAr=[];
+foreach($lrAr1 as $in=>$lt){
+    $jointLrAr[]= $lrAr1[$in].$lrAr2[$in].$lrAr3[$in];
+}
+print_r($jointLrAr);
