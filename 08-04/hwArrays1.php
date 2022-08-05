@@ -207,4 +207,107 @@ $jointLrAr=[];
 foreach($lrAr1 as $in=>$lt){
     $jointLrAr[]= $lrAr1[$in].$lrAr2[$in].$lrAr3[$in];
 }
-print_r($jointLrAr);
+// print_r($jointLrAr);
+
+$uniqCombos = [];
+$uniqRepeatCount = 0;
+foreach ($jointLrAr as $combo){
+    if(!in_array($combo, $uniqCombos)){
+        $uniqCombos[]=$combo;
+    }else{
+        $uniqRepeatCount++;
+    }
+}
+echo '<br>';
+// print_r($uniqCombos);
+echo '<br>';
+echo $uniqRepeatCount;
+
+$dups = [];
+foreach(array_count_values($jointLrAr) as $val => $c){
+    if($c > 1) $dups[] = $val;
+}
+echo '<br>';
+$noDupCount = count($uniqCombos)-count($dups);
+echo $noDupCount;
+
+echo '<br>';
+echo '<br>';
+echo '+++++ 6 task +++++';
+echo '<br>';
+echo '<br>';
+$pirmasRandom = [];
+$anrasRandom = [];
+while(count($pirmasRandom)!== 100){
+    $x = rand(100,900);
+    if(!in_array($x, $pirmasRandom)){
+        $pirmasRandom[]=$x;
+    }
+}
+while(count($anrasRandom)!== 100){
+    $x = rand(100,900);
+    if(!in_array($x, $anrasRandom)){
+        $anrasRandom[]=$x;
+    }
+}
+// print_r($pirmasRandom);
+// print_r($anrasRandom);
+echo '<br>';
+echo '<br>';
+echo '+++++ 7 task +++++';
+echo '<br>';
+echo '<br>';
+$notInSecond = [];
+foreach($pirmasRandom as $number){
+    if(!in_array($number, $anrasRandom)){
+        $notInSecond[]=$number;
+    }
+}
+// print_r($notInSecond);
+echo '<br>';
+echo '<br>';
+echo '+++++ 8 task +++++';
+echo '<br>';
+echo '<br>';
+$dupsInBoth = [];
+foreach($pirmasRandom as $a){
+    if(in_array($a, $anrasRandom)){
+        $dupsInBoth[]=$a;
+    }
+}
+print_r($dupsInBoth);
+echo '<br>';
+echo '<br>';
+echo '+++++ 9 task +++++';
+echo '<br>';
+echo '<br>';
+$valToIndex = [];
+foreach($pirmasRandom as $ind => $c){
+    $valToIndex[$c]=$anrasRandom[$ind];
+}
+// print_r($valToIndex);
+
+echo '<br>';
+echo '<br>';
+echo '+++++ 10 task +++++';
+echo '<br>';
+echo '<br>';
+
+$randToSum = [];
+foreach(range(0,9) as $n){
+    $y = rand(5,25);
+    if(count($randToSum)<2){
+        $randToSum[]=$y;
+    }else{
+        $randToSum[]=$randToSum[$n-1]+$randToSum[$n-2];
+    }
+
+}
+print_r($randToSum);
+
+echo '<br>';
+echo '<br>';
+echo '+++++ 11 task +++++';
+echo '<br>';
+echo '<br>';
+
