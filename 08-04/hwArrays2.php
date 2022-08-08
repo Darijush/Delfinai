@@ -1,3 +1,22 @@
+
+<style>
+.kvadratas{
+    font-size: 20px;
+    display: flex;
+    flex-direction:column;
+    width: 200px;
+    height:200px;
+    text-align: center;
+}
+.row{
+    display:flex;
+    flex-direction: row;
+    align-items: space-around;
+    width:100%;
+    gap: 10px;
+}
+
+</style>
 <?php
 echo '<pre>';
 echo '<br>';
@@ -248,4 +267,33 @@ echo '+++++ 10 task +++++';
 echo '<br>';
 echo '<br>';
 
-$color
+$colorSigns =[];
+$symbols = '#%+*@裡';
+foreach(range(0,9) as $a){
+    foreach(range(0,9) as $b){
+        $symbols = '#%+*@裡';
+        $colorSigns[$a][$b]['value']=$symbols[rand(0, mb_strlen($symbols) - 1)];
+        $rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
+        $color = '#'.$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)];
+        $colorSigns[$a][$b]['color']=$color;
+    }
+}
+print_r($colorSigns);
+$kvadratas = '';
+foreach($colorSigns as $row){
+    $styledRow = '';
+    foreach($row as $el){
+            $z = $el['color'];
+            $pr = $el['value'];
+            $styledRow.= "<span style = \"color:$z\">$pr</span>";
+    }
+    $kvadratas.="<div class = \"row\">$styledRow</div>";
+}
+echo "<div  class = \"kvadratas\">$kvadratas</div>";
+
+
+echo '<br>';
+echo '<br>';
+echo '+++++ 11 task +++++';
+echo '<br>';
+echo '<br>';
