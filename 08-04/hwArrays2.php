@@ -5,13 +5,13 @@
     display: flex;
     flex-direction:column;
     width: 200px;
-    height:200px;
+ 
     text-align: center;
 }
 .row{
     display:flex;
     flex-direction: row;
-    align-items: space-around;
+    align-items: space-between;
     width:100%;
     gap: 10px;
 }
@@ -114,7 +114,7 @@ echo '+++++ 3 task +++++';
 echo '<br>';
 echo '<br>';
 $_10XLetters=[];
-$characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+$characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; // stingu operacijos brangios ir neefektyvios, geriau kurti masyva su raidem;!!!
 $charactersLength = strlen($characters);
 $randomLetter = $characters[rand(0, $charactersLength - 1)];
 
