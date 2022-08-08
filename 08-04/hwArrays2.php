@@ -133,3 +133,119 @@ function cmp2($a, $b)
 usort($_10XLetters,'cmp');
 usort($_10XLetters,'cmp2');
 print_r($_10XLetters);
+echo '<br>';
+echo '<br>';
+echo '+++++ 5 task +++++';
+echo '<br>';
+echo '<br>';
+
+$users=[];
+foreach (range(0,29) as $a) {
+    $user=[];
+    $id =[];
+    foreach (range(0,1) as $b) {
+        $i = rand(0, 1000000);
+        $place = rand(0,100);
+        if(!in_array($i,$id)){
+            $user['user_id']= $i;
+            $user['place_in_row'] = $place;
+            $id[]= $i;
+        }
+    }
+    $users[]=$user;
+}
+print_r($users);
+
+echo '<br>';
+echo '<br>';
+echo '+++++ 6 task +++++';
+echo '<br>';
+echo '<br>';
+
+function cmp3($a, $b)
+{
+    return $a['user_id'] <=> $b['user_id'];
+}
+
+function cmp4($a, $b)
+{
+    return $b['place_in_row'] <=> $a['place_in_row'];
+}
+usort($users,'cmp3');
+print_r($users);
+echo '<br>';
+usort($users,'cmp4');
+print_r($users);
+echo '<br>';
+echo '<br>';
+echo '+++++ 7 task +++++';
+echo '<br>';
+echo '<br>';
+function generateRandomString($length) {
+    $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+foreach ($users as &$ur) {
+        $name = generateRandomString(rand(5,15));
+        $surname = generateRandomString(rand(5,15));
+        $ur['name']=$name;
+        $ur['surname']=$surname;   
+}
+print_r($users);
+
+echo '<br>';
+echo '<br>';
+echo '+++++ 8 task +++++';
+echo '<br>';
+echo '<br>';
+$randLenghtArray = [];
+foreach (range(0,9) as $a) {
+    $c = rand(0,5);
+    if($c === 0){
+        $randLenghtArray[]=rand(0,10);
+    }else{
+        $randArray=[];
+        foreach (range(0,$c) as $b) {
+            $randArray[] = rand(0,10);
+        }
+        $randLenghtArray[]=$randArray;
+    }
+}
+print_r($randLenghtArray);
+
+echo '<br>';
+echo '<br>';
+echo '+++++ 9 task +++++';
+echo '<br>';
+echo '<br>';
+$totalSum = 0;
+foreach ($randLenghtArray as $a) {
+    if(!is_array($a)){
+        $totalSum+=$a;
+    }else{
+        $smallArraySum=array_sum($a);
+        $totalSum += $smallArraySum;
+    }
+}
+echo $totalSum;
+echo '<br>';
+echo '<br>';
+function cmp5($a, $b)
+{
+    return ((is_array($a))? array_sum($a):$a) <=> ((is_array($b))? array_sum($b):$b);
+}
+usort($randLenghtArray,'cmp5');
+print_r($randLenghtArray);
+
+echo '<br>';
+echo '<br>';
+echo '+++++ 10 task +++++';
+echo '<br>';
+echo '<br>';
+
+$color
