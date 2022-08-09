@@ -63,13 +63,16 @@ echo '<br>';
 
 function moZero(int $a):int{
     $count = 0;
-    foreach(range(1,$a) as $b){
+    if($a === 1){
+        return 0;
+    }
+    foreach(range(2,($a-1)) as $b){
 
 
-        if($b!==1 && ($a%$b)===0 && $b!==$a){
+        if(($a%$b)===0){
             $count++;
         }
-        $b++;
+
     }
     return $count;
 }
