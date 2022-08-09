@@ -132,7 +132,6 @@ echo '<br>';
  function generateArray ($repeats)   {
     $randArray = [];
     $num=rand(10,20);
-    $count =1;
     if ($repeats === 0){
     foreach (range(1,$num)as $n){
         if($n<$num){
@@ -155,7 +154,110 @@ echo '<br>';
     return $randArray;
 };
 $repeats = rand(10,30);
-print_r (generateArray($repeats));
+$multiArray = generateArray($repeats);
+print_r ($multiArray);
+
+echo '<br>';
+echo '<br>';
+echo '+++++ 8 task +++++';
+echo '<br>';
+echo '<br>';
+
+function calculateArray ($array)   {
+    $totalSum = 0;
+    foreach ($array as $n){
+            if(!is_array($n)){
+            $totalSum+=$n;
+                }else{
+                $totalSum+=calculateArray($n);
+                }
+        }
+
+    return $totalSum;
+};
+echo (calculateArray($multiArray));
+
+echo '<br>';
+echo '<br>';
+echo '+++++ 9 task +++++';
+echo '<br>';
+echo '<br>';
+
+$arrayOf3 = [];
+foreach (range(1,3)as $_){
+    $arrayOf3[]=rand(1,33);
+    }
+echo '<br>';
+print_r ($arrayOf3);
+function addPrimary ($array){
+    $modifiedArray = $array;
+    $len = count($modifiedArray);
+
+    if((moZero($modifiedArray[$len-1])=== 0) && (moZero($modifiedArray[$len-2]) === 0) && (moZero($modifiedArray[$len-3]) === 0)){
+        return $modifiedArray;
+    }else{
+        $modifiedArray[]=rand(1,33);
+
+        return addPrimary($modifiedArray);
+    }
+
+}
+$resultOf3 = addPrimary($arrayOf3);
+print_r($resultOf3);
+
+echo '<br>';
+echo '<br>';
+echo '+++++ 10 task +++++';
+echo '<br>';
+echo '<br>';
+$array10X10 = [];
+foreach (range(0,9)as $n){
+    foreach (range(0,9)as $m)
+    $array10X10[$n][$m]=rand(1,100);
+    }
+echo '<br>';
+// print_r ($array10X10);
+
+function primaryAvegrage ($array, $a)   {
+    $modifiedArray = $array;
+    $primaryArray = [];
+    $countRepeats = $a;
+    foreach ($modifiedArray as $n){
+        foreach($n as $m){
+            if(moZero($m) === 0){
+            $primaryArray[] = $m;
+        }
+    }
+    }
+    $average = array_sum($primaryArray)/count($primaryArray);
+    if($average >= 70){
+        return [$average,$countRepeats,$primaryArray];
+    }else{
+        $minimal = $modifiedArray[0][0];
+        foreach ($modifiedArray as $n){
+            foreach($n as $m)
+                if($m < $minimal){
+                    $minimal = $m;
+            }
+            }
+            foreach ($modifiedArray as &$l){
+                foreach($l as &$k)
+                    if($k === $minimal){
+                        $k+=3;
+                        break;
+                }
+            }
+    unset($k);
+    unset($l);
+    $countRepeats++;
+    return primaryAvegrage($modifiedArray,$countRepeats);
+}
+    
+};
+$result10X10 = primaryAvegrage($array10X10, 1);
+echo '<br>';
+print_r ($result10X10);
+
 
 
 
