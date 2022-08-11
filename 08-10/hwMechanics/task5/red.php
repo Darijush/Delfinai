@@ -18,7 +18,7 @@ if('GET' == $_SERVER['REQUEST_METHOD']){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body style="background-color: red">
     <a href="http://localhost/delfinai/08-10/hwMechanics/task5/blue.php?ToBlue=1" >Maybe to blue?</a>
     
 </body>

@@ -4,7 +4,7 @@ if('GET' == $_SERVER['REQUEST_METHOD']){
         if($color == 2){
             $bgCol = "<body class='body-black'>";
         }else{
-            $bgCol = "<body class='body-red' style='background-color:$color'>";
+            $bgCol = "<body  style='background-color:#$color'>";
         }
 }
 
@@ -21,6 +21,6 @@ if('GET' == $_SERVER['REQUEST_METHOD']){
 </head>
 <?=$bgCol?>
     <a href="http://localhost/delfinai/08-10/hwMechanics/task2/hwt2.php"  >BLACK</a>
-    <a href="http://localhost/delfinai/08-10/hwMechanics/task2/hwt2.php?color=ff1234"   method="GET">RED</a>
+    <a href="http://localhost/delfinai/08-10/hwMechanics/task2/hwt2.php?color="   method="GET">RED</a>
 </body>
 </html>
