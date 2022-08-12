@@ -11,7 +11,10 @@ function renderHeader (){
                         <div class='collapse navbar-collapse' id='navbarNav'>
                             <ul class='navbar-nav'>
                                 <li class='nav-item'>
-                                    <a class='nav-link' href='#'>ACCOUNTS LIST <span class='sr-only'>(current)</span></a>
+                                    <a class='nav-link' href='http://localhost/delfinai/bank1/'>ACCOUNTS LIST <span class='sr-only'>(current)</span></a>
+                                </li>
+                                <li class='nav-item'>
+                                    <a class='nav-link' href='http://localhost/delfinai/bank1/pages/createAccount.php'>CREATE ACCOUNT</a>
                                 </li>
                                 <li class='nav-item'>
                                     <a class='nav-link' href='#'>ADD MONEY</a>

@@ -1,7 +1,21 @@
 <?php
 // $record = [id: asmkodas, ownerName: John, ownerSurname: Johnson, accountNumber: "IBAN", balance: "100Money"]
+if('GET' == $_SERVER['REQUEST_METHOD']){
+    $showing = $_GET['display']?? 0;
+    $content = 0;
+    $stylecolor = 'black';
+    $message = ' ';
+    if ($showing == 1){
+        $content = 1;
+    }
+    if ($showing == 2){
+        $stylecolor = 'red';
+    }
+    if ($showing == 3){
+        $message = '<h2>Client with such ID already exists</h2>';
+    }
+}   
     // create valid IBAN number and put in IBAN numbers database;
-
     function createValidIBAN(){
         $iban = 'LT';
         foreach(range(1,18) as $_){
@@ -80,7 +94,12 @@ if('POST' == $_SERVER['REQUEST_METHOD']){
     $data[]=$clientCard;
     file_put_contents('C:\xampp\htdocs\Delfinai\bank1/data/clients.json',json_encode($data));
     file_put_contents('C:\xampp\htdocs\Delfinai\bank1/data/iban.json',json_encode($ibanData));
-    }; 
+    header ('Location: http://localhost/delfinai/bank1/pages/createAccount.php?display=1'); // show that recorded succefully
+    }elseif(!checkNames($name,$surname)|| validatePersonalId($asmKodas)!==2){
+        header ('Location: http://localhost/delfinai/bank1/pages/createAccount.php?display=2'); // make bold and red comment with get
+    }elseif(!checkIDinDatabase($asmKodas,$data)){
+        header ('Location: http://localhost/delfinai/bank1/pages/createAccount.php?display=3'); // make bold and red comment with get
+    }
 
 }
 
@@ -99,29 +118,38 @@ if('POST' == $_SERVER['REQUEST_METHOD']){
     <header>
         <?php require 'C:\xampp\htdocs\Delfinai\bank1/components/header.php'?>
     </header>
-    <form class="container" method='POST'>
-  <div class="form-group col-md-6" style = "padding-top: 100px">
-    <label for="iban">IBAN</label>
-    <input type="text" class="form-control" id="iban" value="<?= $sessionIBAN?>" readonly name='IBAN' autocomplete="off">
-  </div>
-  <div class="form-group col-md-6">
-    <label for="Name">Name</label>
-    <input type="text" class="form-control" id="Name" placeholder="Enter client name here" name='name'>
-  </div>
-  <div class="form-group col-md-6">
-    <label for="Surname">Surname</label>
-    <input type="text" class="form-control" id="Surname" placeholder="Enter client surname here" name='surname'>
-  </div>
-  <div class="form-group col-md-6">
-    <label for="ClientId">Client personal ID</label>
-    <input type="text" class="form-control" id="ClientId" placeholder="Enter client personal ID here" name='asmKodas'>
-  </div>
-  <div class="form-group col-md-6">
-    <button type="submit" class=" btn btn-primary btn-sm" style = "margin-top: 100px">SUBMIT CREATION</button>
-  </div>
-
-</form>
-    
+    <?= ($content == 1 )?  "
+        <div class='container' style = 'padding-top: 100px'>
+            <h3>Account created succesfully.</h3>
+            <div>
+            Would You like to create another one?
+            </div>
+            <a href='http://localhost/delfinai/bank1/pages/createAccount.php' role='button' class='btn btn-primary btn-sm' style = 'margin-top: 50px'>CREATE ACCOUNT</a>
+        </div>
+    " : "
+    <div class='container' style = 'padding-top: 100px; color: crimson;'>$message</div>
+    <form class='container' method='POST'>
+        <div class='form-group col-md-6'>
+            <label for='iban'><h5>IBAN</h5></label>
+            <input type='text' class='form-control' id='iban' value=' $sessionIBAN' readonly name='IBAN' autocomplete='off'>
+        </div>
+        <div class='form-group col-md-6'>
+            <label for='Name' class =''><h5>Name</h5><p style='color: $stylecolor'>name must be 3 letters minimum</p></label>
+            <input type='text' class='form-control' id='Name' placeholder='Enter client name here' name='name'>
+        </div>
+        <div class='form-group col-md-6'>
+            <label for='Surname' class ='labelComment'><h5>Surname</h5><p style='color: $stylecolor'>name must be 3 letters minimum</p></label>
+            <input type='text' class='form-control' id='Surname' placeholder='Enter client surname here' name='surname'>
+        </div>
+        <div class='form-group col-md-6'>
+            <label for='ClientId' class ='labelComment'><h5>Client personal ID</h5><p style='color:  $stylecolor'>ID must be valid 11 digits number</p></label>
+            <input type='text' class='form-control' id='ClientId' placeholder='Enter client personal ID here' name='asmKodas'>
+        </div>
+        <div class='form-group col-md-6'>
+            <button type='submit' class=' btn btn-primary btn-sm' style = 'margin-top: 100px'>SUBMIT CREATION</button>
+        </div>
+ 
+</form>" ?>
 </body>
 </html>
 
