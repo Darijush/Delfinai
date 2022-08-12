@@ -34,9 +34,9 @@ function renderAccounts(){
                             Balance: $balance
                             </div>
                             <div class='col'>
-                                <a href='http://localhost/delfinai/bank1/pages/createAccount.php' role='button' class='btn btn-success btn-sm' name=' <?= $accountNumber?>add'>ADD MONEY</a>
-                                <a href='http://localhost/delfinai/bank1/pages/createAccount.php' role='button' class='btn btn-secondary btn-sm' name=' <?= $accountNumber?>withdraw'>WITHDRAW MONEY</a>
-                                <a href='http://localhost/delfinai/bank1/pages/createAccount.php' role='button'class='btn btn-danger btn-sm' name=' <?= $accountNumber?>destroy'>DELETE ACCOUNT</a>
+                                <a href='http://localhost/delfinai/bank1/pages/addAssets.php?acc= $accountNumber' role='button' class='btn btn-success btn-sm' name=' <?= $accountNumber?>add'>ADD MONEY</a>
+                                <a href='http://localhost/delfinai/bank1/pages/withdrawAssets.php?acc= $accountNumber' role='button' class='btn btn-secondary btn-sm' name=' <?= $accountNumber?>withdraw'>WITHDRAW MONEY</a>
+                                <a href='http://localhost/delfinai/bank1/pages/deleteAccount.php?acc=$accountNumber?' role='button'class='btn btn-danger btn-sm' name=' <?= $accountNumber?>destroy'>DELETE ACCOUNT</a>
                             </div>
                         </li>";
     }

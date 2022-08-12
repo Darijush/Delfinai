@@ -12,7 +12,7 @@ if('GET' == $_SERVER['REQUEST_METHOD']){
         $stylecolor = 'red';
     }
     if ($showing == 3){
-        $message = '<h2>Client with such ID already exists</h2>';
+        $message = '<h2>Client with such personal ID already exists</h2>';
     }
 }   
     // create valid IBAN number and put in IBAN numbers database;
@@ -132,7 +132,7 @@ if('POST' == $_SERVER['REQUEST_METHOD']){
     <form class='container' method='POST'>
         <div class='form-group col-md-6'>
             <label for='iban'><h5>IBAN</h5></label>
-            <input type='text' class='form-control' id='iban' value=' $sessionIBAN' readonly name='IBAN' autocomplete='off'>
+            <input type='text' class='form-control' id='iban' value='$sessionIBAN' readonly name='IBAN' autocomplete='off'>
         </div>
         <div class='form-group col-md-6'>
             <label for='Name' class =''><h5>Name</h5><p style='color: $stylecolor'>name must be 3 letters minimum</p></label>
