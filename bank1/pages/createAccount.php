@@ -94,7 +94,8 @@ if('POST' == $_SERVER['REQUEST_METHOD']){
     $data[]=$clientCard;
     file_put_contents('C:\xampp\htdocs\Delfinai\bank1/data/clients.json',json_encode($data));
     file_put_contents('C:\xampp\htdocs\Delfinai\bank1/data/iban.json',json_encode($ibanData));
-    header ('Location: http://localhost/delfinai/bank1/pages/createAccount.php?display=1'); // show that recorded succefully
+    header ('Location: http://localhost/delfinai/bank1/pages/createAccount.php?display=1');// show that recorded succefully
+    die; 
     }elseif(!checkNames($name,$surname)|| validatePersonalId($asmKodas)!==2){
         header ('Location: http://localhost/delfinai/bank1/pages/createAccount.php?display=2'); // make bold and red comment with get
     }elseif(!checkIDinDatabase($asmKodas,$data)){
