@@ -1,12 +1,9 @@
 <?php
 
-if('GET' == $_SERVER['REQUEST_METHOD']){
-    $blue = $_GET['ToBlue']?? 2;
-    if($blue == 1){
-        header("Location: http://localhost/delfinai/08-10/hwMechanics/task5/blue.php"); 
-    }
+if(isset($_GET['ToBlue'])){
+    header("Location: http://localhost/delfinai/08-10/hwMechanics/task5/blue.php"); 
+    die;
 }
-
 
 
 ?>
@@ -19,7 +16,7 @@ if('GET' == $_SERVER['REQUEST_METHOD']){
     <title>Document</title>
 </head>
 <body style="background-color: red">
-    <a href="http://localhost/delfinai/08-10/hwMechanics/task5/blue.php?ToBlue=1" >Maybe to blue?</a>
+    <a href="http://localhost/delfinai/08-10/hwMechanics/task5/red.php?ToBlue=1" >Maybe to blue?</a>
     
 </body>
 </html>

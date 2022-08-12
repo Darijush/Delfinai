@@ -1,11 +1,6 @@
 <?php
-if('GET' == $_SERVER['REQUEST_METHOD']){
-
     header("Location: http://localhost/delfinai/08-10/hwMechanics/task4/orange.php");
     die;
-}
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

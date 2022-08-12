@@ -1,11 +1,10 @@
 <?php
 
-if('GET' == $_SERVER['REQUEST_METHOD']){
-    $red = $_GET['ToRed']?? 2;
-    if($red == 1){
+if(isset($_GET['ToRed'])){
         header("Location: http://localhost/delfinai/08-10/hwMechanics/task5/red.php"); 
+        die;
     }
-}
+
 
 
 
