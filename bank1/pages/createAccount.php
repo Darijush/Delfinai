@@ -1,6 +1,7 @@
 <?php
 // $record = [id: asmkodas, ownerName: John, ownerSurname: Johnson, accountNumber: "IBAN", balance: "100Money"]
     // create valid IBAN number and put in IBAN numbers database;
+
     function createValidIBAN(){
         $iban = 'LT';
         foreach(range(1,18) as $_){
@@ -17,7 +18,7 @@
         } else{
             return createValidIBAN();
         }
-        }
+        };
         $sessionIBAN = createValidIBAN();
 if('POST' == $_SERVER['REQUEST_METHOD']){
     // take data from form
@@ -29,7 +30,7 @@ if('POST' == $_SERVER['REQUEST_METHOD']){
     if(!file_exists('C:\xampp\htdocs\Delfinai\bank1/data/clients.json')){
         file_put_contents('C:\xampp\htdocs\Delfinai\bank1/data/clients.json',json_encode([]));
     }
-    $data= json_decode(file_get_contents('C:\xampp\htdocs\Delfinai\bank1/data/clients.json',1));
+    $data= json_decode(file_get_contents('C:\xampp\htdocs\Delfinai\bank1/data/clients.json',1), true);
     // validate personal ID number
     function validatePersonalId($id){
         if(strlen($id)!== 11 || (!preg_match("/\d{11}/",$id))){
@@ -70,11 +71,17 @@ if('POST' == $_SERVER['REQUEST_METHOD']){
     if(validatePersonalId($asmKodas) == 2 && checkIDinDatabase($asmKodas,$data) && checkNames($name,$surname)){
         $ibanData= json_decode(file_get_contents('C:\xampp\htdocs\Delfinai\bank1/data/iban.json',1));
         $ibanData[]=$iban;
-    $data[]=['id'=> "$asmKodas", "ownerName"=> $name, "ownerSurname"=> $surname, "accountNumber"=> $iban, "balance"=> 0];
+        $clientCard =[];
+        $clientCard['id'] = $asmKodas;
+        $clientCard['ownerName'] = $name;
+        $clientCard['ownerSurname'] = $surname;
+        $clientCard['accountNumber'] = $iban;
+        $clientCard['balance'] = 0;
+    $data[]=$clientCard;
     file_put_contents('C:\xampp\htdocs\Delfinai\bank1/data/clients.json',json_encode($data));
     file_put_contents('C:\xampp\htdocs\Delfinai\bank1/data/iban.json',json_encode($ibanData));
     }; 
-    die;
+
 }
 
 ?>
