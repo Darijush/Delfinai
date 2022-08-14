@@ -47,7 +47,7 @@ if('POST' == $_SERVER['REQUEST_METHOD']){
     $data= json_decode(file_get_contents('C:\xampp\htdocs\Delfinai\bank1/data/clients.json',1), true);
     // validate personal ID number
     function validatePersonalId($id){
-        if(strlen($id)!== 11 || (!preg_match("/\d{11}/",$id))){
+        if(strlen($id)!== 11 || (!preg_match("/\d{11}/",$id)) || (!preg_match("/^[1-6]/",$id))){
             return 1; // worng input message, must be 11 digits only;
         }else {
             $checkArray = str_split($id);
@@ -73,8 +73,9 @@ if('POST' == $_SERVER['REQUEST_METHOD']){
         }
         return true;
     }
+    //Validating name and surname
     function checkNames($name, $surname){
-        if(mb_strlen($name)<4 || mb_strlen($surname)<4){
+        if(mb_strlen($name)<4 || (preg_match("/[0-9]/",$name)) || mb_strlen($surname)<4 || (preg_match("/[0-9]/",$surname))){
             return false;
         }else{
             return true;
@@ -135,11 +136,11 @@ if('POST' == $_SERVER['REQUEST_METHOD']){
             <input type='text' class='form-control' id='iban' value='$sessionIBAN' readonly name='IBAN' autocomplete='off'>
         </div>
         <div class='form-group col-md-6'>
-            <label for='Name' class =''><h5>Name</h5><p style='color: $stylecolor'>name must be 3 letters minimum</p></label>
+            <label for='Name' class =''><h5>Name</h5><p style='color: $stylecolor'>name must be only letters, minimum 3</p></label>
             <input type='text' class='form-control' id='Name' placeholder='Enter client name here' name='name'>
         </div>
         <div class='form-group col-md-6'>
-            <label for='Surname' class ='labelComment'><h5>Surname</h5><p style='color: $stylecolor'>name must be 3 letters minimum</p></label>
+            <label for='Surname' class ='labelComment'><h5>Surname</h5><p style='color: $stylecolor'>name must be only letters, minimum 3</p></label>
             <input type='text' class='form-control' id='Surname' placeholder='Enter client surname here' name='surname'>
         </div>
         <div class='form-group col-md-6'>

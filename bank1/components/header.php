@@ -1,7 +1,7 @@
 <?php
 function renderHeader (){
     $header = "    <nav class='navbar fixed-top navbar-light navbar-expand-lg' style='background-color: #e3f2fd;'>
-                        <a class='navbar-brand' href='#'>
+                        <a class='navbar-brand' href='http://localhost/delfinai/bank1/index.php'>
                             <img src='/docs/4.6/assets/brand/bootstrap-solid.svg' width='30' height='30' class='d-inline-block align-top' alt=''>
                             BANK v.1
                         </a>
@@ -11,7 +11,7 @@ function renderHeader (){
                         <div class='collapse navbar-collapse' id='navbarNav'>
                             <ul class='navbar-nav'>
                                 <li class='nav-item'>
-                                    <a class='nav-link' href='http://localhost/delfinai/bank1/'>ACCOUNTS LIST <span class='sr-only'>(current)</span></a>
+                                    <a class='nav-link' href='http://localhost/delfinai/bank1/index.php'>ACCOUNTS LIST <span class='sr-only'>(current)</span></a>
                                 </li>
                                 <li class='nav-item'>
                                     <a class='nav-link' href='http://localhost/delfinai/bank1/pages/createAccount.php'>CREATE ACCOUNT</a>
