@@ -3,9 +3,8 @@
 if('GET' == $_SERVER['REQUEST_METHOD']){
     $account = $_GET['acc']?? 0;
     if ($account == 0){
-        header("HTTP/1.1 418 I'm a teapot");
-        $warning = "<h1>418 I'm a teapot</h1><br>
-        <p>The HTCPCP Server is a teapot. How did You get into our kitchen?</p>";
+        require 'C:\xampp\htdocs\Delfinai\bank1/components/listForAdd.php';
+        $warning = renderAccountsAdd();
     }else{
           //take data from database
 
@@ -107,9 +106,6 @@ if('POST' == $_SERVER['REQUEST_METHOD']){
                 }
        }
     }
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -126,7 +122,12 @@ if('POST' == $_SERVER['REQUEST_METHOD']){
     <?php require 'C:\xampp\htdocs\Delfinai\bank1/components/header.php'?>
 
     </header>
+    <div class="container" style = "padding-top: 100px">
+        <ul class="list-group col-10">
         <?= $warning?>
+        </ul>
+    </div>
+        
 
  
 
