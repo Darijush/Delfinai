@@ -30,7 +30,7 @@ function renderAccounts(){
         $ownerName = $record['ownerName'];
         $ownerSurname = $record['ownerSurname'];
         $accountNumber = $record['accountNumber'];
-        $balance = $record['balance'];
+        $balance = number_format($record['balance'],2);
         $listItems.= "<li class='list-group-item'>  
                             <div class='col-3' style = 'padding-bottom : 15px'>
                             $ownerName $ownerSurname

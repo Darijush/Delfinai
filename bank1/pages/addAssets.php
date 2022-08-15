@@ -28,7 +28,7 @@ if('GET' == $_SERVER['REQUEST_METHOD']){
             }elseif($validationResult[0] == 1){
                 $name = $validationResult[1];
                 $surname = $validationResult[2];
-                $accBalance = $validationResult[3];
+                $accBalance = number_format($validationResult[3],2);
                 $warning = "    <section class='container'>
                                     <div class = 'col-8' style = 'padding-top: 100px'>
                                     <h3>Add assets to client account</h3>
@@ -48,7 +48,7 @@ if('GET' == $_SERVER['REQUEST_METHOD']){
                                         <input type='text' class='form-control' id='ClientId'  value='$accBalance' readonly autocomplete='off'>
                                     </div>
                                     <div class='form-group col-md-6'>
-                                        <label for='ClientId' class ='labelComment'><h5>Add assets amount</h5></label>
+                                        <label for='ClientId' class ='labelComment'><h5>Add assets amount</h5><p>Only digits and '.' for decimal value</p></label>
                                         <input type='text' class='form-control' id='ClientId' placeholder='Enter amount of assets to add' autocomplete='off' name='addAsset'>
                                     </div>
                                     <div class='form-group col-md-6'>
@@ -64,12 +64,22 @@ if('GET' == $_SERVER['REQUEST_METHOD']){
 if('POST' == $_SERVER['REQUEST_METHOD']){
     $yes = $_POST['confirm'];
     $accNr = $_POST['IBAN'];
-    $asset = $_POST['addAsset'];
+    $asset = $_POST['addAsset'] ?? 0;
     if ($yes == 0){ // 0 means no
         header ('Location: http://localhost/delfinai/bank1/index.php');// redirecting to list
         die;
     }
     if ($yes == 1){
+        if ($asset=="" || preg_match("/[^0-9.]/",$asset)){
+            $warning = "<section class='container'>
+            <div class = 'col-8' style = 'padding-top: 100px'>
+                <h3>No amount entered, go to list and select account You want to add Assets.</h3>
+            </div>
+            <div class='col-md-6'>
+                <a href='http://localhost/delfinai/bank1/index.php' role='button' class='btn btn-primary btn-sm' name='back'>BACK TO LIST</a>
+            </div>
+        </section>";
+        }else{
           //take data from database
         $data= json_decode(file_get_contents('C:\xampp\htdocs\Delfinai\bank1/data/clients.json',1), true);
 
@@ -79,7 +89,7 @@ if('POST' == $_SERVER['REQUEST_METHOD']){
                         $client['balance']+= $asset;
                 }
             }
-
+        
         file_put_contents('C:\xampp\htdocs\Delfinai\bank1/data/clients.json',json_encode($data));
  
 
@@ -94,6 +104,7 @@ if('POST' == $_SERVER['REQUEST_METHOD']){
                         </div>
                     </section>";
 
+                }
        }
     }
 

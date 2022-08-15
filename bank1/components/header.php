@@ -2,7 +2,7 @@
 function renderHeader (){
     $header = "    <nav class='navbar fixed-top navbar-light navbar-expand-lg' style='background-color: #e3f2fd;'>
                         <a class='navbar-brand' href='http://localhost/delfinai/bank1/index.php'>
-                            <img src='/docs/4.6/assets/brand/bootstrap-solid.svg' width='30' height='30' class='d-inline-block align-top' alt=''>
+                            <img src='.\img\BankV1.png' width='30' height='30' class='d-inline-block align-top' alt=''>
                             BANK v.1
                         </a>
                         <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
@@ -17,10 +17,10 @@ function renderHeader (){
                                     <a class='nav-link' href='http://localhost/delfinai/bank1/pages/createAccount.php'>CREATE ACCOUNT</a>
                                 </li>
                                 <li class='nav-item'>
-                                    <a class='nav-link' href='#'>ADD MONEY</a>
+                                    <a class='nav-link' href='http://localhost/delfinai/bank1/pages/addAssets.php'>ADD MONEY</a>
                                 </li>
                                 <li class='nav-item'>
-                                    <a class='nav-link' href='#'>WITHDRAW MONEY</a>
+                                    <a class='nav-link' href='http://localhost/delfinai/bank1/pages/withdrawAssets.php'>WITHDRAW MONEY</a>
                                 </li>
                                 <!--
                                 <li class='nav-item' disabled>
