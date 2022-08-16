@@ -52,7 +52,7 @@ if('GET' == $_SERVER['REQUEST_METHOD']){
                                 <input type='text' class='form-control' id='ClientId' placeholder='Enter client personal ID here' value='$accBalance' readonly autocomplete='off'>
                             </div>
                             <div class='form-group col-md-6'>
-                                <a href='http://localhost/delfinai/bank1/index.php' role='button' class='btn btn-primary btn-sm' name='back'>BACK TO LIST</a>
+                                <a href='http://localhost/delfinai/bank1/main.php' role='button' class='btn btn-primary btn-sm' name='back'>BACK TO LIST</a>
                             </div>
                         </form>";
 
@@ -122,7 +122,7 @@ if('POST' == $_SERVER['REQUEST_METHOD']){
                             <h3>Account succesfuly deleted!</h3>
                         </div>
                         <div class='col-md-6'>
-                            <a href='http://localhost/delfinai/bank1/index.php' role='button' class='btn btn-primary btn-sm' name='back'>BACK TO LIST</a>
+                            <a href='http://localhost/delfinai/bank1/main.php' role='button' class='btn btn-primary btn-sm' name='back'>BACK TO LIST</a>
                         </div>
                     </section>";
         } else{
@@ -131,7 +131,7 @@ if('POST' == $_SERVER['REQUEST_METHOD']){
                                 <h3>Could not delete, try later</h3>
                             </div>
                             <div class='col-md-6'>
-                                <a href='http://localhost/delfinai/bank1/index.php' role='button' class='btn btn-primary btn-sm' name='back'>BACK TO LIST</a>
+                                <a href='http://localhost/delfinai/bank1/main.php' role='button' class='btn btn-primary btn-sm' name='back'>BACK TO LIST</a>
                             </div>
                         </section>";
         }

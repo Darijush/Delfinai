@@ -42,7 +42,10 @@
 </head>
 <body>
         <div class='container' style = 'padding-top: 100px'>
-            <?= (isset($_GET))? "Enter username and password for Bank V1 user login": $warning?>
+            <?= (isset($_GET))? "Enter username and password for Bank V1 user login
+            <div>
+            or go to registration page <a href='http://localhost/delfinai/bank1/pages/userRegistration.php' role='button' class='btn btn-primary btn-sm' style = 'margin-top: 50px'>CREATE USER</a>
+            </div>": $warning?>
         </div>
     <form class='container' method='POST'>
         <div class="form-group">
@@ -54,7 +57,7 @@
             <input type="text" class="form-control" id="formGroupExampleInput2" name='password' placeholder="Enter password here">
         </div>
         <div class="form-group">
-            <button type='submit' class=' btn btn-primary ' style = 'margin: 70px 20px 0px 20px' name = 'login' value = 'login'>ADD USER</button>
+            <button type='submit' class=' btn btn-primary ' style = 'margin: 70px 20px 0px 20px' name = 'login' value = 'login'>LOG IN</button>
         </div>
     </form>
 </body>

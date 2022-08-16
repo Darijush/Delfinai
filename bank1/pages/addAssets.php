@@ -65,7 +65,7 @@ if('POST' == $_SERVER['REQUEST_METHOD']){
     $accNr = $_POST['IBAN'];
     $asset = $_POST['addAsset'] ?? 0;
     if ($yes == 0){ // 0 means no
-        header ('Location: http://localhost/delfinai/bank1/index.php');// redirecting to list
+        header ('Location: http://localhost/delfinai/bank1/main.php');// redirecting to list
         die;
     }
     if ($yes == 1){
@@ -75,7 +75,7 @@ if('POST' == $_SERVER['REQUEST_METHOD']){
                 <h3>No amount entered, go to list and select account You want to add Assets.</h3>
             </div>
             <div class='col-md-6'>
-                <a href='http://localhost/delfinai/bank1/index.php' role='button' class='btn btn-primary btn-sm' name='back'>BACK TO LIST</a>
+                <a href='http://localhost/delfinai/bank1/main.php' role='button' class='btn btn-primary btn-sm' name='back'>BACK TO LIST</a>
             </div>
         </section>";
         }else{
