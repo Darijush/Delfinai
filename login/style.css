@@ -1,0 +1,9 @@
+.link{
+    background-color: none;
+    border: none;
+    outline: none;
+    color: crimson;
+    padding:10px;
+    cursor: pointer;
+    margin: 5px 10px;
+}
