@@ -22,14 +22,14 @@
             </li>
             <?php if (isLogged()) : ?>
                 <span class='navbar-text'>
-                    Loged in: name <?= $_SESSION['user']['name'] ?>
+                    Loged in: <?= $_SESSION['user']['name'] ?>
                 </span>
                 <li class='nav-item'>
                     <a class='nav-link' href='#'>LOG OUT</a>
                 </li>
 
             <?php else : ?>
-                <li class='nav-item' disabled>
+                <li class='nav-item' >
                     <a class='nav-link' href='<?= URL ?>login"'>LOG IN</a>
                 </li>
             <?php endif ?>

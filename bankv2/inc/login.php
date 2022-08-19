@@ -1,5 +1,6 @@
 <?php
 view('top');
+view('header')
 ?>
 <div class='container' style = 'padding-top: 100px'>
             "Enter username and password for Bank V2 user login
