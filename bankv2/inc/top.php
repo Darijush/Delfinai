@@ -9,5 +9,5 @@
     <title>BANK V2</title>
 </head>
 <body>
-    <?php view('msg');
+    <?php view('msg'); ?>
     

@@ -1,18 +1,18 @@
 <?php
 function renderAccounts(){
-    $data= json_decode(file_get_contents(URL.'data/clients.json',1), true);
+    $data= json_decode(file_get_contents(DIR.'inc/clients.json',1), true);
     $listItems = "";
     // sorting data by clients Surname
     function compareByName($a, $b)
 {
-    return ($a['ownerSurname']<=> $b['ownerSurname']);
+    return ($a['surname']<=> $b['surname']);
 }
     usort($data, 'compareByName');
     // $record = [id: asmkodas, ownerName: John, ownerSurname: Johnson, accountNumber: "IBAN", balance: "100Money"]
     foreach($data as $record){
-        $ownerName = $record['ownerName'];
-        $ownerSurname = $record['ownerSurname'];
-        $accountNumber = $record['accountNumber'];
+        $ownerName = $record['name'];
+        $ownerSurname = $record['surname'];
+        $accountNumber = $record['IBAN'];
         $balance = number_format($record['balance'],2);
         $listItems.= "<li class='list-group-item'>  
                             <div class='col-3' style = 'padding-bottom : 15px'>
@@ -31,6 +31,11 @@ function renderAccounts(){
                             </div>
                         </li>";
     }
- return $listItems;
+    $fullList = "    <div class='container' style = 'padding-top: 100px'>
+    <ul class='list-group col-10'>
+    $listItems
+    </ul>
+</div>";
+ return $fullList;
 }
 echo renderAccounts();
