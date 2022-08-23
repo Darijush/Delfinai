@@ -6,9 +6,9 @@ define('URL', 'http://localhost/delfinai/bankv2/');
 
 router();
 
-require DIR.'classes/Account.php';
-require DIR.'classes/IdNumber.php';
-require DIR.'classes/NameSurname.php';
+require_once DIR.'classes/Account.php';
+require_once DIR.'classes/IdNumber.php';
+require_once DIR.'classes/NameSurname.php';
 
 function router(){
     $url = $_SERVER['REQUEST_URI'];
@@ -42,6 +42,12 @@ function router(){
         }
         view('create');
     } 
+    elseif($method == 'POST' && count($url) == 1 && $url[0]=='addMoney'){
+        if(!isLogged()){
+            redirect('login');
+        }
+        view('addMoney');
+    } 
     elseif($method == 'POST' && count($url) == 1 && $url[0]=='create'){
         createClient();
 
@@ -54,7 +60,7 @@ function router(){
 
 
 }
-require DIR.'classes/Iban.php';
+require_once DIR.'classes/Iban.php';
 
 function view($tmp){
     require DIR.'inc/'.$tmp.'.php';

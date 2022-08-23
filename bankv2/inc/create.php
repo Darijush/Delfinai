@@ -1,5 +1,5 @@
 <?php
-require DIR.'classes/Iban.php';
+require_once DIR.'classes/Iban.php';
 $number = new Iban;
 $number->createValidIBAN();
 view('top');?>
@@ -25,6 +25,6 @@ view('top');?>
             <button type='submit' class=' btn btn-primary btn-sm' style = 'margin-top: 100px'>SUBMIT CREATION</button>
         </div>
  
-</form>" ?>
+</form> ?>
 </body>
 </html>

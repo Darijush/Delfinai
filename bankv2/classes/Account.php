@@ -5,6 +5,17 @@ class Account{
     public $account;
     public $id;
     public $balance = 0;
+    protected static $data;
+
+    public static function dataDecode():array{
+        $data1 = json_decode(file_get_contents(DIR.'inc/clients.json',1), true);
+        return $data1;
+    }
+    public static function dataEncode($data):void{
+        file_put_contents(DIR.'inc/clients.json',json_encode($data));
+    
+    }
+
     public function __construct($n,$s,$a,$id,){ 
         $this->name = $n; 
         $this->surname = $s; 
