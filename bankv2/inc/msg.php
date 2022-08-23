@@ -8,7 +8,7 @@ if(isset($_SESSION['msg'])){
 
 
 <?php if (isset($msg)) :?>
-    <div style="background: <?=$msg['type']?> margin-top: 100px">
+    <div style="background: <?=$msg['type']?>">
         <?=$msg['text']?>
     </div>
 <?php endif?>

@@ -31,7 +31,7 @@ function renderAccounts()
                                 <button type='subbmit' class='btn btn-danger btn-sm' name='deleteAcc' value='$accountNumber'>DELETE ACCOUNT</button>
                         </li>";
     }
-    $fullList = "    <div class='container' style = 'padding-top: 100px'>
+    $fullList = "    <div class='container'>
     <ul class='list-group col-10'>
     $listItems
     </ul>
