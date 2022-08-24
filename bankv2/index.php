@@ -49,6 +49,12 @@ function router()
         }
 
         view('withdrawMoney');
+    } elseif ($method == 'POST' && count($url) == 1 && $url[0] == 'deleteAcc') {
+        if (!isLogged()) {
+            redirect('login');
+        }
+
+        view('deleteAcc');
     } elseif ($method == 'POST' && count($url) == 1 && $url[0] == 'client') {
         if (!isLogged()) {
             redirect('login');
@@ -61,9 +67,12 @@ function router()
             $asset = -$_POST['withdrawAsset'];
             updateAccount($asset);
             view('client');
+      } elseif ($_POST['confirm'] == 1 && $_POST['balance']== 0) {
+            destroy($_POST['IBAN']);
+            view('client');
         }
         else{
-            makeMsg('yellow', 'No money added');
+            makeMsg('yellow', 'No action made');
             redirect('client');
         } 
 
@@ -141,4 +150,9 @@ function updateAccount($asset){
     require DIR.'classes/Account.php';
     Account::updateBalance($_POST['IBAN'], $asset );
     makeMsg('green', 'Assets updated');
+}
+function destroy($acc){
+    require DIR.'classes/Account.php';
+    Account::deletAccount($_POST['IBAN'] );
+    makeMsg('green', 'Account is deleted');
 }

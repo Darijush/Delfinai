@@ -24,6 +24,15 @@ class Account{
         }
         file_put_contents(DIR.'inc/clients.json',json_encode($data2));
     }
+    public static function deletAccount($acc):void{
+        $data2 = json_decode(file_get_contents(DIR.'inc/clients.json',1), true);
+        foreach ($data2 as $key => &$record) {
+            if (in_array($acc, $record)) {
+                unset($data2[$key]);
+            }
+        }
+        file_put_contents(DIR.'inc/clients.json',json_encode($data2));
+    }
 
     public function __construct($n,$s,$a,$id,){ 
         $this->name = $n; 
