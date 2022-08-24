@@ -1,0 +1,18 @@
+{
+    "name": "darij/08-24",
+    "description": "not yet",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Petro\\": "01/",
+            "Antano\\": "02/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Darijush Prokopovich",
+            "email": "darijus.pc@gmail.com"
+        }
+    ],
+    "require": {}
+}
