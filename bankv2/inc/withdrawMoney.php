@@ -1,4 +1,4 @@
-    <?php
+<?php
     require_once DIR.'classes/Account.php';
     require_once DIR.'classes/Iban.php';
     $acc = $_POST['addMoney'];
