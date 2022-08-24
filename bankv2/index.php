@@ -37,23 +37,36 @@ function router()
             redirect('login');
         }
         view('create');
-    } elseif ($method == 'POST' && count($url) == 1 && $url[0] == 'client') {
-        if (!isLogged()) {
-            redirect('login');
-        }
-        if ($_POST['confirm'] == 1 && $_POST['addAsset']>0) {
-            updateAccount();
-            view('client');
-        }else{
-            makeMsg('yellow', 'No money added');
-            redirect('client');
-        } 
     } elseif ($method == 'POST' && count($url) == 1 && $url[0] == 'addMoney') {
         if (!isLogged()) {
             redirect('login');
         }
 
         view('addMoney');
+    } elseif ($method == 'POST' && count($url) == 1 && $url[0] == 'withdrawMoney') {
+        if (!isLogged()) {
+            redirect('login');
+        }
+
+        view('withdrawMoney');
+    } elseif ($method == 'POST' && count($url) == 1 && $url[0] == 'client') {
+        if (!isLogged()) {
+            redirect('login');
+        }
+        if ($_POST['confirm'] == 1 && $_POST['addAsset']>0) {
+            $asset = $_POST['addAsset'];
+            updateAccount($asset);
+            view('client');
+        } elseif ($_POST['confirm'] == 1 && $_POST['withdrawAsset']<= $_POST['balance'] && $_POST['withdrawAsset']>0) {
+            $asset = -$_POST['withdrawAsset'];
+            updateAccount($asset);
+            view('client');
+        }
+        else{
+            makeMsg('yellow', 'No money added');
+            redirect('client');
+        } 
+
     } elseif ($method == 'POST' && count($url) == 1 && $url[0] == 'create') {
         createClient();
     } else {
@@ -124,8 +137,8 @@ function createClient()
     makeMsg('crimson', 'WRONG INPUT DATA');
     redirect('create');
 }
-function updateAccount(){
+function updateAccount($asset){
     require DIR.'classes/Account.php';
-    Account::updateBalance($_POST['IBAN'], $_POST['addAsset'] );
-    makeMsg('green', 'Money added');
+    Account::updateBalance($_POST['IBAN'], $asset );
+    makeMsg('green', 'Assets updated');
 }
