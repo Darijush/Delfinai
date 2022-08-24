@@ -2,7 +2,8 @@
 require_once DIR.'classes/Iban.php';
 $number = new Iban;
 $number->createValidIBAN();
-view('top');?>
+view('top');
+view('header');?>
 <div class='container' style = 'padding-top: 100px; color: crimson;'></div>
     <form class='container' method='POST'>
         <div class='form-group col-md-6'>
@@ -22,9 +23,9 @@ view('top');?>
             <input type='text' class='form-control' id='ClientId' placeholder='Enter client personal ID here' name='asmKodas'>
         </div>
         <div class='form-group col-md-6'>
-            <button type='submit' class=' btn btn-primary btn-sm' style = 'margin-top: 100px'>SUBMIT CREATION</button>
+            <button type='submit' class=' btn btn-primary btn-sm' style = 'margin-top: 30px'>SUBMIT CREATION</button>
         </div>
  
-</form> ?>
+</form>
 </body>
 </html>

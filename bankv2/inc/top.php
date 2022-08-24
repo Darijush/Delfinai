@@ -9,6 +9,6 @@
     <title>BANK V2</title>
 </head>
 <body>
-    <div style="margin-bottom: 100px;"></div>
+    <div style="margin-bottom: 50px;"></div>
     <?php view('msg'); ?>
     

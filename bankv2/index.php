@@ -16,7 +16,7 @@ function router()
     $url = str_replace(INSTALL, '', $url);
     $url = explode('/', $url);
     $method = $_SERVER['REQUEST_METHOD'];
-    if ($method == 'GET' && count($url) == 1 && $url[0] == '') {
+    if ($method == 'GET' && count($url) == 1 && $url[0] == '' || $url[0] == 'login') {
         if (isLogged()) {
             redirect('client');
         }
@@ -63,7 +63,7 @@ function router()
             $asset = $_POST['addAsset'];
             updateAccount($asset);
             view('client');
-        } elseif ($_POST['confirm'] == 1 && $_POST['withdrawAsset']<= $_POST['balance'] && $_POST['withdrawAsset']>0) {
+        } elseif (isset($_POST['withdrawAsset']) && $_POST['confirm'] == 1 && $_POST['withdrawAsset']<= $_POST['balance'] && $_POST['withdrawAsset']>0) {
             $asset = -$_POST['withdrawAsset'];
             updateAccount($asset);
             view('client');
