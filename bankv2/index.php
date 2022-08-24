@@ -24,12 +24,22 @@ function router()
     } elseif ($method == 'POST' && count($url) == 1 && $url[0] == 'login') {
         doLogin();
     } elseif ($method == 'GET' && count($url) == 1 && $url[0] == '') {
-        view('home');
+        view('client');
     } elseif ($method == 'GET' && count($url) == 1 && $url[0] == 'client') {
         if (!isLogged()) {
             redirect('login');
         }
         view('client');
+    } elseif ($method == 'GET' && count($url) == 1 && $url[0] == 'addMoney') {
+        if (!isLogged()) {
+            redirect('login');
+        }
+        view('addMoney');
+    } elseif ($method == 'GET' && count($url) == 1 && $url[0] == 'withdrawMoney') {
+        if (!isLogged()) {
+            redirect('login');
+        }
+        view('withdrawMoney');
     } elseif ($method == 'POST' && count($url) == 1 && $url[0] == 'logout') {
         doLogout();
     } elseif ($method == 'GET' && count($url) == 1 && $url[0] == 'create') {
@@ -59,23 +69,21 @@ function router()
         if (!isLogged()) {
             redirect('login');
         }
-        if ($_POST['confirm'] == 1 && $_POST['addAsset']>0) {
+        if ($_POST['confirm'] == 1 && $_POST['addAsset'] > 0) {
             $asset = $_POST['addAsset'];
             updateAccount($asset);
             view('client');
-        } elseif (isset($_POST['withdrawAsset']) && $_POST['confirm'] == 1 && $_POST['withdrawAsset']<= $_POST['balance'] && $_POST['withdrawAsset']>0) {
+        } elseif (isset($_POST['withdrawAsset']) && $_POST['confirm'] == 1 && $_POST['withdrawAsset'] <= $_POST['balance'] && $_POST['withdrawAsset'] > 0) {
             $asset = -$_POST['withdrawAsset'];
             updateAccount($asset);
             view('client');
-      } elseif ($_POST['confirm'] == 1 && $_POST['balance']== 0) {
+        } elseif ($_POST['confirm'] == 1 && $_POST['balance'] == 0) {
             destroy($_POST['IBAN']);
             view('client');
-        }
-        else{
+        } else {
             makeMsg('yellow', 'No action made');
             redirect('client');
-        } 
-
+        }
     } elseif ($method == 'POST' && count($url) == 1 && $url[0] == 'create') {
         createClient();
     } else {
@@ -113,7 +121,7 @@ function doLogin()
 
 function isLogged()
 {
-    return isset($_SESSION['login']) && $_SESSION['login'] == 1;
+    return isset($_SESSION['user']) && $_SESSION['login'] == 1;
 };
 function doLogout()
 {
@@ -146,13 +154,15 @@ function createClient()
     makeMsg('crimson', 'WRONG INPUT DATA');
     redirect('create');
 }
-function updateAccount($asset){
-    require DIR.'classes/Account.php';
-    Account::updateBalance($_POST['IBAN'], $asset );
+function updateAccount($asset)
+{
+    require DIR . 'classes/Account.php';
+    Account::updateBalance($_POST['IBAN'], $asset);
     makeMsg('green', 'Assets updated');
 }
-function destroy($acc){
-    require DIR.'classes/Account.php';
-    Account::deletAccount($_POST['IBAN'] );
+function destroy($acc)
+{
+    require DIR . 'classes/Account.php';
+    Account::deletAccount($_POST['IBAN']);
     makeMsg('green', 'Account is deleted');
 }
