@@ -1,0 +1,15 @@
+{
+    "name": "darij/08-29",
+    "autoload": {
+        "psr-4": {
+            "": ""
+        }
+    },
+    "authors": [
+        {
+            "name": "Darijush Prokopovich",
+            "email": "darijus.pc@gmail.com"
+        }
+    ],
+    "require": {}
+}
