@@ -1,7 +1,13 @@
 <?php
 namespace App\Controllers;
+use App\App;
+use App\DB\Json;
+
 class HomeController{
     public function home(){
-        echo 'Welcome Home';
+        $title = 'H-O-M-E';
+        $welcome = 'Hello from Zoo';
+        new Json;
+        return App::view('home',['title'=>$title,'welcome' => $welcome]);
     }
 }

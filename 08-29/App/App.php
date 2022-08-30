@@ -21,4 +21,9 @@ class App
             return ((new HC)->home());
         }
     }
+    static public function view($name, $data = [])
+    {   
+        extract($data);
+        require DIR.'resources/view/'.$name.'.php';
+    }
 }
