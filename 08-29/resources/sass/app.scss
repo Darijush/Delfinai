@@ -29,4 +29,9 @@
       background-color: crimson;
     }
   }
+  &__buttons{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
 }

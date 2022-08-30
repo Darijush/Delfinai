@@ -10929,3 +10929,8 @@ textarea.form-control-lg {
   height: 20px;
   background-color: crimson;
 }
+.line__buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
