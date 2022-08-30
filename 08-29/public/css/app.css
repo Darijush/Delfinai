@@ -10903,9 +10903,29 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-h1, .h1 {
+.line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.line__content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 8px;
+  gap: 10px;
+}
+.line__content__type {
+  font-size: 18px;
   color: skyblue;
 }
-h1 span, .h1 span {
-  color: crimson;
+.line__content__weight {
+  font-size: 16px;
+  color: gray;
+}
+.line__content__tail {
+  width: 20px;
+  height: 20px;
+  background-color: crimson;
 }

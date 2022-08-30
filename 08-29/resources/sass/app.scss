@@ -1,7 +1,32 @@
 @import "~bootstrap/scss/bootstrap";
-h1{
-    color: skyblue;
-    span{
-        color: crimson;
-      }
+
+.line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  &__content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 8px;
+    gap: 10px;
+
+    &__type {
+      font-size: 18px;
+      color: skyblue;
+    }
+
+    &__weight {
+      font-size: 16px;
+      color: gray;
+    }
+
+    &__tail {
+      width: 20px;
+      height: 20px;
+      background-color: crimson;
+    }
+  }
 }
