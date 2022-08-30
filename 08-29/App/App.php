@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Controllers\HomeController as HC;
+use App\Controllers\AnimalController as A;
 
 class App
 {
@@ -19,6 +20,9 @@ class App
         $method = $_SERVER['REQUEST_METHOD'];
         if ($method == 'GET' && count($url) == 1 && $url[0] == '') {
             return ((new HC)->home());
+        }elseif(($method == 'GET' && count($url) == 2 && $url[0] == 'animal' && $url[1] == 'create')){
+            return ((new A)->create());
+
         }
     }
     static public function view($name, $data = [])
