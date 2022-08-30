@@ -9,19 +9,19 @@ App\App::view('top', ['title' => $title]);
                     <h2>New Animal</h2>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form action="<?= URL?>animals/store" method="POST">
                         <div class="form-group">
                             <label >Type</label>
-                            <input type="email" class="form-control" >
+                            <input type="text" class="form-control" name="type" >
                             <small id="emailHelp" class="form-text text-muted">Animal type</small>
                         </div>
                         <div class="form-group">
                             <label >Weight</label>
-                            <input type="email" class="form-control" >
+                            <input type="text" class="form-control" name="weight" >
                             <small id="emailHelp" class="form-text text-muted">Animal weight in kg</small>
                         </div>
                         <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" >
+                            <input type="checkbox" class="form-check-input" name="tail" >
                             <label class="form-check-label" >Has tail</label>
                         </div>
                         <button type="submit" class="btn btn-primary mt-5">Submit</button>
