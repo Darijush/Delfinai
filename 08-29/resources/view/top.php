@@ -9,3 +9,5 @@
     <title><?=$title ?? 'Animals'?></title>
 </head>
 <body>
+    <?php
+    App\App::view('nav');
