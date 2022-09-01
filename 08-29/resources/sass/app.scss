@@ -29,9 +29,23 @@
       background-color: crimson;
     }
   }
-  &__buttons{
+
+  &__buttons {
     display: flex;
     justify-content: space-around;
     align-items: center;
   }
+}
+
+.user-nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  .name{
+    font-weight: bolder;
+    font-size: 20px;
+  }
+}
+.nav-link{
+  padding: 17px 10px;
 }

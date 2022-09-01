@@ -10934,3 +10934,17 @@ textarea.form-control-lg {
   justify-content: space-around;
   align-items: center;
 }
+
+.user-nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.user-nav .name {
+  font-weight: bolder;
+  font-size: 20px;
+}
+
+.nav-link {
+  padding: 17px 10px;
+}

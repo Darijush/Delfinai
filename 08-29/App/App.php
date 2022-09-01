@@ -39,6 +39,9 @@ class App
         }elseif ($method == 'POST' && count($url) == 3 && $url[0] == 'animals' && $url[1] == 'delete' ) {
             return ((new A)->delete($url[2]));
         }elseif (($method == 'GET' && count($url) == 1 && $url[0] == 'login' )) {
+            if(Auth::isLogged()){
+                return self::redirect('');
+            }
             return ((new L)->login());
         }elseif (($method == 'POST' && count($url) == 1 && $url[0] == 'login' )) {
             return ((new L)->doLogin());
