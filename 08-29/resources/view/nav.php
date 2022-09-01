@@ -11,6 +11,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="<?= URL ?>animals/create">New animal</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= URL ?>api/go">Get distance</a>
+                </li>
                 <?php if (App\Middleware\Auth::isLogged()) : ?>
                     <li class="nav-item">
                         <div class="user-nav">

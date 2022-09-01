@@ -10948,3 +10948,19 @@ textarea.form-control-lg {
 .nav-link {
   padding: 17px 10px;
 }
+
+.msg-bin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+.msg-bin .msg {
+  padding: 20px;
+  border-radius: 8px;
+  color: white;
+  font-size: 30px;
+  font-weight: bolder;
+  text-align: center;
+}
