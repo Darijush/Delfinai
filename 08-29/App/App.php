@@ -53,7 +53,7 @@ class App
             return ((new Api)->show());
         } elseif ($method == 'POST' && count($url) == 2 && $url[0] == 'api' && $url[1] == 'go') {
             return ((new Api)->doApi());
-        }elseif ($method == 'GET' && count($url) == 2 && $url[0] == 'react' && $url[1] == 'list') {
+        } elseif ($method == 'GET' && count($url) == 2 && $url[0] == 'react' && $url[1] == 'list') {
             return ((new Re)->list());
         }
     }
@@ -67,8 +67,11 @@ class App
         header('Location:' . URL . $where);
     }
     static public function json($data)
-    {   
+    {
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: GET, POST');
+        header("Access-Control-Allow-Headers: X-Requested-With");
         header("Content-Type: application/json");
-        echo json_decode($data);
+        echo json_encode($data);
     }
 }
