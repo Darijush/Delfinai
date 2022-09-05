@@ -1,5 +1,8 @@
-function List({ list }) {
-    if(null == list){
+function List({ list, setDeleteData }) {
+    const destroy = (id) => {
+        setDeleteData({ id });
+    }
+    if (null == list) {
         return <h2>Loading...</h2>
     }
     return (
@@ -13,7 +16,7 @@ function List({ list }) {
                         <div className="card-body">
                             <ul className="list-group">
                                 {list.map(a => (
-                                    <li className="list-group-item">
+                                    <li className="list-group-item" key={a.id}>
                                         <div className="line">
                                             <div className="line__content">
                                                 <div className="line__content__type">
@@ -28,7 +31,7 @@ function List({ list }) {
                                             </div>
                                             <div className="line__buttons">
                                                 <button type="button" className="btn btn-outline-success m-2">Edit</button>
-                                                <button type="submit" className="btn btn-outline-danger m-2">Delete</button>
+                                                <button type="button" className="btn btn-outline-danger m-2" onClick={() => destroy(a.id)}>Delete</button>
                                             </div>
                                         </div>
                                     </li>)

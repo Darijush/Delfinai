@@ -53,8 +53,18 @@ class App
             return ((new Api)->show());
         } elseif ($method == 'POST' && count($url) == 2 && $url[0] == 'api' && $url[1] == 'go') {
             return ((new Api)->doApi());
-        } elseif ($method == 'GET' && count($url) == 2 && $url[0] == 'react' && $url[1] == 'list') {
+        }
+        //REACT 
+        elseif ($method == 'GET' && count($url) == 2 && $url[0] == 'react' && $url[1] == 'list') {
             return ((new Re)->list());
+        } elseif ($method == 'POST' && count($url) == 2 && $url[0] == 'react' && $url[1] == 'list') {
+            return ((new Re)->store());
+        } elseif ($method == 'OPTIONS') {
+            header('Access-Control-Allow-Origin: *');
+            header('Access-Control-Allow-Methods: GET, POST, DELETE');
+            header("Access-Control-Allow-Headers:  Content-Type");
+        }elseif ($method == 'DELETE' && count($url) == 3 && $url[0] == 'react' && $url[1] == 'list') {
+            return ((new Re)->delete($url[2]));
         }
     }
     static public function view($name, $data = [])
@@ -69,7 +79,7 @@ class App
     static public function json($data)
     {
         header('Access-Control-Allow-Origin: *');
-        header('Access-Control-Allow-Methods: GET, POST');
+        header('Access-Control-Allow-Methods: GET, POST, DELETE');
         header("Access-Control-Allow-Headers: X-Requested-With");
         header("Content-Type: application/json");
         echo json_encode($data);
