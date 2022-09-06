@@ -61,10 +61,12 @@ class App
             return ((new Re)->store());
         } elseif ($method == 'OPTIONS') {
             header('Access-Control-Allow-Origin: *');
-            header('Access-Control-Allow-Methods: GET, POST, DELETE');
+            header('Access-Control-Allow-Methods: GET, POST, DELETE, PUT');
             header("Access-Control-Allow-Headers:  Content-Type");
         }elseif ($method == 'DELETE' && count($url) == 3 && $url[0] == 'react' && $url[1] == 'list') {
             return ((new Re)->delete($url[2]));
+        }elseif ($method == 'PUT' && count($url) == 3 && $url[0] == 'react' && $url[1] == 'list') {
+            return ((new Re)->update($url[2]));
         }
     }
     static public function view($name, $data = [])
@@ -79,7 +81,7 @@ class App
     static public function json($data)
     {
         header('Access-Control-Allow-Origin: *');
-        header('Access-Control-Allow-Methods: GET, POST, DELETE');
+        header('Access-Control-Allow-Methods: GET, POST, DELETE, PUT');
         header("Access-Control-Allow-Headers: X-Requested-With");
         header("Content-Type: application/json");
         echo json_encode($data);
