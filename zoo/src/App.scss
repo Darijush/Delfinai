@@ -68,3 +68,13 @@
         text-align: center;
     }
 }
+.modal{
+    display: block;
+    background-color: #00000099;
+    .close{
+        background-color: transparent;
+        border: none;
+        outline: none;
+        font-size: 28px;
+    }
+}

@@ -4,6 +4,7 @@ import './App.scss';
 import Create from './Components/Create';
 import List from './Components/List';
 import axios from 'axios';
+import Edit from './Components/Edit';
 
 function App() {
   const [animals, setAnimals] = useState(null);
@@ -14,6 +15,7 @@ function App() {
   }, [lastUpdate]);
   const [createData, setCreateData] = useState(null);
   const [deleteData, setDeleteData] = useState(null);
+  const [modalData, setModalData] = useState(null);
   useEffect(() => {
     if (null == createData) {
       return;
@@ -32,16 +34,19 @@ function App() {
 
   }, [deleteData]);
   return (
+    <>
     <div className="container">
       <div className="row">
         <div className="col-5">
           <Create setCreateData={setCreateData} />
         </div>
         <div className="col-7">
-          <List list={animals} setDeleteData={setDeleteData} />
+          <List list={animals} setDeleteData={setDeleteData} setModalData={setModalData} />
         </div>
       </div>
     </div>
+    <Edit modalData={modalData} setModalData={setModalData}/>
+    </>
   );
 }
 
