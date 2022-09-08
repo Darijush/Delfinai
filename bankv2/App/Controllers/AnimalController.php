@@ -42,11 +42,11 @@ class AnimalController
             'weight' => $_POST['weight'],
             'tail' => isset($_POST['tail']) ? 1 : 0,
         ]);
-        return App::redirect('animals');
+        return App::redirect('clients_list');
     }
     public function delete(int $id)
     {
         Json::connect()->delete($id);
-        return App::redirect('animals');
+        return App::redirect('clients_list');
     }
 }

@@ -20,4 +20,4 @@ Route::get('/', function () {
 
 Route::get('/eziukas', fn()=>'EZIUKAS');
 
-Route::get('/fun/{kiek}/{abc}', [Nice::class, 'fun']);
+Route::get('/fun/{kiek}/{abc?}', [Nice::class, 'fun']);
