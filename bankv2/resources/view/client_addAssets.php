@@ -12,22 +12,22 @@ App\App::view('top', ['title' => $title]);
                     <form action="<?= URL ?>clients/add/<?= $client['id'] ?>" method="POST">
                         <div class="form-group">
                             <label>Name</label>
-                            <input type="text" class="form-control" name="type" value="<?= $client['name'] ?>">
+                            <input type="text" class="form-control" name="name" value="<?= $client['name'] ?>">
                             <small id="emailHelp" class="form-text text-muted">Client namespace</small>
                         </div>
                         <div class="form-group">
                             <label>Surname</label>
-                            <input type="text" class="form-control" name="weight" value="<?= $client['surname'] ?>">
+                            <input type="text" class="form-control" name="surname" value="<?= $client['surname'] ?>">
                             <small id="emailHelp" class="form-text text-muted">Client surname</small>
                         </div>
                         <div class="form-group">
                             <label>IBAN</label>
-                            <input type="text" class="form-control" name="weight" value="<?= $client['iban'] ?>">
+                            <input type="text" class="form-control" name="iban" value="<?= $client['iban'] ?>">
                             <small id="emailHelp" class="form-text text-muted">Client surname</small>
                         </div>
                         <div class="form-group">
                             <label>Balance</label>
-                            <input type="text" class="form-control" name="weight" value="<?= $client['balance'] ?>">
+                            <input type="text" class="form-control" name="balance" value="<?= $client['balance'] ?>">
                             <small id="emailHelp" class="form-text text-muted">Client surname</small>
                         </div>
 
