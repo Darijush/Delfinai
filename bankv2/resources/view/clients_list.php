@@ -15,16 +15,16 @@ App\App::view('top', ['title' => $title]);
                                 <div class="line">
                                     <div class="line__content">
                                         <div class="line__content__type">
-                                            <?= $client['name'] ?>
+                                           Name: <?= $client['name'] ?>
                                         </div>
                                         <div class="line__content__weight">
-                                            <?= $client['surname'] ?> kg
+                                            Surname: <?= $client['surname'] ?> 
                                         </div>
                                         <div class="line__content__weight">
-                                            <?= $client['IBAN'] ?> kg
+                                            IBAN: <?= $client['IBAN'] ?> 
                                         </div>
                                         <div class="line__content__weight">
-                                            <?= $client['balance'] ?> kg
+                                            Balance: <?= $client['balance'] ?> 
                                         </div>
                                     </div>
                                     <div class="line__buttons">

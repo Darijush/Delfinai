@@ -10871,8 +10871,8 @@ textarea.form-control-lg {
   gap: 10px;
 }
 .line__content__type {
-  font-size: 18px;
-  color: skyblue;
+  font-size: 16px;
+  color: gray;
 }
 .line__content__weight {
   font-size: 16px;

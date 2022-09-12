@@ -22,7 +22,7 @@ App\App::view('top', ['title' => $title]);
                         </div>
                         <div class="form-group">
                             <label>IBAN</label>
-                            <input type="text" class="form-control" name="weight" value="<?= $client['iban'] ?>">
+                            <input type="text" class="form-control" name="weight" value="<?= $client['IBAN'] ?>">
                             <small id="emailHelp" class="form-text text-muted">Client surname</small>
                         </div>
                         <div class="form-group">

@@ -9,7 +9,7 @@ App\App::view('top', ['title' => $title]);
                     <h2>New Clent</h2>
                 </div>
                 <div class="card-body">
-                    <form action="<?= URL?>animals/store" method="POST">
+                    <form action="<?= URL?>clients/store" method="POST">
                         <div class="form-group">
                             <label >Name</label>
                             <input type="text" class="form-control" name="name" >
@@ -22,12 +22,12 @@ App\App::view('top', ['title' => $title]);
                         </div>
                         <div class="form-group">
                             <label >ID</label>
-                            <input type="text" class="form-control" name="surname" >
+                            <input type="text" class="form-control" name="client_id" >
                             <small id="emailHelp" class="form-text text-muted">Client ID</small>
                         </div>
                         <div class="form-group">
                             <label >IBAN</label>
-                            <input type="text" class="form-control" name="surname" >
+                            <input type="text" class="form-control" name="IBAN" >
                             <small id="emailHelp" class="form-text text-muted">Client IBAN</small>
                         </div>
                         <button type="submit" class="btn btn-primary mt-5">Submit</button>
