@@ -15,19 +15,20 @@ class ClientController
     public function store()
     {
         if (validatePersonalId($_POST['client_id'])) {
-            Json::connect()->create([
-                'name' => $_POST['name'],
-                'surname' => $_POST['surname'],
-                'IBAN' => $_POST['IBAN'],
-                'client_id' => $_POST['client_id'],
-                'balance' => 0,
+            if (checkNames($_POST['name'])) {
+                Json::connect()->create([
+                    'name' => $_POST['name'],
+                    'surname' => $_POST['surname'],
+                    'IBAN' => $_POST['IBAN'],
+                    'client_id' => $_POST['client_id'],
+                    'balance' => 0,
 
-            ]);
-            return App::redirect('');
+                ]);
+                return App::redirect('');
+            }
         }
-            M::makeMsg('crimson', 'Wrong ID');
-            return App::redirect('');
-        
+        M::makeMsg('crimson', 'Wrong ID');
+        return App::redirect('');
     }
     public function list()
     {
@@ -70,6 +71,14 @@ class ClientController
                 return true; //ID number is valid
             }
             return false; //id is not valid                                                                          
+        }
+    }
+    private function checkNames($name)
+    {
+        if (mb_strlen($name) < 4 || (preg_match("/[0-9]/", $name))) {
+            return false;
+        } else {
+            return true;
         }
     }
 }

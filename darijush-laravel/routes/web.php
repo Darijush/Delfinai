@@ -21,3 +21,5 @@ Route::get('/', function () {
 Route::get('/eziukas', fn()=>'EZIUKAS');
 
 Route::get('/fun/{kiek}/{abc?}', [Nice::class, 'fun']);
+Route::get('/suma',[Nice::class,'showForm'])->name('show');
+Route::post('/suma',[Nice::class,'doForm'])->name('calculate');

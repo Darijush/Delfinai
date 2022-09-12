@@ -6,7 +6,7 @@ use App\DB\Json;
 class HomeController{
     public function home(){
         $title = 'H-O-M-E';
-        $welcome = 'Hello from Zoo';
+        $welcome = 'Welcome to Bank V2';
         Json::connect();
         return App::view('home',['title'=>$title,'welcome' => $welcome]);
     }
