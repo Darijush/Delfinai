@@ -27,7 +27,7 @@ App\App::view('top', ['title' => $title]);
                         </div>
                         <div class="form-group">
                             <label >IBAN</label>
-                            <input type="text" class="form-control" name="IBAN" >
+                            <input type="text" class="form-control" name="IBAN" value="<?=$iban?>" autocomplete="off" readonly>
                             <small id="emailHelp" class="form-text text-muted">Client IBAN</small>
                         </div>
                         <button type="submit" class="btn btn-primary mt-5">Submit</button>

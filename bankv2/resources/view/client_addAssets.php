@@ -12,23 +12,23 @@ App\App::view('top', ['title' => $title]);
                     <form action="<?= URL ?>clients/add/<?= $client['id'] ?>" method="POST">
                         <div class="form-group">
                             <label>Name</label>
-                            <input type="text" class="form-control" name="name" value="<?= $client['name'] ?>">
-                            <small id="emailHelp" class="form-text text-muted">Client namespace</small>
+                            <input type="text" class="form-control" name="name" value="<?= $client['name'] ?>" autocomplete="off" readonly>
+                            <small id="emailHelp" class="form-text text-muted">Client name</small>
                         </div>
                         <div class="form-group">
                             <label>Surname</label>
-                            <input type="text" class="form-control" name="surname" value="<?= $client['surname'] ?>">
+                            <input type="text" class="form-control" name="surname" value="<?= $client['surname'] ?>" autocomplete="off" readonly>
                             <small id="emailHelp" class="form-text text-muted">Client surname</small>
                         </div>
                         <div class="form-group">
                             <label>IBAN</label>
-                            <input type="text" class="form-control" name="iban" value="<?= $client['IBAN'] ?>">
-                            <small id="emailHelp" class="form-text text-muted">Client surname</small>
+                            <input type="text" class="form-control" name="iban" value="<?= $client['IBAN'] ?>" autocomplete="off" readonly>
+                            <small id="emailHelp" class="form-text text-muted">Client IBAN</small>
                         </div>
                         <div class="form-group">
                             <label>Balance</label>
-                            <input type="text" class="form-control" name="balance" value="<?= $client['balance'] ?>">
-                            <small id="emailHelp" class="form-text text-muted">Client surname</small>
+                            <input type="text" class="form-control" name="balance" value="<?= $client['balance'] ?>" autocomplete="off" readonly>
+                            <small id="emailHelp" class="form-text text-muted">Client Balance</small>
                         </div>
 
                         <button type="submit" class="btn btn-primary mt-5">Submit</button>

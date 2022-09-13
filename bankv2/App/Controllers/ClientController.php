@@ -10,12 +10,13 @@ class ClientController
 {
     public function create()
     {
-        return App::view('client_create', ['title' => 'New Client']);
+        $iban = $this->createValidIBAN();
+        return App::view('client_create', ['title' => 'New Client', 'iban' => $iban]);
     }
     public function store()
     {
-        if (validatePersonalId($_POST['client_id'])) {
-            if (checkNames($_POST['name'])) {
+        if ($this->validatePersonalId($_POST['client_id'])) {
+            if ($this->checkNames($_POST['name'], $_POST['surname'])) {
                 Json::connect()->create([
                     'name' => $_POST['name'],
                     'surname' => $_POST['surname'],
@@ -26,9 +27,11 @@ class ClientController
                 ]);
                 return App::redirect('');
             }
+            M::makeMsg('crimson', 'Wrong name or surname');
+            return App::redirect('clients/create');
         }
         M::makeMsg('crimson', 'Wrong ID');
-        return App::redirect('');
+        return App::redirect('clients/create');
     }
     public function list()
     {
@@ -55,7 +58,7 @@ class ClientController
         Json::connect()->delete($id);
         return App::redirect('clients_list');
     }
-    private function validatePersonalId($id)
+    public function validatePersonalId($id)
     {
         if (strlen($id) !== 11 || (!preg_match("/\d{11}/", $id)) || (!preg_match("/^[1-6]/", $id))) {
             return false; // worng input message, must be 11 digits only;
@@ -73,12 +76,32 @@ class ClientController
             return false; //id is not valid                                                                          
         }
     }
-    private function checkNames($name)
+    public function checkNames($name, $surname)
     {
-        if (mb_strlen($name) < 4 || (preg_match("/[0-9]/", $name))) {
+        if (mb_strlen($name) < 4 || (preg_match("/[0-9]/", $name)) || mb_strlen($surname) < 4 || (preg_match("/[0-9]/", $surname))) {
             return false;
         } else {
             return true;
+        }
+    }
+    public function createValidIBAN()
+    {
+        $iban = 'LT';
+        foreach (range(1, 18) as $_) {
+            $digit = rand(0, 9);
+            $iban .= "$digit";
+        }
+        $count = 0;
+        $data = Json::connect()->showAll();
+        foreach ($data as $client) {
+            if ($iban == $client['IBAN']) {
+                $count++;
+            }
+        }
+        if($count == 0){
+            return $iban;
+        }else{
+            return createValidIBAN();
         }
     }
 }
