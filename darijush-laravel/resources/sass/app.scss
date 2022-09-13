@@ -6,3 +6,42 @@
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
+
+.post-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    .content {
+        h2 {
+            color: crimson;
+            margin: 0;
+        }
+
+    }
+
+    .buttons {
+        display: flex;
+        align-items: center;
+        text-align: center;
+
+        button,
+        form,
+        a {
+            margin: 5px 10px;
+        }
+
+        form {
+            display: flex;
+            align-items: center;
+            margin: 0;
+        }
+    }
+
+
+}
+.textarea{
+    min-height: 500px;
+}

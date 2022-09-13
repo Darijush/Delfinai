@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
- use App\Http\Controllers\NiceController as Nice;
- use App\Http\Controllers\BlogController as B;
+use App\Http\Controllers\NiceController as Nice;
+use App\Http\Controllers\BlogController as B;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,18 +19,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/eziukas', fn()=>'EZIUKAS');
+Route::get('/eziukas', fn () => 'EZIUKAS');
 
 Route::get('/fun/{kiek}/{abc?}', [Nice::class, 'fun']);
-Route::get('/suma',[Nice::class,'showForm'])->name('show');
-Route::post('/suma',[Nice::class,'doForm'])->name('calculate');
+Route::get('/suma', [Nice::class, 'showForm'])->name('show');
+Route::post('/suma', [Nice::class, 'doForm'])->name('calculate');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::prefix('blog')->group(function () {
-    Route::get('/', [B::class, 'index'] )->name('index');
-    Route::get('/create', [B::class, 'create'] )->name('create');
-    Route::post('/create', [B::class, 'store'] )->name('store');
+    Route::get('/', [B::class, 'index'])->name('index');
+    Route::get('/create', [B::class, 'create'])->name('create');
+    Route::post('/create', [B::class, 'store'])->name('store');
+    Route::get('/show/{blog}', [B::class, 'show'])->name('show');
+    Route::delete('/delete/{blog}', [B::class, 'destroy'])->name('delete');
+    Route::get('/edit/{blog}', [B::class, 'edit'])->name('edit');
+    Route::put('/edit/{blog}', [B::class, 'update'])->name('update');
 });

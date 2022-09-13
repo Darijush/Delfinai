@@ -71,6 +71,19 @@
                                     </form>
                                 </div>
                             </li>
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    BLOG
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('index') }}">
+                                        Blogs list
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('create') }}">
+                                        New Blog
+                                    </a>
+                                </div>
+                            </li>
                         @endguest
                     </ul>
                 </div>
