@@ -10,14 +10,15 @@
                         <h2>Edit Post</h2>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('edit',$blog) }}" method="POST">
+                        <form action="{{ route('edit', $blog) }}" method="POST">
                             <div class="input-group mb-3">
                                 <span class="input-group-text">Title</span>
-                                <input type="text" class="form-control" name="title" value="{{ $blog->title }}">
+                                <input type="text" class="form-control" name="title"
+                                    value="{{ old('title', $blog->title) }}">
                             </div>
                             <div class="input-group">
                                 <span class="input-group-text">Post</span>
-                                <textarea class="form-control textarea" name="post">{{ $blog->post }}</textarea>
+                                <textarea class="form-control textarea" name="post">{{ old('post',$blog->post) }}</textarea>
                             </div>
                             @csrf
                             @method('put')

@@ -15,6 +15,10 @@
                                     <div class="post-list">
                                         <div class="content">
                                             <h2>{{ $blog->title }}</h2>
+                                            @foreach ($c as $l)
+                                            <h3>{{$l}}</h3>
+
+                                            @endforeach
                                         </div>
                                         <div class="buttons">
                                             <a href="{{ route('show', $blog) }}" class="btn btn-info">Show</a>
