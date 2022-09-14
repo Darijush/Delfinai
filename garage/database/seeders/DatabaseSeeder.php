@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Faker\Factory  as F;
 
 class DatabaseSeeder extends Seeder
 {
@@ -26,5 +27,13 @@ class DatabaseSeeder extends Seeder
             'email' => 'briedis@gmail.com',
             'password' => Hash::make('123'),
         ]);
+        $faker = F::create('de_DE');
+        foreach (range(1,20) as $_){
+            DB::table('mechanics')->insert(
+                ['name'=> $faker->firstName(),
+                 'surname'=> $faker->lastName()
+                ]
+            );
+        }
     }
 }

@@ -21,7 +21,7 @@
                                         <div class="buttons">
                                             <a href="{{ route('m_show', $mechanic) }}" class="btn btn-info">Show</a>
                                             <a href="{{ route('m_edit', $mechanic) }}" class="btn btn-secondary">Edit</a>
-                                            <form action="{{ route('m_delete', $mechanic) }}" method="POST">
+                                            <form action="{{route('m_delete',$mechanic)}}" method="POST">
                                                 @method('delete')
                                                 <button type="submit" class="btn btn-danger">Delete</button>
                                                 @csrf
