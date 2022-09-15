@@ -6,11 +6,14 @@
             <div class="col-6">
                 <div class="card">
                     <div class="card-header">
-                        <h2>Mechanic</h2>
+                        <h2>Truck</h2>
                     </div>
                     <div class="card-body">
-                        <h5>{{ $mechanic->name }}</h5>
-                        <h5>{{ $mechanic->surname }}</h5>
+                        <h5>{{ $truck->maker }}</h5>
+                        <h5>{{ $truck->plate }}</h5>
+                        <h5>{{ $truck->make_year }}</h5>
+                        <h5>{{ $truck->mechanic_id }}</h5>
+                        <p>{{ $truck->mechanic_notices }}</p>
                     </div>
                 </div>
             </div>

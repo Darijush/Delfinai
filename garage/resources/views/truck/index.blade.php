@@ -6,22 +6,24 @@
             <div class="col-9">
                 <div class="card">
                     <div class="card-header">
-                        <h2>Mechanics</h2>
+                        <h2>Trucks</h2>
                     </div>
                     <div class="card-body">
                         <ul class="list-group">
-                            @forelse ($mechanics as $mechanic)
+                            @forelse ($trucks as $truck)
                                 <li class="list-group-item">
                                     <div class="mechanic-list">
                                         <div class="content">
-                                            <h2>{{ $mechanic->name }}</h2>
-                                            <h2>{{ $mechanic->surname }}</h2>
+                                            <h2>{{ $truck->maker }}</h2>
+                                            <h2>{{ $truck->plate }}</h2>
+                                            <h2>{{ $truck->make_year }}</h2>
+                                            <h2>{{ $truck->mechanic_id }}</h2>
 
                                         </div>
                                         <div class="buttons">
-                                            <a href="{{ route('m_show', $mechanic) }}" class="btn btn-info">Show</a>
-                                            <a href="{{ route('m_edit', $mechanic) }}" class="btn btn-secondary">Edit</a>
-                                            <form action="{{route('m_delete',$mechanic)}}" method="POST">
+                                            <a href="{{ route('t_show', $truck) }}" class="btn btn-info">Show</a>
+                                            <a href="{{ route('t_edit', $truck) }}" class="btn btn-secondary">Edit</a>
+                                            <form action="{{route('t_delete',$truck)}}" method="POST">
                                                 @method('delete')
                                                 <button type="submit" class="btn btn-danger">Delete</button>
                                                 @csrf
@@ -30,7 +32,7 @@
                                     </div>
                                 </li>
                             @empty
-                                <li class="list-group-item">No mechanics found</li>
+                                <li class="list-group-item">No trucks found</li>
                             @endforelse
                         </ul>
                     </div>

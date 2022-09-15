@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Truck;
-use App\Http\Requests\StoreTruckRequest;
-use App\Http\Requests\UpdateTruckRequest;
+use Illuminate\Http\Request;
 
 class TruckController extends Controller
 {
@@ -15,7 +14,8 @@ class TruckController extends Controller
      */
     public function index()
     {
-        //
+        $trucks = Truck::all();
+        return view('truck.index', ['trucks' => $trucks]);
     }
 
     /**
@@ -25,16 +25,16 @@ class TruckController extends Controller
      */
     public function create()
     {
-        //
+        return view('truck.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreTruckRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTruckRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -47,7 +47,7 @@ class TruckController extends Controller
      */
     public function show(Truck $truck)
     {
-        //
+        return view('truck.show', ['truck' => $truck]);
     }
 
     /**
@@ -58,17 +58,17 @@ class TruckController extends Controller
      */
     public function edit(Truck $truck)
     {
-        //
+        return view('truck.edit', ['truck' => $truck]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateTruckRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Truck  $truck
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTruckRequest $request, Truck $truck)
+    public function update(Request $request, Truck $truck)
     {
         //
     }
@@ -81,6 +81,7 @@ class TruckController extends Controller
      */
     public function destroy(Truck $truck)
     {
-        //
+        $truck->delete();
+        return redirect()->route('t_index');
     }
 }
