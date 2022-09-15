@@ -6,6 +6,7 @@
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
 .mechanic-list {
     display: flex;
     justify-content: space-between;
@@ -16,6 +17,7 @@
         display: flex;
         flex-direction: row;
         gap: 10px;
+
         h2 {
             color: crimson;
             margin: 0;
@@ -43,9 +45,11 @@
 
 
 }
-.btn{
+
+.btn {
     margin-top: 5px;
 }
+
 .trucks-list {
     display: flex;
     justify-content: space-between;
@@ -58,19 +62,23 @@
         align-items: flex-start;
         text-align: center;
         gap: 5px;
+
         h2 {
             color: grey;
             margin: 0;
 
         }
+
         h4 {
             color: grey;
             margin: 0;
-            a{
+
+            a {
                 text-decoration: none;
                 color: crimson;
-                &:hover{
-                color: violet;
+
+                &:hover {
+                    color: violet;
                 }
             }
 
@@ -97,4 +105,25 @@
     }
 
 
+}
+
+.mechanic {
+    display: flex;
+    align-items: flex-start;
+    align-items: center;
+
+    h5 {
+        margin: 0 10px;
+        font-size: 30px;
+    }
+
+}
+
+.trucks-list {
+    .content-1 {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        flex-direction: row;
+    }
 }

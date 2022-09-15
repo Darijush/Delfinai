@@ -89,7 +89,12 @@ class MechanicController extends Controller
     public function destroy(Mechanic $mechanic)
     {
         // must update with restriction of deleting mechanics with trucks assigned
-        $mechanic->delete();
-        return redirect()->route('m_index');
+        if(!$mechanic->getTrucks()->count()){
+            $mechanic->delete();
+            return redirect()->route('m_index');
+        }else{
+            return redirect()->back()->with('danger_msg', 'Can not delete mechanic with trucks');
+        }
+
     }
 }
