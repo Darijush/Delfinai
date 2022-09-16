@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NationController as N;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::prefix('nation')->name('n_')->group(function () {
+    Route::get('/', [N::class, 'index'])->name('index');
+    Route::get('/create', [N::class, 'create'])->name('create');
+    Route::post('/create', [N::class, 'store'])->name('store');
+    Route::get('/show/{nation}', [N::class, 'show'])->name('show');
+    Route::delete('/delete/{nation}', [N::class, 'destroy'])->name('delete');
+    Route::get('/edit/{nation}', [N::class, 'edit'])->name('edit');
+    Route::put('/edit/{nation}', [N::class, 'update'])->name('update');
+});

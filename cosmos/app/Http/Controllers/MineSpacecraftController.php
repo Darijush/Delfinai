@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Nation;
-use Illuminate\Http\Request;
+use App\Models\mine_spacecraft;
+use App\Http\Requests\Storemine_spacecraftRequest;
+use App\Http\Requests\Updatemine_spacecraftRequest;
 
-class NationController extends Controller
+class MineSpacecraftController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -30,25 +31,21 @@ class NationController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request;  $request
+     * @param  \App\Http\Requests\Storemine_spacecraftRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Storemine_spacecraftRequest $request)
     {
-        $nation= new Nation;
-        $nation->title = $request->title;
-        $nation->mine_quantity = $request->mine_quantity;
-        $nation->save();
-        return redirect()->route('n_index');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Nation  $nation
+     * @param  \App\Models\mine_spacecraft  $mine_spacecraft
      * @return \Illuminate\Http\Response
      */
-    public function show(Nation $nation)
+    public function show(mine_spacecraft $mine_spacecraft)
     {
         //
     }
@@ -56,10 +53,10 @@ class NationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Nation  $nation
+     * @param  \App\Models\mine_spacecraft  $mine_spacecraft
      * @return \Illuminate\Http\Response
      */
-    public function edit(Nation $nation)
+    public function edit(mine_spacecraft $mine_spacecraft)
     {
         //
     }
@@ -67,11 +64,11 @@ class NationController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request;  $request
-     * @param  \App\Models\Nation  $nation
+     * @param  \App\Http\Requests\Updatemine_spacecraftRequest  $request
+     * @param  \App\Models\mine_spacecraft  $mine_spacecraft
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Nation $nation)
+    public function update(Updatemine_spacecraftRequest $request, mine_spacecraft $mine_spacecraft)
     {
         //
     }
@@ -79,10 +76,10 @@ class NationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Nation  $nation
+     * @param  \App\Models\mine_spacecraft  $mine_spacecraft
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Nation $nation)
+    public function destroy(mine_spacecraft $mine_spacecraft)
     {
         //
     }

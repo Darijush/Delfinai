@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Nation;
-use Illuminate\Http\Request;
+use App\Models\nations_nationblock;
+use App\Http\Requests\Storenations_nationblockRequest;
+use App\Http\Requests\Updatenations_nationblockRequest;
 
-class NationController extends Controller
+class NationsNationblockController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -30,25 +31,21 @@ class NationController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request;  $request
+     * @param  \App\Http\Requests\Storenations_nationblockRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Storenations_nationblockRequest $request)
     {
-        $nation= new Nation;
-        $nation->title = $request->title;
-        $nation->mine_quantity = $request->mine_quantity;
-        $nation->save();
-        return redirect()->route('n_index');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Nation  $nation
+     * @param  \App\Models\nations_nationblock  $nations_nationblock
      * @return \Illuminate\Http\Response
      */
-    public function show(Nation $nation)
+    public function show(nations_nationblock $nations_nationblock)
     {
         //
     }
@@ -56,10 +53,10 @@ class NationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Nation  $nation
+     * @param  \App\Models\nations_nationblock  $nations_nationblock
      * @return \Illuminate\Http\Response
      */
-    public function edit(Nation $nation)
+    public function edit(nations_nationblock $nations_nationblock)
     {
         //
     }
@@ -67,11 +64,11 @@ class NationController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request;  $request
-     * @param  \App\Models\Nation  $nation
+     * @param  \App\Http\Requests\Updatenations_nationblockRequest  $request
+     * @param  \App\Models\nations_nationblock  $nations_nationblock
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Nation $nation)
+    public function update(Updatenations_nationblockRequest $request, nations_nationblock $nations_nationblock)
     {
         //
     }
@@ -79,10 +76,10 @@ class NationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Nation  $nation
+     * @param  \App\Models\nations_nationblock  $nations_nationblock
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Nation $nation)
+    public function destroy(nations_nationblock $nations_nationblock)
     {
         //
     }

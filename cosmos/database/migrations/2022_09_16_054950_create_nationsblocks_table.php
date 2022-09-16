@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('nationsblocks', function (Blueprint $table) {
             $table->id();
+            $table->string('title',64);
             $table->timestamps();
         });
     }

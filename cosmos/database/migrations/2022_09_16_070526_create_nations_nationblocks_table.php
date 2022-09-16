@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('nations', function (Blueprint $table) {
+        Schema::create('nations_nationblocks', function (Blueprint $table) {
             $table->id();
-            $table->string('title',64);
-            $table->unsignedInteger('mine_quantity');
+            $table->unsignedBigInteger('nation_id');
+            $table->unsignedBigInteger('nationsblock_id');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nations');
+        Schema::dropIfExists('nations_nationblocks');
     }
 };

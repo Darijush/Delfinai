@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('spacecrafts', function (Blueprint $table) {
             $table->id();
+            $table->string('craft_title',64);
+            $table->unsignedBigInteger('nation_id');
+            $table->foreign('nation_id')->references('id')->on('nations');
+            $table->string('img',200);
             $table->timestamps();
         });
     }
