@@ -14,7 +14,8 @@ class NationController extends Controller
      */
     public function index()
     {
-        //
+        $nations = Nation::all();
+        return view('nation.index', ['nations' => $nations]);
     }
 
     /**
@@ -24,7 +25,7 @@ class NationController extends Controller
      */
     public function create()
     {
-        //
+        return view('nation.create');
     }
 
     /**
@@ -50,7 +51,7 @@ class NationController extends Controller
      */
     public function show(Nation $nation)
     {
-        //
+        return view('nation.show', ['nation' => $nation]);
     }
 
     /**
@@ -61,7 +62,7 @@ class NationController extends Controller
      */
     public function edit(Nation $nation)
     {
-        //
+        return view('nation.edit', ['nation' => $nation]);
     }
 
     /**
@@ -84,6 +85,7 @@ class NationController extends Controller
      */
     public function destroy(Nation $nation)
     {
-        //
+        $nation->delete();
+        return redirect()->route('n_index');
     }
 }

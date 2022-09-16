@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Nationsblock extends Model
 {
     use HasFactory;
+    public function getNations()
+    {
+        return $this->hasMany(Nation::class, 'nation_id', 'id');
+    }
 }

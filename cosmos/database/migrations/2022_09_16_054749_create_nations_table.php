@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('title',64);
             $table->unsignedInteger('mine_quantity');
+            $table->unsignedBigInteger('nationsblock_id')->nullable();
+            $table->foreign('nationsblock_id')->references('id')->on('nationsblocks');
             $table->timestamps();
         });
     }
