@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
         }
         $makers = ['MB', 'VOLVO', 'SCANIA', 'AVIA', 'DAF', 'IVECO', 'MAN', 'FORD', 'MACK', 'TESLA'];
         $a_z = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        foreach (range(1,1001) as $_){
+        foreach (range(1,301) as $_){
             DB::table('trucks')->insert(
                 ['maker'=> $makers[rand(0, count($makers)-1)],
                  'plate'=> strtoupper(Str::random(3)).'-'.rand(100,900),

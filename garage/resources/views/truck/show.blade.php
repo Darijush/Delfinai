@@ -9,11 +9,18 @@
                         <h2>Truck</h2>
                     </div>
                     <div class="card-body">
-                        <h5>{{ $truck->maker }}</h5>
-                        <h5>{{ $truck->plate }}</h5>
-                        <h5>{{ $truck->make_year }}</h5>
-                        <h5>{{ $truck->mechanic_id }}</h5>
+                        <div class="truck-card">
+                            <small>Plate:</small>
+                            <h5 class="plate">{{ $truck->plate }}</h5>
+                            <small>Maker:</small>
+                            <h5>{{ $truck->maker }}</h5>
+                            <small>MY:</small>
+                            <h5>{{ $truck->make_year }}</h5>
+                            <small>Mechanic:</small>
+                            <h5>{{ $truck->getMechanic->name }} {{ $truck->getMechanic->surname }}</h5>
+                        </div>
                         <p>{{ $truck->mechanic_notices }}</p>
+
                     </div>
                 </div>
             </div>

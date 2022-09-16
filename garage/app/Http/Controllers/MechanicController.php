@@ -40,7 +40,7 @@ class MechanicController extends Controller
         $mechanic->name = $request->name;
         $mechanic->surname = $request->surname;
         $mechanic->save();
-        return redirect()->route('m_index');
+        return redirect()->route('m_index')->with('success_msg', 'Another new golden handy addedd!!');;
     }
 
     /**
@@ -77,7 +77,7 @@ class MechanicController extends Controller
         $mechanic->name = $request->name;
         $mechanic->surname = $request->surname;
         $mechanic->save();
-        return redirect()->route('m_index');
+        return redirect()->route('m_index')->with('success_msg', 'Nicely updated');
     }
 
     /**

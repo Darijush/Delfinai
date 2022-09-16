@@ -127,3 +127,13 @@
         flex-direction: row;
     }
 }
+.truck-card{
+    display: flex;
+    align-items: flex-start;
+    text-align: center;
+    gap: 10px;
+    width: 100%;
+    .plate{
+        color: orangered;
+    }
+}
