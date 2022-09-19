@@ -10,7 +10,7 @@
                         <h2>Edit truck</h2>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('t_update', $truck) }}" method="POST">
+                        <form action="{{ route('t_update', $truck) }}" method="POST" enctype="multipart/form-data">
                             <div class="input-group mb-3">
                                 <span class="input-group-text">Maker</span>
                                 <input type="text" class="form-control" name="maker"
@@ -37,6 +37,22 @@
                                         {{ $mechanic->name }} {{ $mechanic->surname }}</option>
                                 @endforeach
                             </select>
+                            @if ($truck->photo)
+                                <div class="img">
+                                    <img src="{{ $truck->photo }}" alt="photo">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="1" id="del-photo"
+                                            name="delete_photo">
+                                        <label class="form-check-label" for="del-photo">
+                                            Delete photo
+                                        </label>
+                                    </div>
+                                </div>
+                            @endif
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label">Upload photo</label>
+                                <input class="form-control" type="file" name="photo">
+                            </div>
                             @csrf
                             @method('put')
                             <button type="submit" class="btn btn-primary">SAAAVE!</button>

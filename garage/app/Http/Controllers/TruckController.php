@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Truck;
 use App\Models\Mechanic;
 use Illuminate\Http\Request;
+use Image;
 
 class TruckController extends Controller
 {
@@ -48,11 +49,11 @@ class TruckController extends Controller
 
             $file = $name . '-' . rand(100000, 999999) . '.' . $ext;
 
-            // $Image = Image::make($photo)->pixelate(12);
+            $Image = Image::make($photo)->pixelate(12);
 
-            // $Image->save(public_path().'/images/'.$file);
+            $Image->save(public_path().'/trucks/'.$file);
 
-            $photo->move(public_path() . '/trucks', $file);
+            // $photo->move(public_path() . '/trucks', $file);
 
             $truck->photo = asset('/trucks') . '/' . $file;
         }
@@ -97,6 +98,23 @@ class TruckController extends Controller
      */
     public function update(Request $request, Truck $truck)
     {
+        if($request->delete_photo){
+            unlink(public_path().'/trucks/' .pathinfo($truck->photo, PATHINFO_FILENAME).'.'.pathinfo($truck->photo, PATHINFO_EXTENSION));
+            $truck->photo = null;
+        }
+         if ($request->file('photo')) {
+            if($truck->photo){
+                unlink(public_path().'/trucks/' .pathinfo($truck->photo, PATHINFO_FILENAME).'.'.pathinfo($truck->photo, PATHINFO_EXTENSION));
+             }
+            $photo = $request->file('photo');
+            $ext = $photo->getClientOriginalExtension();
+            $name = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
+            $file = $name . '-' . rand(100000, 999999) . '.' . $ext;
+            // $Image = Image::make($photo)->pixelate(12);
+            // $Image->save(public_path().'/images/'.$file);
+            $photo->move(public_path() . '/trucks', $file);
+            $truck->photo = asset('/trucks') . '/' . $file;
+        }
         $truck->maker = $request->maker;
         $truck->plate = $request->plate;
         $truck->make_year = $request->make_year;
@@ -114,6 +132,9 @@ class TruckController extends Controller
      */
     public function destroy(Truck $truck)
     {
+        if($truck->photo){
+           unlink(public_path().'/trucks/' .pathinfo($truck->photo, PATHINFO_FILENAME).'.'.pathinfo($truck->photo, PATHINFO_EXTENSION));
+        }
         $truck->delete();
         return redirect()->route('t_index');
     }
