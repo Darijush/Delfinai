@@ -10,7 +10,7 @@
                         <h2>New Truck</h2>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('t_store') }}" method="POST">
+                        <form action="{{ route('t_store') }}" method="POST" enctype="multipart/form-data">
                             <div class="input-group mb-3">
                                 <span class="input-group-text">Maker</span>
                                 <input type="text" class="form-control" name="maker" value="{{ old('maker') }}">
@@ -33,6 +33,10 @@
                                 <option value="{{$mechanic->id}}" @if ($mechanic->id == old('mechanic_id')) selected @endif>{{$mechanic->name}} {{$mechanic->surname}}</option>
                                 @endforeach
                             </select>
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label">Upload photo</label>
+                                <input class="form-control" type="file" name="photo">
+                              </div>
                             @csrf
                             <button type="submit" class="btn btn-primary">Create</button>
                         </form>
