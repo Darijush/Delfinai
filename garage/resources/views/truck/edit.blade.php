@@ -10,28 +10,32 @@
                         <h2>Edit truck</h2>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('t_edit', $truck) }}" method="POST">
+                        <form action="{{ route('t_update', $truck) }}" method="POST">
                             <div class="input-group mb-3">
                                 <span class="input-group-text">Maker</span>
-                                <input type="text" class="form-control" name="maker" value="{{ old('maker') }}">
+                                <input type="text" class="form-control" name="maker"
+                                    value="{{ old('maker', $truck->maker) }}">
                             </div>
-                            <div class="input-group">
+                            <div class="input-group mb-3">
                                 <span class="input-group-text">Plate</span>
-                                <input type="text" class="form-control" name="plate" value="{{ old('plate') }}">
+                                <input type="text" class="form-control" name="plate"
+                                    value="{{ old('plate', $truck->plate) }}">
                             </div>
-                            <div class="input-group">
+                            <div class="input-group mb-3">
                                 <span class="input-group-text">Make year</span>
-                                <input type="text" class="form-control" name="make_year" value="{{ old('make_year') }}">
+                                <input type="text" class="form-control" name="make_year"
+                                    value="{{ old('make_year', $truck->make_year) }}">
                             </div>
-                            <div class="input-group">
+                            <div class="input-group mb-3">
                                 <span class="input-group-text">Mechanic notices</span>
-                                <textarea class="form-control" name="mechanic_notices">{{ old('mechanic_notices') }}</textarea>
+                                <textarea class="form-control" name="mechanic_notices">{{ old('mechanic_notices', $truck->mechanic_notices) }}</textarea>
                             </div>
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <select class="form-select mb-3" name="mechanic_id">
+                                <option value="0">Choose mechanic for service</option>
+                                @foreach ($mechanics as $mechanic)
+                                    <option value="{{ $mechanic->id }} " @if ($mechanic->id == old('mechanic_id', $truck->mechanic_id)) selected @endif>
+                                        {{ $mechanic->name }} {{ $mechanic->surname }}</option>
+                                @endforeach
                             </select>
                             @csrf
                             @method('put')
