@@ -7,6 +7,28 @@
                 <div class="card">
                     <div class="card-header">
                         <h2>Mechanics</h2>
+                        <form action="{{ route('m_index') }}" method="GET">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <select class="form-select m-2" name="sort">
+                                            <option value="name_asc" @if ('name_asc' == $sortSelect) selected @endif>Name
+                                                AZ</option>
+                                            <option value="name_desc"@if ('name_desc' == $sortSelect) selected @endif>Name
+                                                ZA</option>
+                                            <option value="surname_asc" @if ('surname_asc' == $sortSelect) selected @endif>
+                                                Surname AZ</option>
+                                            <option value="surname_desc" @if ('surname_desc' == $sortSelect) selected @endif>
+                                                Surname ZA</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-4">
+                                        <button type="submit" class="btn btn-primary m-2 ">SORT</button>
+                                        <a href="{{ route('m_index') }}" class="btn btn-secondary m-2 ">RESET</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                     <div class="card-body">
                         <ul class="list-group">
@@ -16,7 +38,7 @@
                                         <div class="content">
                                             <h2>{{ $mechanic->name }}</h2>
                                             <h2>{{ $mechanic->surname }}</h2>
-                                            <span>[{{$mechanic->getTrucks()->count()}}]</span>
+                                            <span>[{{ $mechanic->getTrucks()->count() }}]</span>
                                         </div>
                                         <div class="buttons">
                                             <a href="{{ route('m_show', $mechanic) }}" class="btn btn-info">Show</a>
@@ -35,8 +57,9 @@
                         </ul>
                     </div>
                 </div>
+                <div class="me-3 mx-3 mt-3">
+                    {{ $mechanics->links() }}</div>
             </div>
-
         </div>
     </div>
 @endsection

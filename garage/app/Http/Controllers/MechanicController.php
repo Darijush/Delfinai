@@ -12,10 +12,16 @@ class MechanicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $mechanics = Mechanic::all();
-        return view('mechanic.index', ['mechanics'=>$mechanics]);
+        $mechanics = match ($request->sort) {
+            'name_asc' =>  Mechanic::orderBy('name', 'asc')->paginate(5)->withQueryString(),
+            'name_desc' => Mechanic::orderBy('name', 'desc')->paginate(5)->withQueryString(),
+            'surname_asc' => Mechanic::orderBy('surname', 'asc')->paginate(5)->withQueryString(),
+            'surname_desc' => Mechanic::orderBy('surname', 'desc')->paginate(5)->withQueryString(),
+            default => Mechanic::paginate(5)->withQueryString()
+        };
+        return view('mechanic.index', ['mechanics' => $mechanics,'sortSelect'=>$request->sort]);
     }
 
     /**
@@ -36,7 +42,7 @@ class MechanicController extends Controller
      */
     public function store(Request $request)
     {
-        $mechanic= new Mechanic;
+        $mechanic = new Mechanic;
         $mechanic->name = $request->name;
         $mechanic->surname = $request->surname;
         $mechanic->save();
@@ -51,7 +57,7 @@ class MechanicController extends Controller
      */
     public function show(Mechanic $mechanic)
     {
-        return view('mechanic.show',['mechanic'=>$mechanic]);
+        return view('mechanic.show', ['mechanic' => $mechanic]);
     }
 
     /**
@@ -62,7 +68,7 @@ class MechanicController extends Controller
      */
     public function edit(Mechanic $mechanic)
     {
-        return view('mechanic.edit',['mechanic'=>$mechanic]);
+        return view('mechanic.edit', ['mechanic' => $mechanic]);
     }
 
     /**
@@ -89,12 +95,11 @@ class MechanicController extends Controller
     public function destroy(Mechanic $mechanic)
     {
         // must update with restriction of deleting mechanics with trucks assigned
-        if(!$mechanic->getTrucks()->count()){
+        if (!$mechanic->getTrucks()->count()) {
             $mechanic->delete();
             return redirect()->route('m_index');
-        }else{
+        } else {
             return redirect()->back()->with('danger_msg', 'Can not delete mechanic with trucks');
         }
-
     }
 }
