@@ -14,14 +14,20 @@ class TruckController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $trucks = Truck::all();
+        if ($request->mech) {
+            $id = (int) $request->mech;
+            $trucks= Truck::where('mechanic_id', $id)->get();
+        } else {
+            $trucks = Truck::all();
+        }
         $mechanics = Mechanic::orderBy('surname')->get();
 
         return view('truck.index', [
             'trucks' => $trucks,
-            'mechanics' => $mechanics
+            'mechanics' => $mechanics,
+            'mech' => $id ?? 0,
         ]);
     }
 
@@ -32,7 +38,7 @@ class TruckController extends Controller
      */
     public function create()
     {
-        $mechanics = Mechanic::orderBy('name')->orderBy('surname','desc')->get();
+        $mechanics = Mechanic::orderBy('name')->orderBy('surname', 'desc')->get();
 
         // $mechanics= $mechanics->sortBy('surname');
         return view('truck.create', ['mechanics' => $mechanics]);
@@ -58,7 +64,7 @@ class TruckController extends Controller
 
             $Image = Image::make($photo)->pixelate(12);
 
-            $Image->save(public_path().'/trucks/'.$file);
+            $Image->save(public_path() . '/trucks/' . $file);
 
             // $photo->move(public_path() . '/trucks', $file);
 
@@ -93,7 +99,7 @@ class TruckController extends Controller
      */
     public function edit(Truck $truck)
     {
-        $mechanics = Mechanic::orderBy('name')->orderBy('surname','desc')->get();
+        $mechanics = Mechanic::orderBy('name')->orderBy('surname', 'desc')->get();
         return view('truck.edit', ['truck' => $truck, 'mechanics' => $mechanics]);
     }
 
@@ -106,14 +112,14 @@ class TruckController extends Controller
      */
     public function update(Request $request, Truck $truck)
     {
-        if($request->delete_photo){
-            unlink(public_path().'/trucks/' .pathinfo($truck->photo, PATHINFO_FILENAME).'.'.pathinfo($truck->photo, PATHINFO_EXTENSION));
+        if ($request->delete_photo) {
+            unlink(public_path() . '/trucks/' . pathinfo($truck->photo, PATHINFO_FILENAME) . '.' . pathinfo($truck->photo, PATHINFO_EXTENSION));
             $truck->photo = null;
         }
-         if ($request->file('photo')) {
-            if($truck->photo){
-                unlink(public_path().'/trucks/' .pathinfo($truck->photo, PATHINFO_FILENAME).'.'.pathinfo($truck->photo, PATHINFO_EXTENSION));
-             }
+        if ($request->file('photo')) {
+            if ($truck->photo) {
+                unlink(public_path() . '/trucks/' . pathinfo($truck->photo, PATHINFO_FILENAME) . '.' . pathinfo($truck->photo, PATHINFO_EXTENSION));
+            }
             $photo = $request->file('photo');
             $ext = $photo->getClientOriginalExtension();
             $name = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
@@ -140,8 +146,8 @@ class TruckController extends Controller
      */
     public function destroy(Truck $truck)
     {
-        if($truck->photo){
-           unlink(public_path().'/trucks/' .pathinfo($truck->photo, PATHINFO_FILENAME).'.'.pathinfo($truck->photo, PATHINFO_EXTENSION));
+        if ($truck->photo) {
+            unlink(public_path() . '/trucks/' . pathinfo($truck->photo, PATHINFO_FILENAME) . '.' . pathinfo($truck->photo, PATHINFO_EXTENSION));
         }
         $truck->delete();
         return redirect()->route('t_index');
