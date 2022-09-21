@@ -36,7 +36,7 @@
                                                 <div class="col-8">
                                                     <div class="input-group mb-3">
                                                         <input type="text" class="form-control" name="s"
-                                                        value="{{ old('s') }}">
+                                                            value="{{ $s }}">
                                                         <button type="submit" class="input-group-text">Search</button>
                                                     </div>
                                                 </div>
@@ -84,8 +84,10 @@
                         </ul>
                     </div>
                 </div>
+                <div class="me-3 mx-3 mt-3">
+                    {{ $trucks->links() }}</div>
             </div>
-
         </div>
+    </div>
     </div>
 @endsection
