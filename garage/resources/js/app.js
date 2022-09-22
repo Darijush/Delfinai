@@ -11,6 +11,7 @@ if (mainContent) {
 const breakdown = document.querySelector('#breakdown');
 const trucksList = breakdown.querySelector('#trucks-list');
 const mechanicId = breakdown.querySelector('[name=mechanic_id]');
+const submitButton = breakdown.querySelector('[data-submit]');
 if (breakdown) {
     mechanicId.addEventListener('change', () => {
         if (mechanicId.value === '0') {
@@ -22,5 +23,16 @@ if (breakdown) {
             })
 
         }
-    })
+    });
+    submitButton.addEventListener('click',()=>{
+        const data = {};
+        breakdown.querySelectorAll('[data-create]')
+        .forEach (i =>{
+            data[i.getAttribute('name')]=i.value;
+        });
+        axios.post(breakdownUrl+'/create', data)
+        .then(res =>{
+            console.log(res);
+        })
+    });
 }

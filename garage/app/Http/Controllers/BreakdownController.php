@@ -34,7 +34,7 @@ class BreakdownController extends Controller
      */
     public function create()
     {
-        //
+        // on page no  create
     }
 
     /**
@@ -45,7 +45,8 @@ class BreakdownController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $breakdown = new Breakdown;
+        dump($request->all());
     }
 
     /**

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container text-center">
-        <div class="row justify-content-center">
+        <div class="row ">
             <div class="col-12">
                 @include('breakdown.create')
             </div>
