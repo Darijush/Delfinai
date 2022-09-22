@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container text-center">
+    <div class="container ">
         <div class="row ">
-            <div class="col-12">
+            <div class="col-5">
                 @include('breakdown.create')
             </div>
-            <div class="col-7">
+            <div class="col-7" id="breakdowns-list">
                 list
             </div>
         </div>

@@ -1,6 +1,6 @@
     <div class="container text-center" id="breakdown">
-        <div class="row justify-content-center">
-            <div class="col-6">
+        <div class="row">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-header">
                         <h2>Register new breakdown</h2>
