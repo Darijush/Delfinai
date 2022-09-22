@@ -1,4 +1,4 @@
-    <div class="container text-center">
+    <div class="container text-center" id="breakdown">
         <div class="row justify-content-center">
             <div class="col-6">
                 <div class="card">
@@ -13,6 +13,9 @@
                                     {{ $mechanic->name }} {{ $mechanic->surname }}</option>
                             @endforeach
                         </select>
+                        <div id="trucks-list">
+
+                        </div>
                         <button type="submit" class="btn btn-primary">Create</button>
                     </div>
                 </div>
