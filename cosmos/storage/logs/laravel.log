@@ -1,0 +1,16 @@
+[2022-09-19 05:35:32] local.ERROR: There are no commands defined in the "make:migration" namespace.
+
+Did you mean this?
+    make {"exception":"[object] (Symfony\\Component\\Console\\Exception\\NamespaceNotFoundException(code: 0): There are no commands defined in the \"make:migration\" namespace.
+
+Did you mean this?
+    make at C:\\xampp\\htdocs\\delfinai\\cosmos\\vendor\\symfony\\console\\Application.php:622)
+[stacktrace]
+#0 C:\\xampp\\htdocs\\delfinai\\cosmos\\vendor\\symfony\\console\\Application.php(673): Symfony\\Component\\Console\\Application->findNamespace('make:migration')
+#1 C:\\xampp\\htdocs\\delfinai\\cosmos\\vendor\\symfony\\console\\Application.php(259): Symfony\\Component\\Console\\Application->find('make:migration:...')
+#2 C:\\xampp\\htdocs\\delfinai\\cosmos\\vendor\\symfony\\console\\Application.php(171): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 C:\\xampp\\htdocs\\delfinai\\cosmos\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php(102): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 C:\\xampp\\htdocs\\delfinai\\cosmos\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(129): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 C:\\xampp\\htdocs\\delfinai\\cosmos\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#6 {main}
+"} 
