@@ -16,7 +16,9 @@ return new class extends Migration
         Schema::create('room_reserves', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('reservation_id');
+            $table->foreign('reservation_id')->references('id')->on('reservations');
             $table->unsignedBigInteger('room_id');
+            $table->foreign('room_id')->references('id')->on('rooms');
             $table->unsignedDecimal('price', 10, 2);
             $table->timestamps();
         });

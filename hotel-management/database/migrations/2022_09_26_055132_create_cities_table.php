@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('city_name', 128);
             $table->string('postal_code', 16);
             $table->unsignedBigInteger('country_id');
+            $table->foreign('country_id')->references('id')->on('countries');
             $table->timestamps();
         });
     }

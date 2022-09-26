@@ -16,7 +16,9 @@ return new class extends Migration
         Schema::create('channel_useds', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('room_id');
+            $table->foreign('room_id')->references('id')->on('rooms');
             $table->unsignedBigInteger('channel_id');
+            $table->foreign('channel_id')->references('id')->on('channels');
             $table->timestamps();
         });
     }

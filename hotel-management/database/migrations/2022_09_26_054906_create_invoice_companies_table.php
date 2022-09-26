@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('invoice_companies', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('company_id');
+            $table->foreign('company_id')->references('id')->on('companies');
             $table->unsignedDecimal('invoice_amount', 10, 2);
             $table->string('invoice_period', 255);
             $table->text('invoice_details');

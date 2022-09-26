@@ -16,7 +16,9 @@ return new class extends Migration
         Schema::create('invoice_guests', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('guest_id');
+            $table->foreign('guest_id')->references('id')->on('guests');
             $table->unsignedBigInteger('reservation_id');
+            $table->foreign('reservation_id')->references('id')->on('reservations');
             $table->unsignedDecimal('invoice_amount', 10, 2);
             $table->dateTime('ts_issued');
             $table->dateTime('ts_paid')->nullable();

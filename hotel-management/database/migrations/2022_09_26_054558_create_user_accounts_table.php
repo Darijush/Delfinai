@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('password',255);
             $table->boolean('is_active');
             $table->unsignedBigInteger('company_id');
+            $table->foreign('company_id')->references('id')->on('companies');
             $table->timestamps();
         });
     }

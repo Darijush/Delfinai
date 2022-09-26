@@ -16,7 +16,9 @@ return new class extends Migration
         Schema::create('company_plans', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('company_id');
+            $table->foreign('company_id')->references('id')->on('companies');
             $table->unsignedBigInteger('plan_id');
+            $table->foreign('plan_id')->references('id')->on('plans');
             $table->dateTime('ts_activated');
             $table->dateTime('ts_deactivated');
             $table->timestamps();

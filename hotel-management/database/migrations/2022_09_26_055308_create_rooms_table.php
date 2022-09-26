@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('room_name', 128);
             $table->text('description');
             $table->unsignedBigInteger('hotel_id');
+            $table->foreign('hotel_id')->references('id')->on('hotels');
             $table->unsignedBigInteger('room_type_id');
+            $table->foreign('room_type_id')->references('id')->on('room_types');
             $table->unsignedDecimal('current_price', 10, 2);
             $table->timestamps();
         });

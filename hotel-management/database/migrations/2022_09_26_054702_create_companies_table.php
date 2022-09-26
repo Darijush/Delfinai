@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('VAT_ID',18);
             $table->string('email',255);
             $table->unsignedBigInteger('city_id');
+            $table->foreign('city_id')->references('id')->on('cities');
             $table->string('company_address',255);
             $table->text('details')->nullable();
             $table->boolean('is_active');

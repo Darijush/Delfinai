@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('guest_id');
+            $table->foreign('guest_id')->references('id')->on('guests');
             $table->date('start_date');
             $table->date('end_date');
             $table->unsignedDecimal('discount_percent', 5, 2);
