@@ -2,17 +2,20 @@ import './bootstrap';
 import axios from 'axios';
 
 const mainContent = document.querySelector('.--content');
-
 if (mainContent) {
     const mainForm = mainContent.querySelector('form');
-    mainContent.querySelectorAll('select').forEach(s => s.addEventListener('change', () => mainForm.submit()));
+    mainContent.querySelectorAll('select')
+        .forEach(s => s.addEventListener('change', () => mainForm.submit()));
 }
 
+
+
 const breakdown = document.querySelector('#breakdown');
-const trucksList = breakdown.querySelector('#trucks-list');
-const mechanicId = breakdown.querySelector('[name=mechanic_id]');
-const submitButton = breakdown.querySelector('[data-submit]');
 if (breakdown) {
+    const trucksList = breakdown.querySelector('#trucks-list');
+    const mechanicId = breakdown.querySelector('[name=mechanic_id]');
+    const submitButton = breakdown.querySelector('[data-submit]');
+
     mechanicId.addEventListener('change', () => {
         if (mechanicId.value === '0') {
             trucksList.innerHTML = '';
@@ -21,29 +24,33 @@ if (breakdown) {
                 .then(res => {
                     trucksList.innerHTML = res.data.html;
                 })
+        }
 
-            }
-        });
-        submitButton.addEventListener('click', () => {
-            const data = {};
-            breakdown.querySelectorAll('[data-create]')
+    });
+    submitButton.addEventListener('click', () => {
+        const data = {};
+        breakdown.querySelectorAll('[data-create]')
             .forEach(i => {
                 data[i.getAttribute('name')] = i.value;
             });
-            axios.post(breakdownUrl + '/create', data)
+        axios.post(breakdownUrl + '/create', data)
             .then(res => {
                 console.log(res.data);
+                getList();
             })
-            .catch(error => { console.log('all bad') });
-        });
-        window.addEventListener('load',()=>{
-            getList();
-        });
-    }
-    const getList = () =>{
-        const breakdownList = document.querySelector('#breakdowns-list');
-        axios.get(breakdownUrl+'/list')
-        .then(res =>{
-            breakdownList.innerHTML = res.data.html;
+            .catch(error => {
+                console.log('viskas blogai');
+            })
+    });
+    window.addEventListener('load', () => {
+        getList();
+    });
+}
+
+const getList = () => {
+    const breakdownsList = document.querySelector('#breakdowns-list');
+    axios.get(breakdownUrl + '/list')
+        .then(res => {
+            breakdownsList.innerHTML = res.data.html;
         })
-    }
+}

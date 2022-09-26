@@ -17,49 +17,48 @@ class BreakdownController extends Controller
     public function index()
     {
         $mechanics = Mechanic::orderBy('surname')->get();
-        return view('breakdown.index', ['mechanics' => $mechanics]);
+        return view('breakdown.index', [
+            'mechanics' => $mechanics
+        ]);
     }
 
     public function trucksList(int $mechanicId)
     {
         $trucks = Truck::where('mechanic_id', $mechanicId)->orderBy('plate')->get();
         $html = view('breakdown.trucks_list')->with('trucks', $trucks)->render();
-        return response()->json(['html' => $html]);
+        return response()->json([
+            'html' => $html
+        ]);
     }
+
     public function list()
     {
         $breakdowns = Breakdown::orderBy('updated_at', 'desc')->get();
         $html = view('breakdown.list')->with('breakdowns', $breakdowns)->render();
-        return response()->json(['html' => $html]);
+        return response()->json([
+            'html' => $html
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        // on page no  create
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request;  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $breakdown = new Breakdown;
+
         $breakdown->truck_id = (int) $request->truck_id;
         $breakdown->title = $request->title;
         $breakdown->notes = $request->notes;
         $breakdown->status = (int) $request->status;
         $breakdown->price = (float) $request->price;
         $breakdown->discount = (float) $request->discount;
+
         $breakdown->save();
-        return response()->json(['msg' => 'All good', 'status' => 'OK']);
+
+        return response()->json([
+            'msg' => 'All good',
+            'status' => 'OK'
+        ]);
+
     }
 
     /**
@@ -87,7 +86,7 @@ class BreakdownController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request;  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Breakdown  $breakdown
      * @return \Illuminate\Http\Response
      */

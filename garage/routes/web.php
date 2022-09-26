@@ -33,6 +33,7 @@ Route::prefix('mechanic')->name('m_')->group(function () {
     Route::get('/edit/{mechanic}', [M::class, 'edit'])->name('edit');
     Route::put('/edit/{mechanic}', [M::class, 'update'])->name('update');
 });
+
 Route::prefix('truck')->name('t_')->group(function () {
     Route::get('/', [T::class, 'index'])->name('index');
     Route::get('/create', [T::class, 'create'])->name('create');
@@ -42,8 +43,10 @@ Route::prefix('truck')->name('t_')->group(function () {
     Route::get('/edit/{truck}', [T::class, 'edit'])->name('edit');
     Route::put('/edit/{truck}', [T::class, 'update'])->name('update');
 });
+
 Route::prefix('breakdown')->name('b_')->group(function () {
     Route::get('/', [B::class, 'index'])->name('index');
+
     Route::get('/trucks-list/{mechanic_id}', [B::class, 'trucksList']);
     Route::post('/create', [B::class, 'store']);
     Route::get('/list', [B::class, 'list']);

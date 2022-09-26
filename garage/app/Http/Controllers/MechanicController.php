@@ -14,21 +14,24 @@ class MechanicController extends Controller
      */
     public function index(Request $request)
     {
-        $perPage = match ($request->per_page) {
+        
+        $perPage = match($request->per_page) {
             'all' => 1000000,
-            '5' =>  5,
+            '5' => 5,
             '10' => 10,
             '20' => 20,
             '50' => 50,
-            default => 5
+            default => 1000000
         };
+
         $mechanics = match ($request->sort) {
-            'name_asc' =>  Mechanic::orderBy('name', 'asc')->paginate($perPage)->withQueryString(),
+            'name_asc' => Mechanic::orderBy('name', 'asc')->paginate($perPage)->withQueryString(),
             'name_desc' => Mechanic::orderBy('name', 'desc')->paginate($perPage)->withQueryString(),
             'surname_asc' => Mechanic::orderBy('surname', 'asc')->paginate($perPage)->withQueryString(),
             'surname_desc' => Mechanic::orderBy('surname', 'desc')->paginate($perPage)->withQueryString(),
             default => Mechanic::paginate($perPage)->withQueryString()
         };
+        
         return view('mechanic.index', [
             'mechanics' => $mechanics,
             'sortSelect' => $request->sort,
@@ -49,7 +52,7 @@ class MechanicController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -58,7 +61,7 @@ class MechanicController extends Controller
         $mechanic->name = $request->name;
         $mechanic->surname = $request->surname;
         $mechanic->save();
-        return redirect()->route('m_index')->with('success_msg', 'Another new golden handy addedd!!');;
+        return redirect()->route('m_index')->with('success_msg', 'Good job. We have new mechanic now.');
     }
 
     /**
@@ -69,7 +72,9 @@ class MechanicController extends Controller
      */
     public function show(Mechanic $mechanic)
     {
-        return view('mechanic.show', ['mechanic' => $mechanic]);
+        return view('mechanic.show', [
+            'mechanic' => $mechanic
+        ]);
     }
 
     /**
@@ -80,13 +85,15 @@ class MechanicController extends Controller
      */
     public function edit(Mechanic $mechanic)
     {
-        return view('mechanic.edit', ['mechanic' => $mechanic]);
+        return view('mechanic.edit', [
+            'mechanic' => $mechanic
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Mechanic  $mechanic
      * @return \Illuminate\Http\Response
      */
@@ -95,7 +102,7 @@ class MechanicController extends Controller
         $mechanic->name = $request->name;
         $mechanic->surname = $request->surname;
         $mechanic->save();
-        return redirect()->route('m_index')->with('success_msg', 'Nicely updated');
+        return redirect()->route('m_index')->with('success_msg', 'Good job. Mechanic was updated');
     }
 
     /**
@@ -106,12 +113,11 @@ class MechanicController extends Controller
      */
     public function destroy(Mechanic $mechanic)
     {
-        // must update with restriction of deleting mechanics with trucks assigned
-        if (!$mechanic->getTrucks()->count()) {
-            $mechanic->delete();
-            return redirect()->route('m_index');
-        } else {
-            return redirect()->back()->with('danger_msg', 'Can not delete mechanic with trucks');
+        if ($mechanic->getTrucks()->count()) {
+            return redirect()->back()->with('info_msg', 'Oh no, you can not delete this one.');
         }
+        $mechanic->delete();
+        return redirect()->route('m_index');
+
     }
 }

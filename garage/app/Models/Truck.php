@@ -9,8 +9,9 @@ use App\Models\Mechanic;
 class Truck extends Model
 {
     use HasFactory;
-    public function getMechanic()
+
+    public function getMechanic() 
     {
-        return $this->belongsTo(Mechanic::class,'mechanic_id','id');
+        return $this->belongsTo(Mechanic::class, 'mechanic_id', 'id');
     }
 }

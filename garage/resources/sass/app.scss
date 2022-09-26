@@ -1,53 +1,39 @@
 // Fonts
 @import url('https://fonts.bunny.net/css?family=Nunito');
-
 // Variables
 @import 'variables';
-
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
-
-.mechanic-list {
+.mechanics-list {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-
     .content {
         display: flex;
-        flex-direction: row;
-        gap: 10px;
-
         h2 {
             color: crimson;
-            margin: 0;
+            margin: 0 5px;
         }
-
     }
-
     .buttons {
         display: flex;
         align-items: center;
-        text-align: center;
-
         button,
         form,
         a {
             margin: 5px 10px;
+            display: block;
         }
-
         form {
             display: flex;
             align-items: center;
             margin: 0;
         }
+        button {
+            transform: rotate(1deg);
+        }
     }
-
-
-}
-
-.btn {
-    margin-top: 5px;
 }
 
 .trucks-list {
@@ -55,91 +41,122 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-
     .content {
         display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        text-align: center;
-        gap: 5px;
-
+        align-items: center;
         h2 {
-            color: grey;
-            margin: 0;
-
+            color: skyblue;
+            margin: 0 5px;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            span {
+                font-size: 12px;
+                color: gray;
+                font-style: italic;
+                margin-right: 10px;
+            }
         }
-
         h4 {
-            color: grey;
-            margin: 0;
-
+            color: orangered;
+            margin: 0 5px;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            margin: 0 0 0 15px;
+            span {
+                font-size: 12px;
+                color: gray;
+                font-style: italic;
+                margin-right: 10px;
+            }
+        }
+        h5 {
+            color: olivedrab;
+            margin: 0 5px;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            margin: 0 0 0 15px;
+            span {
+                font-size: 12px;
+                color: gray;
+                font-style: italic;
+                margin-right: 10px;
+            }
             a {
                 text-decoration: none;
-                color: crimson;
-
+                color: olivedrab;
+                transition: all 0.3s;
                 &:hover {
-                    color: violet;
+                    color: cadetblue
                 }
             }
-
         }
-
     }
-
     .buttons {
         display: flex;
         align-items: center;
-        text-align: center;
-
         button,
         form,
         a {
             margin: 5px 10px;
+            display: block;
         }
-
         form {
             display: flex;
             align-items: center;
             margin: 0;
         }
+        button {
+            transform: rotate(1deg);
+        }
     }
-
-
 }
 
 .mechanic {
     display: flex;
-    align-items: flex-start;
+    justify-content: flex-start;
     align-items: center;
-
-    h5 {
-        margin: 0 10px;
-        font-size: 30px;
-    }
-
-}
-
-.trucks-list {
-    .content-1 {
-        display: flex;
-        align-items: flex-start;
-        gap: 10px;
-        flex-direction: row;
-    }
-}
-.truck-card{
-    display: flex;
-    align-items: flex-start;
-    text-align: center;
-    gap: 10px;
     width: 100%;
-    .plate{
-        color: orangered;
+    h5 {
+        margin: 10px;
+        font-size: 40px;
+        color: crimson;
     }
 }
-.img{
-    img{
-        width: auto;
-        height: 250px;
+
+.truck-show {
+    .line {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        margin: 0 0 10px 0;
+        h5 {
+            margin: 0 0 0 5px;
+        }
     }
+    p {
+        font-family: 'Courier New', Courier, monospace;
+        color: gray;
+    }
+}
+
+.img {
+    img {
+        width: auto;
+        height: 300px;
+    }
+}
+
+.img-small {
+    img {
+        width: auto;
+        height: 100px;
+    }
+}
+
+textarea.form-control {
+    min-height: 200px;
 }
