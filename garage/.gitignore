@@ -1,6 +1,5 @@
 /node_modules
 /public/build
-/public/trucks
 /public/hot
 /public/storage
 /storage/*.key

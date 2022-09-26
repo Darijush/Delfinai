@@ -36,9 +36,9 @@ class BreakdownController extends Controller
     {
         $breakdowns = Breakdown::orderBy('updated_at', 'desc')->get();
         $html = view('breakdown.list')
-        ->with('breakdowns', $breakdowns)
-        ->with('status', Breakdown::STATUS)
-        ->render();
+            ->with('breakdowns', $breakdowns)
+            ->with('status', Breakdown::STATUS)
+            ->render();
         return response()->json([
             'html' => $html,
         ]);
@@ -62,18 +62,18 @@ class BreakdownController extends Controller
             'msg' => 'All good',
             'status' => 'OK'
         ]);
-
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Breakdown  $breakdown
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Breakdown $breakdown)
+
+    public function modal(Breakdown $breakdown)
     {
-        //
+        $html = view('breakdown.modal_content')
+            ->with('breakdown', $breakdown)
+            ->with('status', Breakdown::STATUS)
+            ->render();
+        return response()->json([
+            'html' => $html,
+        ]);
     }
 
     /**

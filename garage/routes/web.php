@@ -20,7 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes(['register' => false]);
+Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -52,5 +52,6 @@ Route::prefix('breakdown')->name('b_')->group(function () {
     Route::get('/list', [B::class, 'list']);
     // Route::delete('/{id}', [B::class, 'destroy']);
     Route::delete('/{breakdown}', [B::class, 'destroy']);
+    Route::get('/modal/{breakdown}', [B::class, 'modal']);
 
 });

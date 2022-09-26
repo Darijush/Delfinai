@@ -14,8 +14,8 @@ class MechanicController extends Controller
      */
     public function index(Request $request)
     {
-        
-        $perPage = match($request->per_page) {
+
+        $perPage = match ($request->per_page) {
             'all' => 1000000,
             '5' => 5,
             '10' => 10,
@@ -31,7 +31,7 @@ class MechanicController extends Controller
             'surname_desc' => Mechanic::orderBy('surname', 'desc')->paginate($perPage)->withQueryString(),
             default => Mechanic::paginate($perPage)->withQueryString()
         };
-        
+
         return view('mechanic.index', [
             'mechanics' => $mechanics,
             'sortSelect' => $request->sort,
@@ -118,6 +118,5 @@ class MechanicController extends Controller
         }
         $mechanic->delete();
         return redirect()->route('m_index');
-
     }
 }
