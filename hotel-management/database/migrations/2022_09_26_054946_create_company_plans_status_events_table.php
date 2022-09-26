@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('company_plan_id');
             $table->foreign('company_plan_id')->references('id')->on('company_plans');
-            $table->unsignedBigInteger('company_plan_status_catalog_id');
-            $table->foreign('company_plan_status_catalog_id')->references('id')->on('company_plan_status_catalogs');
+            $table->unsignedBigInteger('company_plan_status_id');
+            $table->foreign('company_plan_status_id')->references('id')->on('company_plan_status_catalogs');
             $table->timestamps();
         });
     }
