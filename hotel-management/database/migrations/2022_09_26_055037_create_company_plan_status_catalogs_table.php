@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('company_plan_status_catalogs', function (Blueprint $table) {
             $table->id();
+            $table->string('status_name', 64);
+            $table->boolean('plan_is_active');
             $table->timestamps();
         });
     }

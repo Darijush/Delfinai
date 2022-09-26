@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('reservation_status_events', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('reservation_id');
+            $table->unsignedBigInteger('reservation_status_catalog_id');
+            $table->text('details');
             $table->timestamps();
         });
     }

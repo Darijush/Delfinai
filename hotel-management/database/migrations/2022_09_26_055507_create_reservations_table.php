@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('guest_id');
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->unsignedDecimal('discount_percent', 5, 2);
+            $table->unsignedDecimal('total_price', 10, 2);
             $table->timestamps();
         });
     }

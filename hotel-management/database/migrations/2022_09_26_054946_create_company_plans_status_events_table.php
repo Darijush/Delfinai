@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('company_plans_status_events', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('company_plan_id');
+            $table->unsignedBigInteger('company_plan_status_catalog_id');
             $table->timestamps();
         });
     }

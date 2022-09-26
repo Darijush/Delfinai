@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('invoice_guests', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('guest_id');
+            $table->unsignedBigInteger('reservation_id');
+            $table->unsignedDecimal('invoice_amount', 10, 2);
+            $table->dateTime('ts_issued');
+            $table->dateTime('ts_paid')->nullable();
+            $table->dateTime('ts_canceled')->nullable();
             $table->timestamps();
         });
     }

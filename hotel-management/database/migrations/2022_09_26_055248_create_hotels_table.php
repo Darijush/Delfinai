@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('hotels', function (Blueprint $table) {
             $table->id();
+            $table->string('hotel_name', 128);
+            $table->text('description');
+            $table->unsignedBigInteger('company_id');
+            $table->unsignedBigInteger('city_id');
+            $table->unsignedBigInteger('category_id');
+            $table->boolean('is_active');
             $table->timestamps();
         });
     }

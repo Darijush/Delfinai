@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
+            $table->string('plan_name',64);
+            $table->string('details',255);
+            $table->unsignedMediumInteger('rooms_min');
+            $table->unsignedMediumInteger('rooms_max')->nullable();
+            $table->unsignedDecimal('monthly_price',10,2);
             $table->timestamps();
         });
     }

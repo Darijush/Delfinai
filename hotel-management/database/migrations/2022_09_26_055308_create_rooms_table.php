@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
+            $table->string('room_name', 128);
+            $table->text('description');
+            $table->unsignedBigInteger('hotel_id');
+            $table->unsignedBigInteger('room_type_id');
+            $table->unsignedDecimal('current_price', 10, 2);
             $table->timestamps();
         });
     }
