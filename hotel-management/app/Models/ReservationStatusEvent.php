@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class ReservationStatusEvent extends Model
 {
     use HasFactory;
+    public function getReservationStatus()
+    {
+        return $this->belongsTo(Reservation::class, 'reservation_id', 'id');
+    }
+
 }
