@@ -31,6 +31,7 @@ Route::get('/dashboard', function () {
 
 // Route::inertia('/red-square', 'RedSquare');
 Route::get('/red-square', [S::class, 'redSquare']);
+Route::get('/red-square-blade', [S::class, 'redSquareBlade']);
 
 
 

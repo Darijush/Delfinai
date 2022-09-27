@@ -1,6 +1,8 @@
-function RedSquare({color, size}) {
+import '../../sass/square.scss';
+
+function RedSquare({ color }) {
     return (
-        <h2 style={{color, fontSize: size+'px'}}>CRIMSON </h2>
+        <div className='square' style={{backgroundColor: color}}></div>
     );
 }
 export default RedSquare;
