@@ -13,7 +13,7 @@
                         <h5>{{$category->title}}</h5>
 
                     </div>
-                    <ul class="list-group">
+                    {{-- <ul class="list-group">
                         @forelse($category->getTrucks as $category)
                         <li class="list-group-item">
                             <div class="trucks-list">
@@ -25,7 +25,7 @@
                         @empty
                         <li class="list-group-item">No categories found</li>
                         @endforelse
-                    </ul>
+                    </ul> --}}
                 </div>
             </div>
         </div>

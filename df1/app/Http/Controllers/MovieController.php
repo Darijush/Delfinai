@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
-use App\Http\Requests\StoreMovieRequest;
-use App\Http\Requests\UpdateMovieRequest;
+use Illuminate\Http\Request;
+use App\Models\Category;
 
 class MovieController extends Controller
 {
@@ -13,9 +13,14 @@ class MovieController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        return view('movie.index', [
+            'movies' => Movie::orderBy('updated_at', 'desc')->get(),
+            'categories' => Category::orderBy('title', 'asc')->get(),
+            'cat' => $id ?? 0,
+            's' => $request->s ?? '',
+        ]);
     }
 
     /**
@@ -25,18 +30,25 @@ class MovieController extends Controller
      */
     public function create()
     {
-        //
+        return view('movie.create', [
+            'categories' => Category::orderBy('updated_at', 'desc')->get(),
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreMovieRequest  $request
+     * @param  \Illuminate\Http\Request;  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreMovieRequest $request)
+    public function store(Request $request)
     {
-        //
+        Category::create([
+            'title' => $request->title,
+            'price' => $request->price,
+            'category_id' => $request->category_id,
+        ]);
+        return redirect()->route('m_index');
     }
 
     /**
@@ -47,7 +59,9 @@ class MovieController extends Controller
      */
     public function show(Movie $movie)
     {
-        //
+        return view('movie.show', [
+            'movie' => $movie,
+        ]);
     }
 
     /**
@@ -58,19 +72,29 @@ class MovieController extends Controller
      */
     public function edit(Movie $movie)
     {
-        //
+        return view('movie.edit', [
+            'movie' => $movie,
+            'categories' => Category::orderBy('title', 'asc')->get(),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateMovieRequest  $request
+     * @param  \Illuminate\Http\Request;  $request
      * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateMovieRequest $request, Movie $movie)
+    public function update(Request $request, Movie $movie)
     {
-        //
+        $movie->update(
+            [
+                'title' => $request->title,
+                'price' => $request->price,
+                'category_id' => $request->category_id
+            ],
+        );
+        return redirect()->route('m_index');
     }
 
     /**
@@ -81,6 +105,7 @@ class MovieController extends Controller
      */
     public function destroy(Movie $movie)
     {
-        //
+        $movie->delete();
+        return redirect()->route('m_index');
     }
 }
