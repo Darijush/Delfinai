@@ -30,6 +30,7 @@ Route::prefix('category')->name('c_')->group(function () {
     Route::delete('/delete/{category}', [C::class, 'destroy'])->name('delete');
     Route::get('/edit/{category}', [C::class, 'edit'])->name('edit');
     Route::put('/edit/{category}', [C::class, 'update'])->name('update');
+    Route::delete('/delete_movies/{category}', [C::class, 'destroyAll'])->name('delete_movies');
 });
 Route::prefix('movie')->name('m_')->group(function () {
     Route::get('/', [M::class, 'index'])->name('index');

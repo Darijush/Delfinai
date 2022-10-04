@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
-use Carbon\Carbon as CarbonCarbon;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Carbon;
+
 
 class DatabaseSeeder extends Seeder
 {

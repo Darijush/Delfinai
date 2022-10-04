@@ -6,6 +6,7 @@ use App\Models\Movie;
 use Illuminate\Http\Request;
 use App\Models\Category;
 
+
 class MovieController extends Controller
 {
     /**
@@ -43,11 +44,13 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        Category::create([
+
+        Movie::create([
             'title' => $request->title,
             'price' => $request->price,
             'category_id' => $request->category_id,
-        ]);
+        ])->addImages($request->file('photo'));
+
         return redirect()->route('m_index');
     }
 

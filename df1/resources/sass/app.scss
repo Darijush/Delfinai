@@ -15,10 +15,15 @@
 
     .content {
         display: flex;
-
         h2 {
+
+
             color: crimson;
             margin: 0 5px;
+        }
+
+        small {
+            color: cornflowerblue;
         }
     }
 
