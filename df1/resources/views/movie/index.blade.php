@@ -3,10 +3,10 @@
 @section('content')
     <div class="container --content">
         <div class="row justify-content-center">
-            <div class="col-11">
+            <div class="col-9">
                 <div class="card">
                     <div class="card-header">
-                        <h2>Movies</h2>
+                        <h2>Movie</h2>
                         <form action="{{ route('m_index') }}" method="get">
                             <div class="container">
                                 <div class="row">
@@ -16,8 +16,8 @@
                                                 <div class="col-6">
                                                     {{-- <select name="mech" class="form-select mt-1">
                                                     <option value="0">All</option>
-                                                    @foreach ($categories as $category)
-                                                    <option value="{{$category->id}}" @if ($cat == $category->id) selected @endif>{{$category->title}}</option>
+                                                    @foreach ($mechanics as $mechanic)
+                                                    <option value="{{$mechanic->id}}" @if ($mech == $mechanic->id) selected @endif>{{$mechanic->name}} {{$mechanic->surname}}</option>
                                                     @endforeach
                                                 </select> --}}
                                                 </div>
@@ -54,17 +54,15 @@
                                         <div class="content">
                                             <h2><span>Title: </span>{{ $movie->title }}</h2>
                                             <h4><span>Price: </span>{{ $movie->price }}</h4>
-                                            <h4><span>Rating: </span>{{ $movie->rating }}</h4>
                                             <h5>
-                                                <span>category: </span>
+                                                <span>Category: </span>
                                                 <a href="{{ route('c_show', $movie->getCategory->id) }}">
                                                     {{ $movie->getCategory->title }}
                                                 </a>
                                             </h5>
-                                            @if ($movie->getPhotos->count())
-                                                <h5><a href="{{ $movie->getPhotos()->first()->url }}"
-                                                        target="_BLANK">Photo</a>[1 of {{ $movie->getPhotos->count() }}]
-                                                </h5>
+                                            @if ($movie->getPhotos()->count())
+                                                <h5><a href="{{ $movie->lastImageUrl() }}" target="_BLANK">Photos:
+                                                        {{ $movie->getPhotos()->count() }}</a></h5>
                                             @endif
                                         </div>
                                         <div class="buttons">
@@ -79,12 +77,12 @@
                                     </div>
                                 </li>
                             @empty
-                                <li class="list-group-item">No trucks found</li>
+                                <li class="list-group-item">No movies found</li>
                             @endforelse
                         </ul>
                     </div>
                     <div class="me-3 mx-3">
-                        {{-- {{ $trucks->links() }} --}}
+                        {{-- {{ $movies->links() }} --}}
                     </div>
                 </div>
             </div>

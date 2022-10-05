@@ -20,17 +20,21 @@ class Movie extends Model
         return $this->hasMany(MovieImage::class, 'movie_id', 'id');
     }
 
-    public function addImages(?array $photos): void
+    public function lastImageUrl()
+    {
+        return $this->getPhotos()->orderBy('id', 'desc')->first()->url;
+    }
+
+    public function addImages(?array $photos): self
     {
         if ($photos) {
-            $time = Carbon::now();
             $movieImage = [];
+            $time = Carbon::now();
             foreach ($photos as $photo) {
                 $ext = $photo->getClientOriginalExtension();
                 $name = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
                 $file = $name . '-' . rand(100000, 999999) . '.' . $ext;
                 $photo->move(public_path() . '/images', $file);
-
                 $movieImage[] = [
                     'url' => asset('/images') . '/' . $file,
                     'movie_id' => $this->id,
@@ -40,5 +44,21 @@ class Movie extends Model
             }
             MovieImage::insert($movieImage);
         }
+        return $this;
+    }
+
+    public function removeImages(?array $photos): self
+    {
+        if ($photos) {
+            $toDelete = MovieImage::whereIn('id', $photos)->get();
+            foreach ($toDelete as $photo) {
+                $file = public_path() . '/images/' . pathinfo($photo->url, PATHINFO_FILENAME) . '.' . pathinfo($photo->url, PATHINFO_EXTENSION);
+                if (file_exists($file)) {
+                    unlink($file);
+                }
+            }
+            MovieImage::destroy($photos);
+        }
+        return $this;
     }
 }
