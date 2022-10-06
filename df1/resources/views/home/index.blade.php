@@ -7,22 +7,32 @@
                 <div class="card">
                     <div class="card-header">
                         <h2>Movie</h2>
-                        <form action="{{ route('m_index') }}" method="get">
+                        <form action="{{ route('home_list') }}" method="get">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="container">
                                             <div class="row">
                                                 <div class="col-6">
-                                                    {{-- <select name="mech" class="form-select mt-1">
-                                                    <option value="0">All</option>
-                                                    @foreach ($mechanics as $mechanic)
-                                                    <option value="{{$mechanic->id}}" @if ($mech == $mechanic->id) selected @endif>{{$mechanic->name}} {{$mechanic->surname}}</option>
-                                                    @endforeach
-                                                </select> --}}
+                                                    <select name="cat" class="form-select mt-1">
+                                                        <option value="0">All</option>
+                                                        @foreach ($categories as $category)
+                                                            <option value="{{ $category->id }}"
+                                                                @if ($cat == $category->id) selected @endif>
+                                                                {{ $category->title }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                                 <div class="col-6">
-
+                                                    <select name="sort" class="form-select mt-1">
+                                                        <option value="0">All</option>
+                                                        <option value="rate_asc">Rating 1-9</option>
+                                                        <option value="rate_decs">Rating 9-1</option>
+                                                        <option value="title_asc">Title A-Z</option>
+                                                        <option value="title_decs">Title Z-A</option>
+                                                        <option value="price_asc">Price low..high</option>
+                                                        <option value="price_desc">Price high..low</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -64,17 +74,20 @@
                                                 <h5><a href="{{ $movie->lastImageUrl() }}" target="_BLANK">Photos:
                                                         {{ $movie->getPhotos()->count() }}</a></h5>
                                             @endif
+                                            <h4><span>Rating: </span>{{ $movie->rating ?? 'No rating' }}</h4>
                                         </div>
+
                                         <div class="buttons">
-                                            <a href="{{ route('m_show', $movie) }}" class="btn btn-info">Show</a>
-                                            @if (Auth::user()->role >=10)
-                                            <a href="{{ route('m_edit', $movie) }}" class="btn btn-success">Edit</a>
-                                            <form action="{{ route('m_delete', $movie) }}" method="post">
+                                            <form action="{{ route('rate', $movie) }}" method="post">
+                                                <select name="rate">
+                                                    @foreach (range(1, 10) as $value)
+                                                        <option value="{{ $value }}">{{ $value }}</option>
+                                                    @endforeach
+                                                </select>
                                                 @csrf
-                                                @method('delete')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                @method('put')
+                                                <button type="submit" class="btn btn-info">Rate</button>
                                             </form>
-                                            @endif
                                         </div>
                                     </div>
                                 </li>
