@@ -29,6 +29,16 @@ class HomeController extends Controller
         //filter
         if ($request->cat) {
             $movies = Movie::where('category_id', $request->cat);
+        } else if ($request->s) {
+            $search = explode(' ', $request->s);
+            if (count($search) == 1) {
+                $movies = Movie::where('title', 'like', '%' . $request->s . '%');
+            } else {
+                $movies = Movie::where('title', 'like', '%' . $search[0] . '%' . $search[1] . '%')
+                    ->orWhere('title', 'like', '%' . $search[1] . '%' . $search[0] . '%')
+                    ->orWhere('title', 'like', '%' . $search[0] . '%')
+                    ->orWhere('title', 'like', '%' . $search[1] . '%');
+            }
         } else {
             $movies = Movie::where('id', '>', 0);
         }
@@ -51,7 +61,8 @@ class HomeController extends Controller
             'categories' => Category::orderBy('title', 'asc')->get(),
             'cat' => $request->cat ?? 0,
             'sort' => $request->sort ?? 0,
-            'sortSelect' => Movie::SORT_SELECT
+            'sortSelect' => Movie::SORT_SELECT,
+            's' => $request->s ?? ''
         ]);
     }
     public function index()
