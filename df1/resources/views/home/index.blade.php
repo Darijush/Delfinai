@@ -26,12 +26,11 @@
                                                 <div class="col-6">
                                                     <select name="sort" class="form-select mt-1">
                                                         <option value="0">All</option>
-                                                        <option value="rate_asc">Rating 1-9</option>
-                                                        <option value="rate_decs">Rating 9-1</option>
-                                                        <option value="title_asc">Title A-Z</option>
-                                                        <option value="title_decs">Title Z-A</option>
-                                                        <option value="price_asc">Price low..high</option>
-                                                        <option value="price_desc">Price high..low</option>
+                                                        @foreach ($sortSelect as $option)
+                                                        <option value="{{ $option[0] }}"
+                                                            @if ($sort == $option[0]) selected @endif>
+                                                            {{ $option[1] }}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
@@ -47,7 +46,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-2">
-                                                    <a href="{{ route('m_index') }}" class="btn btn-secondary">Reset</a>
+                                                    <a href="{{ route('home_list') }}" class="btn btn-secondary">Reset</a>
                                                 </div>
                                             </div>
                                         </div>

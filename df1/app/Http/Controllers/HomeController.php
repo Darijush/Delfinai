@@ -30,7 +30,7 @@ class HomeController extends Controller
         if ($request->cat) {
             $movies = Movie::where('category_id', $request->cat);
         } else {
-            $movies = Movie::orderBy('title');
+            $movies = Movie::where('id', '>', 0);
         }
         //sort
         if ($request->sort == 'rate_asc') {
@@ -50,7 +50,8 @@ class HomeController extends Controller
             'movies' => $movies->get(),
             'categories' => Category::orderBy('title', 'asc')->get(),
             'cat' => $request->cat ?? 0,
-            'sort' => $request->sort ?? 0
+            'sort' => $request->sort ?? 0,
+            'sortSelect' => Movie::SORT_SELECT
         ]);
     }
     public function index()
