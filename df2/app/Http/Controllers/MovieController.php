@@ -17,7 +17,7 @@ class MovieController extends Controller
     public function index(Request $request)
     {
         return view('movie.index', [
-            'movies' => Movie::orderBy('updated_at', 'desc')->get(),
+            'movies' => Movie::orderBy('updated_at', 'desc')->paginate(5),
         ]);
     }
 
@@ -28,9 +28,7 @@ class MovieController extends Controller
      */
     public function create()
     {
-        return view('movie.create', [
-            'categories' => Category::orderBy('updated_at', 'desc')->get(),
-        ]);
+        return view('movie.create');
     }
 
     /**
@@ -41,11 +39,14 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'title' => 'required|unique:posts|max:255',
+            'price' => 'required',
+        ]);
 
         Movie::create([
             'title' => $request->title,
             'price' => $request->price,
-            'category_id' => $request->category_id,
         ])->addImages($request->file('photo'));
 
         return redirect()->route('m_index');
@@ -74,7 +75,6 @@ class MovieController extends Controller
     {
         return view('movie.edit', [
             'movie' => $movie,
-            'categories' => Category::orderBy('updated_at', 'asc')->get(),
         ]);
     }
 
@@ -91,7 +91,6 @@ class MovieController extends Controller
             [
                 'title' => $request->title,
                 'price' => $request->price,
-                'category_id' => $request->category_id
             ]
         );
         $movie

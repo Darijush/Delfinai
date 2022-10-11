@@ -14,16 +14,6 @@
                                         <div class="container">
                                             <div class="row">
                                                 <div class="col-5">
-                                                    <select name="cat" class="form-select mt-1">
-                                                        <option value="0">All</option>
-                                                        @foreach ($categories as $category)
-                                                            <option value="{{ $category->id }}"
-                                                                @if ($cat == $category->id) selected @endif>
-                                                                {{ $category->title }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <div class="col-5">
                                                     <select name="sort" class="form-select mt-1">
                                                         <option value="0">All</option>
                                                         @foreach ($sortSelect as $option)
@@ -69,12 +59,6 @@
                                 <div class="content">
                                     <h2><span>Title: </span>{{ $movie->title }}</h2>
                                     <h4><span>Price: </span>{{ $movie->price }}</h4>
-                                    <h5>
-                                        <span>Category: </span>
-                                        <a href="{{ route('c_show', $movie->getCategory->id) }}">
-                                            {{ $movie->getCategory->title }}
-                                        </a>
-                                    </h5>
                                     @if ($movie->getPhotos()->count())
                                         <h5><a href="{{ $movie->lastImageUrl() }}" target="_BLANK">Photos:
                                                 {{ $movie->getPhotos()->count() }}</a></h5>
@@ -95,17 +79,33 @@
                                     </form>
                                 </div>
                             </div>
+                            <div class="content">
+                                @forelse ($movie->getComments as $comment)
+                        <li class="list-group-item">
+                            <div>{{ $comment->post }}</div>
                         </li>
                     @empty
-                        <li class="list-group-item">No movies found</li>
+                        <li class="list-group-item">
+                            no comment.
+                        </li>
+                    @endforelse
+                    <div class="input-group mb-3">
+                        <form action="{{ route('comment', $movie) }}" method="post">
+                            <span class="input-group-text">Comment</span>
+                            <textarea name="post" class="form-control" value="{{ old('plate') }}"></textarea>
+                            <button type="submit" class="btn btn-info mt-2">Comment</button>
+                            @csrf
+                        </form>
+                    </div>
+                    </li>
+                @empty
+                    <li class="list-group-item">No movies found</li>
                     @endforelse
                 </ul>
             </div>
-            <div class="me-3 mx-3">
-                {{-- {{ $movies->links() }} --}}
-            </div>
         </div>
-    </div>
-    </div>
+        <div class="me-3 mx-3 mt-3">
+            {{ $movies->links() }}
+        </div>
     </div>
 @endsection

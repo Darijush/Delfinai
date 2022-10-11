@@ -20,9 +20,10 @@ class Movie extends Model
         ['price_asc', 'Price low..high'],
         ['price_desc', 'Price high..low'],
     ];
-    public function getCategory()
+
+    public function getComments()
     {
-        return $this->belongsTo(Category::class, 'category_id', 'id');
+        return $this->hasMany(Comment::class, 'movie_id', 'id');
     }
     public function getPhotos()
     {
