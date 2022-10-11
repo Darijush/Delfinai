@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Movie;
+use Auth;
 
 use Illuminate\Http\Request;
 
@@ -68,11 +69,19 @@ class HomeController extends Controller
 
     public function rate(Request $request, Movie $movie)
     {
+
+        $votes = json_decode($movie->votes ?? json_encode([]));
+        if (in_array(Auth::user()->id, $votes)) {
+            return redirect()->back()->with('not', "You already rated this movie!!!");
+        }
+        $title = $movie->title;
+        $votes[] = Auth::user()->id;
+        $movie->votes = json_encode($votes);
         $movie->rating_sum = $movie->rating_sum + $request->rate;
         $movie->rating_count++;
         $movie->rating = $movie->rating_sum / $movie->rating_count;
         $movie->save();
-        return redirect()->back();
+        return redirect()->back()->with('ok', "$title rated! Thanks");
     }
     public function addComment(Request $request, Movie $movie)
     {
