@@ -39,17 +39,26 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'title' => 'required|unique:posts|max:255',
-            'price' => 'required',
-        ]);
+        $request->validate(
+            [
+                'title' => 'required|unique:movies|max:255|min:3',
+                'price' => 'required|numeric|min:1|max:200',
+                'photo.*' => 'sometimes|required|image|max:2048',
+            ],
+            [
+                'title' => 'required',
+                'title.min' => 'too short',
+                'title.unique' => 'exists',
+                'price.required' => 'price please',
+            ]
+        );
 
         Movie::create([
             'title' => $request->title,
             'price' => $request->price,
         ])->addImages($request->file('photo'));
 
-        return redirect()->route('m_index');
+        return redirect()->route('m_index')->with('ok', 'All good!');
     }
 
     /**
@@ -87,6 +96,20 @@ class MovieController extends Controller
      */
     public function update(Request $request, Movie $movie)
     {
+        $request->validate(
+            [
+                'title' => 'required|max:255|min:3',
+                'price' => 'required|numeric|min:1|max:200',
+                'photo.*' => 'sometimes|required|image|max:2048',
+            ],
+            [
+                'title' => 'required',
+                'title.min' => 'too short',
+                'title.unique' => 'exists',
+                'price.required' => 'price please',
+            ]
+        );
+        $title = $movie->title;
         $movie->update(
             [
                 'title' => $request->title,
@@ -97,7 +120,7 @@ class MovieController extends Controller
             ->removeImages($request->delete_photo)
             ->addImages($request->file('photo'));
 
-        return redirect()->route('m_index');
+        return redirect()->route('m_index')->with('ok', "$title updated!");
     }
 
     /**
@@ -112,7 +135,8 @@ class MovieController extends Controller
             $delIds = $movie->getPhotos()->pluck('id')->all();
             $movie->removeImages($delIds);
         }
+        $title = $movie->title;
         $movie->delete();
-        return redirect()->route('m_index');
+        return redirect()->route('m_index')->with('ok', "$title gone!");
     }
 }
