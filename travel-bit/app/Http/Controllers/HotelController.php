@@ -16,7 +16,7 @@ class HotelController extends Controller
     public function index()
     {
         return view('hotel.index', [
-            'hotels' => Hotel::orderBy('updated_at', 'desc')->get(),
+            'hotels' => Hotel::orderBy('updated_at', 'desc')->paginate(10)->withQueryString(),
         ]);
     }
 
