@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
-use App\Http\Requests\StoreBookingRequest;
-use App\Http\Requests\UpdateBookingRequest;
+use Illuminate\Http\Request;
+use Auth;
+use Illuminate\Support\Facades\DB;
 
 class BookingController extends Controller
 {
@@ -15,72 +16,34 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //
+        if (Auth::user()->role < 10) {
+            return view('booking.index', [
+                'bookings' => Booking::where('user_id', '=', Auth::user()->id)->get(),
+            ]);
+        } else {
+            return view('booking.index', [
+                'bookings' => Booking::all(),
+            ]);
+        };
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreBookingRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreBookingRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Booking  $booking
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Booking $booking)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Booking  $booking
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Booking $booking)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateBookingRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBookingRequest $request, Booking $booking)
+    public function update(Request $request, Booking $booking)
     {
-        //
-    }
+        $booking->update(
+            [
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Booking  $booking
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Booking $booking)
-    {
-        //
+                'confirmation' => $request->confirmation,
+            ]
+        );
+        return redirect()->back();
     }
 }

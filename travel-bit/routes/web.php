@@ -5,6 +5,7 @@ use App\Http\Controllers\SeasonController as S;
 use App\Http\Controllers\CountryController as C;
 use App\Http\Controllers\HotelController as H;
 use App\Http\Controllers\HomeController as HM;
+use App\Http\Controllers\BookingController as B;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,4 +55,8 @@ Route::prefix('hotel')->name('h_')->group(function () {
     Route::delete('/delete/{hotel}', [H::class, 'destroy'])->name('delete')->middleware('gate:admin');
     Route::get('/edit/{hotel}', [H::class, 'edit'])->name('edit')->middleware('gate:admin');
     Route::put('/edit/{hotel}', [H::class, 'update'])->name('update')->middleware('gate:admin');
+});
+Route::prefix('booking')->name('b_')->group(function () {
+    Route::get('/', [B::class, 'index'])->name('index')->middleware('gate:users');
+    Route::put('/{booking}', [B::class, 'update'])->name('edit')->middleware('gate:admin');
 });

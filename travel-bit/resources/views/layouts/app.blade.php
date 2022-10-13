@@ -69,52 +69,47 @@
                                     @endif
                                 </div>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    Countries
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('c_index') }}">
-                                        List
+                            @if (Auth::user()->role >= 10)
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        Countries
                                     </a>
-                                    @if (Auth::user()->role >= 10)
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('c_index') }}">
+                                            List
+                                        </a>
                                         <a class="dropdown-item" href="{{ route('c_create') }}">
                                             Add
                                         </a>
-                                    @endif
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    Seasons
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('s_index') }}">
-                                        List
+                                    </div>
+                                </li>
+                            @endif
+                            @if (Auth::user()->role >= 10)
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        Seasons
                                     </a>
-                                    @if (Auth::user()->role >= 10)
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('s_index') }}">
+                                            List
+                                        </a>
                                         <a class="dropdown-item" href="{{ route('s_create') }}">
                                             Add
                                         </a>
-                                    @endif
-                                </div>
-                            </li>
+                                    </div>
+                                </li>
+                            @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     Bookings
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('s_index') }}">
+                                    <a class="dropdown-item" href="{{ route('b_index') }}">
                                         List
                                     </a>
-                                    @if (Auth::user()->role >= 10)
-                                        <a class="dropdown-item" href="{{ route('s_create') }}">
-                                            Add
-                                        </a>
-                                    @endif
                                 </div>
                             </li>
                             <li class="nav-item dropdown">

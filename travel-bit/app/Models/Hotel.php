@@ -30,6 +30,15 @@ class Hotel extends Model
     {
         return $this->getPhotos()->orderBy('id', 'desc')->first()->url;
     }
+    public function getPivot()
+    {
+        return $this->hasMany(Booking::class, 'hotel_id', 'id');
+    }
+
+    public function getUser()
+    {
+        return $this->belongsToMany(User::class, 'booking', 'hotel_id', 'user_id');
+    }
 
     public function addImages(?array $photos): self
     {

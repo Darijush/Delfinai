@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use App\Models\Country;
 use App\Models\Hotel;
 use Illuminate\Http\Request;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -44,6 +46,15 @@ class HomeController extends Controller
             'sortSelect' => Hotel::SORT_SELECT,
             's' => $request->s ?? ''
         ]);
+    }
+    public function book(Hotel $hotel){
+
+        Booking::create([
+            'hotel_id' => $hotel->id,
+            'user_id' => Auth::user()->id,
+        ]);
+        return redirect()->back();
+
     }
 
 }
