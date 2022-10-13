@@ -89,6 +89,6 @@ class HomeController extends Controller
             'movie_id' => $movie->id,
             'post' => $request->post,
         ]);
-        return redirect()->back();
+        return redirect()->back()->with('ok', 'All good!');
     }
 }

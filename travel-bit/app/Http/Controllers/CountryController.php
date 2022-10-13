@@ -41,11 +41,14 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required|min:3|max:50',
+        ]);
         Country::create([
             'title' => $request->title,
             'season_id' => $request->season_id
         ]);
-        return redirect()->route('s_index');
+        return redirect()->route('s_index')->with('ok', 'All good!');
     }
 
     /**
@@ -84,13 +87,16 @@ class CountryController extends Controller
      */
     public function update(Request $request, Country $country)
     {
+        $request->validate([
+            'title' => 'required|min:3|max:50',
+        ]);
         $country->update(
             [
                 'title' => $request->title,
                 'season_id' => $request->season_id
             ],
         );
-        return redirect()->route('s_index');
+        return redirect()->route('s_index')->with('ok', 'All good!');
     }
 
     /**
@@ -105,12 +111,12 @@ class CountryController extends Controller
             return 'NoNoNo';
         }
         $country->delete();
-        return redirect()->route('s_index');
+        return redirect()->route('s_index')->with('ok', 'All good!');
     }
     public function destroyAll(Country $country)
     {
         $ids = $country->hasHotels()->pluck('id')->all();
         Hotel::destroy($ids);
-        return redirect()->route('s_index');
+        return redirect()->route('s_index')->with('ok', 'All good!');
     }
 }

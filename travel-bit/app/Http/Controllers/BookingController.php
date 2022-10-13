@@ -44,6 +44,6 @@ class BookingController extends Controller
                 'confirmation' => $request->confirmation,
             ]
         );
-        return redirect()->back();
+        return redirect()->back()->with('ok', 'All good!');
     }
 }

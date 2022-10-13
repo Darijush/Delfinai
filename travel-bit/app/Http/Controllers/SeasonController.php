@@ -38,10 +38,13 @@ class SeasonController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required|min:3|max:50',
+        ]);
         Season::create([
             'title' => $request->title,
         ]);
-        return redirect()->route('s_index');
+        return redirect()->route('s_index')->with('ok', 'All good!');
     }
 
     /**
@@ -79,10 +82,13 @@ class SeasonController extends Controller
      */
     public function update(Request $request, Season $season)
     {
+        $request->validate([
+            'title' => 'required|min:3|max:50',
+        ]);
         $season->update(
             ['title' => $request->title],
         );
-        return redirect()->route('s_index');
+        return redirect()->route('s_index')->with('ok', 'All good!');
     }
 
     /**
@@ -97,12 +103,12 @@ class SeasonController extends Controller
             return 'NoNoNo';
         }
         $season->delete();
-        return redirect()->route('s_index');
+        return redirect()->route('s_index')->with('ok', 'All good!');
     }
     public function destroyAll(Season $season)
     {
         $ids = $season->hasCountries()->pluck('id')->all();
         Country::destroy($ids);
-        return redirect()->route('s_index');
+        return redirect()->route('s_index')->with('ok', 'All good!');
     }
 }

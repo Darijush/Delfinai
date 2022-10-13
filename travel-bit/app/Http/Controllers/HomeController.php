@@ -53,7 +53,7 @@ class HomeController extends Controller
             'hotel_id' => $hotel->id,
             'user_id' => Auth::user()->id,
         ]);
-        return redirect()->back();
+        return redirect()->back()->with('ok', 'All good!');
 
     }
 

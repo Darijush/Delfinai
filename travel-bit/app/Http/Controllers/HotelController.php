@@ -40,6 +40,12 @@ class HotelController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required|min:3|max:100',
+            'price' => 'required|numeric|min:1',
+            'term' => 'required|numeric|min:1|max:360',
+            'photo.*' => 'sometimes|required|mimes:jpg,png|max:2000'
+        ]);
         Hotel::create([
             'title' => $request->title,
             'price' => $request->price,
@@ -47,7 +53,7 @@ class HotelController extends Controller
             'country_id' => $request->country_id,
         ])->addImages($request->file('photo'));
 
-        return redirect()->route('h_index');
+        return redirect()->route('h_index')->with('ok', 'All good!');
     }
 
     /**
@@ -86,10 +92,17 @@ class HotelController extends Controller
      */
     public function update(Request $request, Hotel $hotel)
     {
+        $request->validate([
+            'title' => 'required|min:3|max:100',
+            'price' => 'required|numeric|min:1',
+            'term' => 'required|numeric|min:1|max:360',
+            'photo.*' => 'sometimes|required|mimes:jpg,png|max:2000'
+        ]);
         $hotel->update(
             [
                 'title' => $request->title,
                 'price' => $request->price,
+                'term' => $request->term,
                 'country_id' => $request->country_id
             ]
         );
@@ -97,7 +110,7 @@ class HotelController extends Controller
             ->removeImages($request->delete_photo)
             ->addImages($request->file('photo'));
 
-        return redirect()->route('h_index');
+        return redirect()->route('h_index')->with('ok', 'All good!');
     }
 
     /**
@@ -113,6 +126,6 @@ class HotelController extends Controller
             $hotel->removeImages($delIds);
         }
         $hotel->delete();
-        return redirect()->route('h_index');
+        return redirect()->route('h_index')->with('ok', 'All good!');
     }
 }
