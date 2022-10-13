@@ -59,11 +59,11 @@
                                     Hotels
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('s_index') }}">
+                                    <a class="dropdown-item" href="{{ route('h_index') }}">
                                         List
                                     </a>
                                     @if (Auth::user()->role >= 10)
-                                        <a class="dropdown-item" href="{{ route('s_create') }}">
+                                        <a class="dropdown-item" href="{{ route('h_create') }}">
                                             Add
                                         </a>
                                     @endif

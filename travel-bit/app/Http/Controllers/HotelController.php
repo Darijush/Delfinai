@@ -43,6 +43,7 @@ class HotelController extends Controller
         Hotel::create([
             'title' => $request->title,
             'price' => $request->price,
+            'term' => $request->term,
             'country_id' => $request->country_id,
         ])->addImages($request->file('photo'));
 
@@ -57,7 +58,9 @@ class HotelController extends Controller
      */
     public function show(Hotel $hotel)
     {
-        //
+        return view('hotel.show', [
+            'hotel' => $hotel,
+        ]);
     }
 
     /**
@@ -68,7 +71,10 @@ class HotelController extends Controller
      */
     public function edit(Hotel $hotel)
     {
-        //
+        return view('hotel.edit', [
+            'hotel' => $hotel,
+            'countries' => Country::orderBy('updated_at', 'asc')->get(),
+        ]);
     }
 
     /**
@@ -80,7 +86,18 @@ class HotelController extends Controller
      */
     public function update(Request $request, Hotel $hotel)
     {
-        //
+        $hotel->update(
+            [
+                'title' => $request->title,
+                'price' => $request->price,
+                'country_id' => $request->country_id
+            ]
+        );
+        $hotel
+            ->removeImages($request->delete_photo)
+            ->addImages($request->file('photo'));
+
+        return redirect()->route('h_index');
     }
 
     /**
@@ -91,6 +108,11 @@ class HotelController extends Controller
      */
     public function destroy(Hotel $hotel)
     {
-        //
+        if ($hotel->getPhotos()->count()) {
+            $delIds = $hotel->getPhotos()->pluck('id')->all();
+            $hotel->removeImages($delIds);
+        }
+        $hotel->delete();
+        return redirect()->route('h_index');
     }
 }
