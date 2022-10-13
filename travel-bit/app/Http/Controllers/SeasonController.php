@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
 use App\Models\Season;
-use App\Http\Requests\StoreSeasonRequest;
-use App\Http\Requests\UpdateSeasonRequest;
+use Illuminate\Http\Request;
 
 class SeasonController extends Controller
 {
@@ -15,7 +15,9 @@ class SeasonController extends Controller
      */
     public function index()
     {
-        //
+        return view('season.index', [
+            'seasons' => Season::orderBy('title')->get(),
+        ]);
     }
 
     /**
@@ -25,18 +27,21 @@ class SeasonController extends Controller
      */
     public function create()
     {
-        //
+        return view('season.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreSeasonRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSeasonRequest $request)
+    public function store(Request $request)
     {
-        //
+        Season::create([
+            'title' => $request->title,
+        ]);
+        return redirect()->route('s_index');
     }
 
     /**
@@ -47,7 +52,9 @@ class SeasonController extends Controller
      */
     public function show(Season $season)
     {
-        //
+        return view('season.show', [
+            'season' => $season
+        ]);
     }
 
     /**
@@ -58,19 +65,24 @@ class SeasonController extends Controller
      */
     public function edit(Season $season)
     {
-        //
+        return view('season.edit', [
+            'season' => $season
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateSeasonRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Season  $season
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSeasonRequest $request, Season $season)
+    public function update(Request $request, Season $season)
     {
-        //
+        $season->update(
+            ['title' => $request->title],
+        );
+        return redirect()->route('s_index');
     }
 
     /**
@@ -81,6 +93,16 @@ class SeasonController extends Controller
      */
     public function destroy(Season $season)
     {
-        //
+        if ($season->hasCountries()->count()) {
+            return 'NoNoNo';
+        }
+        $season->delete();
+        return redirect()->route('s_index');
+    }
+    public function destroyAll(Season $season)
+    {
+        $ids = $season->hasCountries()->pluck('id')->all();
+        Country::destroy($ids);
+        return redirect()->route('s_index');
     }
 }

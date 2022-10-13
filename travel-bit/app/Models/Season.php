@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Season extends Model
 {
     use HasFactory;
+    protected $fillable = ['title'];
+    public function hasCountries()
+    {
+        return $this->hasMany(Country::class, "season_id", 'id');
+    }
 }

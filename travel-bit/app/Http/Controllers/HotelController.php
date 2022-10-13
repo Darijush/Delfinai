@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
 use App\Models\Hotel;
-use App\Http\Requests\StoreHotelRequest;
-use App\Http\Requests\UpdateHotelRequest;
+use Illuminate\Http\Request;
 
 class HotelController extends Controller
 {
@@ -15,7 +15,9 @@ class HotelController extends Controller
      */
     public function index()
     {
-        //
+        return view('hotel.index', [
+            'hotels' => Hotel::orderBy('updated_at', 'desc')->get(),
+        ]);
     }
 
     /**
@@ -25,18 +27,26 @@ class HotelController extends Controller
      */
     public function create()
     {
-        //
+        return view('hotel.create', [
+            'countries' => Country::orderBy('updated_at', 'desc')->get(),
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreHotelRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreHotelRequest $request)
+    public function store(Request $request)
     {
-        //
+        Hotel::create([
+            'title' => $request->title,
+            'price' => $request->price,
+            'country_id' => $request->country_id,
+        ])->addImages($request->file('photo'));
+
+        return redirect()->route('h_index');
     }
 
     /**
@@ -64,11 +74,11 @@ class HotelController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateHotelRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Hotel  $hotel
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateHotelRequest $request, Hotel $hotel)
+    public function update(Request $request, Hotel $hotel)
     {
         //
     }

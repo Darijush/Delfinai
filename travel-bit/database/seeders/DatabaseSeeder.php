@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $time = Carbon::now();
-        $faker = F::create('lt_LT');
+        $faker = F::create('en_EN');
         DB::table('users')->insert([
             'name' => 'user',
             'email' => 'user@test.mail',
@@ -37,25 +37,27 @@ class DatabaseSeeder extends Seeder
             'role' => 10
         ]);
 
-        foreach(['Cobra', 'Jaguar', 'Sharks', 'Cats and Dogs', 'Coporob', 'Funny movie', 'Lara and Tombs', 'Jasa and Vue'] as $movie){
-            DB::table('movies')->insert([
-                'title' => $movie,
-                'price' => rand(100,1000)/100,
+        foreach(['summer', 'winter', 'whole year', 'spring', 'autumn'] as $season){
+            DB::table('seasons')->insert([
+                'title' => $season,
                 'created_at' => $time->addSeconds(1),
                 'updated_at' => $time
             ]);
         }
-        foreach (range(1,22) as $_){
-            DB::table('comments')->insert([
-                'movie_id' => rand(1,8),
-                'post' => $faker->paragraph(rand(1, 10)),
+        foreach (range(1,16) as $_){
+            DB::table('countries')->insert([
+                'season_id' => rand(1,5),
+                'title' => $faker->country(),
                 'created_at' => $time->addSeconds(1),
                 'updated_at' => $time
             ]);
         }
-        foreach(['fun', 'free', 'cheap', 'kids', '18+', 'culinary', 'musical', 'serial'] as $tag){
-            DB::table('tags')->insert([
-                'title' => $tag,
+        foreach (range(1,41) as $_){
+            DB::table('hotels')->insert([
+                'country_id' => rand(1,16),
+                'title' => $faker->company(),
+                'term' => rand(5,14),
+                'price' => rand(10000,500000)/100,
                 'created_at' => $time->addSeconds(1),
                 'updated_at' => $time
             ]);
