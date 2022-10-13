@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h2>Movie</h2>
-                        <form action="{{ route('home_list') }}" method="get">
+                        <form action="{{ route('home') }}" method="get">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-8">
@@ -16,21 +16,21 @@
                                                 <div class="col-5">
                                                     <select name="cat" class="form-select mt-1">
                                                         <option value="0">All</option>
-                                                        {{-- @foreach ($categories as $category)
-                                                            <option value="{{ $category->id }}"
-                                                                @if ($cat == $category->id) selected @endif>
-                                                                {{ $category->title }}</option>
-                                                        @endforeach --}}
+                                                        @foreach ($countries as $country)
+                                                            <option value="{{ $country->id }}"
+                                                                @if ($cat == $country->id) selected @endif>
+                                                                {{ $country->title }}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                                 <div class="col-5">
                                                     <select name="sort" class="form-select mt-1">
                                                         <option value="0">All</option>
-                                                        {{-- @foreach ($sortSelect as $option)
+                                                        @foreach ($sortSelect as $option)
                                                             <option value="{{ $option[0] }}"
                                                                 @if ($sort == $option[0]) selected @endif>
                                                                 {{ $option[1] }}</option>
-                                                        @endforeach --}}
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                                 <div class="col-2 mt-1">
@@ -40,7 +40,7 @@
                                         </div>
                                     </div>
                         </form>
-                        <form action="{{ route('home_list') }}" method="get">
+                        <form action="{{ route('home') }}" method="get">
                             <div class="col-9 mt-3">
                                 <div class="container">
                                     <div class="row">
@@ -52,7 +52,7 @@
                                             </div>
                                         </div>
                                         <div class="col-2 ml-5">
-                                            <a href="{{ route('home_list') }}" class="btn btn-secondary">Reset</a>
+                                            <a href="{{ route('home') }}" class="btn btn-secondary">Reset</a>
                                         </div>
                                     </div>
                                 </div>
@@ -63,35 +63,30 @@
             </div>
             <div class="card-body">
                 <ul class="list-group">
-                    @forelse($movies as $movie)
+                    @forelse($hotels as $hotel)
                         <li class="list-group-item">
                             <div class="movies-list">
                                 <div class="content">
-                                    {{-- <h2><span>Title: </span>{{ $movie->title }}</h2>
-                                    <h4><span>Price: </span>{{ $movie->price }}</h4>
+                                    <h2><span>Title: </span>{{ $hotel->title }}</h2>
+                                    <h4><span>Price: </span>{{ $hotel->price }}</h4>
+                                    <h4><span>Days: </span>{{ $hotel->term }}</h4>
                                     <h5>
-                                        <span>Category: </span>
-                                        <a href="{{ route('c_show', $movie->getCategory->id) }}">
-                                            {{ $movie->getCategory->title }}
+                                        <span>country: </span>
+                                        <a href="{{ route('c_show', $hotel->getCountry->id) }}">
+                                            {{ $hotel->getCountry->title }}
                                         </a>
                                     </h5>
-                                    @if ($movie->getPhotos()->count())
-                                        <h5><a href="{{ $movie->lastImageUrl() }}" target="_BLANK">Photos:
-                                                {{ $movie->getPhotos()->count() }}</a></h5>
+                                    @if ($hotel->getPhotos()->count())
+                                        <h5><a href="{{ $hotel->lastImageUrl() }}" target="_BLANK">Photos:
+                                                {{ $hotel->getPhotos()->count() }}</a></h5>
                                     @endif
-                                    <h4><span>Rating: </span>{{ $movie->rating ?? 'No rating' }}</h4>
                                 </div>
 
                                 <div class="buttons">
-                                    <form action="{{ route('rate', $movie) }}" method="post">
-                                        <select name="rate">
-                                            @foreach (range(1, 10) as $value)
-                                                <option value="{{ $value }}">{{ $value }}</option>
-                                            @endforeach
-                                        </select>
+                                    <form action="{{ route('book', $hotel) }}" method="post">
                                         @csrf
                                         @method('put')
-                                        <button type="submit" class="btn btn-info">Rate</button>
+                                        <button type="submit" class="btn btn-info">Book</button>
                                     </form>
                                 </div>
                             </div>
@@ -100,7 +95,7 @@
                         <li class="list-group-item">No movies found</li>
                     @endforelse
                 </ul>
-            </div> --}}
+            </div>
             <div class="me-3 mx-3">
                 {{-- {{ $movies->links() }} --}}
             </div>

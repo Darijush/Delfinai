@@ -6,7 +6,7 @@
             <div class="col-9">
                 <div class="card">
                     <div class="card-header">
-                        <h2>Movie</h2>
+                        <h2>Hotels</h2>
                         <form action="{{ route('h_index') }}" method="get">
                             <div class="container">
                                 <div class="row">
@@ -37,6 +37,7 @@
                                         <div class="content">
                                             <h2><span>Title: </span>{{ $hotel->title }}</h2>
                                             <h4><span>Price: </span>{{ $hotel->price }}</h4>
+                                            <h4><span>Days: </span>{{ $hotel->term }}</h4>
                                             <h5>
                                                 <span>Country: </span>
                                                 <a href="{{ route('c_show', $hotel->getCountry->id) }}">

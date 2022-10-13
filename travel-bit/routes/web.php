@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SeasonController as S;
 use App\Http\Controllers\CountryController as C;
 use App\Http\Controllers\HotelController as H;
+use App\Http\Controllers\HomeController as HM;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,15 +17,13 @@ use App\Http\Controllers\HotelController as H;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/', [H::class, 'homeList'])->name('home_list')->middleware('gate:home');
-Route::put('/rate/{movie}', [H::class, 'rate'])->name('rate')->middleware('gate:users');
+
+Route::get('/', [HM::class, 'homeList'])->name('home')->middleware('gate:home');
+Route::put('/book/{hotel}', [HM::class, 'book'])->name('book')->middleware('gate:users');
 
 Route::prefix('season')->name('s_')->group(function () {
     Route::get('/', [S::class, 'index'])->name('index')->middleware('gate:users');
@@ -47,11 +46,11 @@ Route::prefix('country')->name('c_')->group(function () {
     Route::put('/edit/{country}', [C::class, 'update'])->name('update')->middleware('gate:admin');
     Route::delete('/delete_hotels/{country}', [C::class, 'destroyAll'])->name('delete_hotels')->middleware('gate:admin');
 });
-Route::prefix('hotels')->name('h_')->group(function () {
+Route::prefix('hotel')->name('h_')->group(function () {
     Route::get('/', [H::class, 'index'])->name('index')->middleware('gate:users');
     Route::get('/create', [H::class, 'create'])->name('create')->middleware('gate:admin');
     Route::post('/create', [H::class, 'store'])->name('store')->middleware('gate:admin');
-    Route::get('/show/{hotels}', [H::class, 'show'])->name('show')->middleware('gate:users');
+    Route::get('/show/{hotel}', [H::class, 'show'])->name('show')->middleware('gate:users');
     Route::delete('/delete/{hotel}', [H::class, 'destroy'])->name('delete')->middleware('gate:admin');
     Route::get('/edit/{hotel}', [H::class, 'edit'])->name('edit')->middleware('gate:admin');
     Route::put('/edit/{hotel}', [H::class, 'update'])->name('update')->middleware('gate:admin');

@@ -19,6 +19,9 @@
                             <div class="line"><small>Country:</small>
                                 <h5>{{ $hotel->getCountry->title }}</h5>
                             </div>
+                            <div class="line"><small>Duration:</small>
+                                <h5>{{ $hotel->term }}</h5>
+                            </div>
                             <div class="swiper">
 
                                 <div class="swiper-wrapper">
