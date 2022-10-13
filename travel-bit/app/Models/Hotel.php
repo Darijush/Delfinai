@@ -12,12 +12,10 @@ class Hotel extends Model
     protected $fillable = ['title', 'country_id', 'price', 'term',];
 
     const SORT_SELECT = [
-        ['rate_asc', 'Rating 1-9'],
-        ['rate_desc', 'Rating 9-1'],
-        ['title_asc', 'Title A-Z'],
-        ['title_decs', 'Title Z-A'],
         ['price_asc', 'Price low..high'],
         ['price_desc', 'Price high..low'],
+        ['title_asc', 'Title A-Z'],
+        ['title_decs', 'Title Z-A'],
     ];
     public function getCountry()
     {

@@ -12,7 +12,7 @@ class HomeController extends Controller
     {
         //filter
         if ($request->cat) {
-            $hotels = Hotel::where('category_id', $request->cat);
+            $hotels = Hotel::where('country_id', $request->cat);
         } else if ($request->s) {
             $search = explode(' ', $request->s);
             if (count($search) == 1) {
