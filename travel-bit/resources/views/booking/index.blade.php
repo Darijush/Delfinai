@@ -45,7 +45,7 @@
                         </ul>
                     </div>
                     <div class="me-3 mx-3">
-                        {{-- {{ $seasons->links() }} --}}
+                        {{ $bookings->links() }}
                     </div>
                 </div>
             </div>

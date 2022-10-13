@@ -22,7 +22,7 @@ class BookingController extends Controller
             ]);
         } else {
             return view('booking.index', [
-                'bookings' => Booking::all(),
+                'bookings' => Booking::paginate(10),
             ]);
         };
     }

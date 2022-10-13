@@ -39,7 +39,7 @@ class HomeController extends Controller
             $hotels = $hotels->orderBy('price', 'desc');
         }
         return view('home.index', [
-            'hotels' => $hotels->get(),
+            'hotels' => $hotels->paginate(10)->withQueryString(),
             'countries' => Country::orderBy('title', 'asc')->get(),
             'cat' => $request->cat ?? 0,
             'sort' => $request->sort ?? 0,

@@ -94,13 +94,11 @@
                     @empty
                         <li class="list-group-item">No movies found</li>
                     @endforelse
+                    <div class="me-3 mx-3 mt-3">
+                        {{ $hotels->links() }}
+                    </div>
                 </ul>
             </div>
-            <div class="me-3 mx-3">
-                {{-- {{ $movies->links() }} --}}
-            </div>
         </div>
-    </div>
-    </div>
     </div>
 @endsection

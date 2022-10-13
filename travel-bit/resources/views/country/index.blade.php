@@ -36,7 +36,7 @@
                     </ul>
                 </div>
                 <div class="me-3 mx-3">
-                    {{-- {{ $categories->links() }} --}}
+                    {{ $countries->links() }}
                 </div>
             </div>
         </div>
