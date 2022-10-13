@@ -57,3 +57,4 @@ copy paste Gate.php inners
 define needed functions in Models according to example files
 define needed functions in Controllers according to example files
 
+
