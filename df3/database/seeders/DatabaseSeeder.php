@@ -55,5 +55,12 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => $time
             ]);
         }
+        foreach(['fun', 'free', 'cheap', 'kids', '18+', 'culinary', 'musical', 'serial'] as $tag){
+            DB::table('tags')->insert([
+                'title' => $tag,
+                'created_at' => $time->addSeconds(1),
+                'updated_at' => $time
+            ]);
+        }
     }
 }

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 use App\Models\Category;
-
+use App\Models\Tag;
 
 class MovieController extends Controller
 {
@@ -28,7 +28,9 @@ class MovieController extends Controller
      */
     public function create()
     {
-        return view('movie.create');
+        return view('movie.create', [
+            'tags' => Tag::orderBy('title')->get(),
+        ]);
     }
 
     /**
@@ -56,7 +58,7 @@ class MovieController extends Controller
         Movie::create([
             'title' => $request->title,
             'price' => $request->price,
-        ])->addImages($request->file('photo'));
+        ])->addImages($request->file('photo'))->addTags($request->tag);
 
         return redirect()->route('m_index')->with('ok', 'All good!');
     }

@@ -34,6 +34,9 @@ class Movie extends Model
     {
         return $this->getPhotos()->orderBy('id', 'desc')->first()->url;
     }
+    public function getTags(){
+        return $this->belongsToMany(Tag::class, 'movie_tags', 'movie_id', 'tag_id');
+}
 
     public function addImages(?array $photos): self
     {
@@ -68,6 +71,23 @@ class Movie extends Model
                 }
             }
             MovieImage::destroy($photos);
+        }
+        return $this;
+    }
+    public function addTags(?array $tags): self
+    {
+        if ($tags) {
+            $movieTag = [];
+            $time = Carbon::now();
+            foreach ($tags as $tag) {
+                $movieTag[] = [
+                    'tag_id' => $tag,
+                    'movie_id' => $this->id,
+                    'created_at' => $time,
+                    'updated_at' => $time
+                ];
+            }
+            MovieTag::insert($movieTag);
         }
         return $this;
     }
