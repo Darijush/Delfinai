@@ -18,7 +18,7 @@ class BookingController extends Controller
     {
         if (Auth::user()->role < 10) {
             return view('booking.index', [
-                'bookings' => Booking::where('user_id', '=', Auth::user()->id)->get(),
+                'bookings' => Booking::where('user_id', '=', Auth::user()->id)->paginate(5)->withQueryString(),
             ]);
         } else {
             return view('booking.index', [
