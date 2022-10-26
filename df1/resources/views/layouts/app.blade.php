@@ -13,12 +13,14 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
 <body>
+
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -62,10 +64,10 @@
                                     <a class="dropdown-item" href="{{ route('c_index') }}">
                                         List
                                     </a>
-                                    @if (Auth::user()->role >=10)
-                                    <a class="dropdown-item" href="{{ route('c_create') }}">
-                                        Add
-                                    </a>
+                                    @if (Auth::user()->role >= 10)
+                                        <a class="dropdown-item" href="{{ route('c_create') }}">
+                                            Add
+                                        </a>
                                     @endif
                                 </div>
                             </li>
@@ -78,10 +80,10 @@
                                     <a class="dropdown-item" href="{{ route('m_index') }}">
                                         List
                                     </a>
-                                    @if (Auth::user()->role >=10)
-                                    <a class="dropdown-item" href="{{ route('m_create') }}">
-                                        Add
-                                    </a>
+                                    @if (Auth::user()->role >= 10)
+                                        <a class="dropdown-item" href="{{ route('m_create') }}">
+                                            Add
+                                        </a>
                                     @endif
                                 </div>
                             </li>

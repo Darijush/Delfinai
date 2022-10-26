@@ -8,12 +8,12 @@
                     <div class="card-header">
                         <h2>Movie</h2>
                         <form action="{{ route('home_list') }}" method="get">
-                            <div class="container">
+                            <div class="container search-filter">
                                 <div class="row">
                                     <div class="col-8">
                                         <div class="container">
                                             <div class="row">
-                                                <div class="col-5">
+                                                <div class="col-xl-5 col-12">
                                                     <select name="cat" class="form-select mt-1">
                                                         <option value="0">All</option>
                                                         @foreach ($categories as $category)
@@ -23,7 +23,7 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                                <div class="col-5">
+                                                <div class="col-xl-5 col-12">
                                                     <select name="sort" class="form-select mt-1">
                                                         <option value="0">All</option>
                                                         @foreach ($sortSelect as $option)
@@ -44,7 +44,7 @@
                             <div class="col-9 mt-3">
                                 <div class="container">
                                     <div class="row">
-                                        <div class="col-8">
+                                        <div class="col-xl-8 col-12">
                                             <div class="input-group mb-3">
                                                 <input type="text" name="s" class="form-control"
                                                     value="{{ $s }}">
@@ -62,10 +62,10 @@
                 </form>
             </div>
             <div class="card-body">
-                <ul class="list-group">
+                <ul class="list-group nice-list">
                     @forelse($movies as $movie)
-                        <li class="list-group-item">
-                            <div class="movies-list">
+                        <li class="list-group-item nice-item">
+                            <div class="item-list">
                                 <div class="content">
                                     <h2><span>Title: </span>{{ $movie->title }}</h2>
                                     <h4><span>Price: </span>{{ $movie->price }}</h4>

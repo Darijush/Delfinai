@@ -19,15 +19,12 @@
                             <div class="line"><small>Category:</small>
                                 <h5>{{ $movie->getCategory->title }}</h5>
                             </div>
-                            <div class="swiper">
-
+                            <div class="swiper mySwiper">
                                 <div class="swiper-wrapper">
                                     @forelse($movie->getPhotos as $photo)
-                                        <div class="swiper-slide">
+                                        <div class="swiper-slide" style="background-image: url({{ $photo->url }}) "></div>
+                                        {{-- <img class="swiper-slide" src="{{ $photo->url }}"> --}}
 
-                                            <img src="{{ $photo->url }}">
-
-                                        </div>
                                     @empty
                                         <h2>No photos yet.</h2>
                                     @endforelse
@@ -41,4 +38,21 @@
             </div>
         </div>
     </div>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        document.addEventListener('readystatechange', () => {
+                    if (document.readyState == 'complete')
+
+                    function() {
+                        const swiper = new Swiper('.mySwiper', {
+                                pagination: '.swiper-pagination',
+                                slidesPerView: 'auto',
+                                paginationClickable: true,
+                                spaceBetween: 0
+                            },
+                            false);
+    </script>
 @endsection

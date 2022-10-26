@@ -47,10 +47,10 @@
                         </form>
                     </div>
                     <div class="card-body">
-                        <ul class="list-group">
+                        <ul class="list-group nice-list">
                             @forelse($movies as $movie)
-                                <li class="list-group-item">
-                                    <div class="movies-list">
+                                <li class="list-group-item nice-item">
+                                    <div class="item-list">
                                         <div class="content">
                                             <h2><span>Title: </span>{{ $movie->title }}</h2>
                                             <h4><span>Price: </span>{{ $movie->price }}</h4>
