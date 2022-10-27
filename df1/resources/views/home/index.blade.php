@@ -78,6 +78,15 @@
                                     @if ($movie->getPhotos()->count())
                                         <h5><a href="{{ $movie->lastImageUrl() }}" target="_BLANK">Photos:
                                                 {{ $movie->getPhotos()->count() }}</a></h5>
+                                                <div class="slideshow-container">
+                                                    @forelse($movie->getPhotos as $photo)
+                                                        <div class="mySlides fade">
+                                                            <img src="{{ $photo->url }}" style="width:100%">
+                                                        </div>
+                                                    @empty
+                                                        <h2>No photos yet.</h2>
+                                                    @endforelse
+                                                </div>
                                     @endif
                                     <h4><span>Rating: </span>{{ $movie->rating ?? 'No rating' }}</h4>
                                 </div>
